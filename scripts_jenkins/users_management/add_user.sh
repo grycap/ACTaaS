@@ -1,4 +1,8 @@
 #$1 ID User
+USER=$1
 #@2 Password
-CMD="jenkins.model.Jenkins.instance.securityRealm.createAccount(\"$1\",\"$2\")"
-echo $CMD  | java -jar ../jenkins-cli.jar -auth dsegrelles:9s654321 -s http://158.42.105.24:8080/ groovy =
+PASS=$2
+#$3 jenkins URL
+JENKINS_URL=$3
+CMD="jenkins.model.Jenkins.instance.securityRealm.createAccount(\"${USER}\",\"${PASS}\")"
+echo $CMD  | java -jar ../jenkins-cli.jar -auth admin:adminyoyoyo -s ${JENKINS_URL} groovy =
