@@ -7,7 +7,7 @@ USER=$4
 PASS=$5
 
 CMD="jenkins.model.Jenkins.instance.securityRealm.createAccount(\"${NEW_USER}\",\"${NEW_PASS}\")"
-echo $CMD  | java -jar ../jenkins-cli.jar -auth ${USER}:${PASS} -s ${JENKINS_URL} groovy =
+echo $CMD | java -jar ../jenkins-cli.jar -auth ${USER}:${PASS} -s ${JENKINS_URL} groovy =
 
 #curl --user ${USER}:${PASS} -X POST "${JENKINS_URL}/credentials/store/system/domain/_/createCredentials" \
 #--data-urlencode 'json={
