@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#File is a list of student's github accounts, one per line
 FILE=$1
 JENKINS_URL=$2
 PRACTICES=$3
