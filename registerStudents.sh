@@ -15,6 +15,7 @@ curl --user ${USER}:${PASS} ${JENKINS_URL}/role-strategy/strategy/addRole --data
 
 while IFS='' read -r STUDENT || [[ -n "$STUDENT" ]]; do
     #Create user
+    #TODO: devolver al profesor la lista de alumnos y su contraseña de jenkins creada de forma aleatoria
     NEW_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
     CMD="jenkins.model.Jenkins.instance.securityRealm.createAccount(\"${STUDENT}\",\"${NEW_PASS}\")"
     echo $CMD | java -jar scripts_jenkins/jenkins-cli.jar -auth ${USER}:${PASS} -s ${JENKINS_URL} groovy = 
