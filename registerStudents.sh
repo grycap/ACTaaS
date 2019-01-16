@@ -44,6 +44,6 @@ while IFS='' read -r STUDENT || [[ -n "$STUDENT" ]]; do
 
 done < ${FILE}
 
-echo 'All users properly created in Jenkins!'
+echo 'All users properly created in Jenkins! The file \'students_jenkins_accounts.txt\' contains details of each account.'
 exit 0
 
