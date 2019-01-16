@@ -11,7 +11,7 @@ In this repo, you can find a set of scripts that interact directly with Jenkins 
  * Create Views
  
 Also, there are two main scripts that prepare the environment of a class. Both have support to CSRF protection of Jenkins, you just need to set "-c" option to "true":
- * registerStudents: this script receives a file that contains the Github accounts of the students and the number of assingments of the course, and creates the user in Jenkins and the neccessary folders and roles to each student.
+ * registerStudents: this script receives a file that contains the Github accounts of the students and the number of assignments of the course, and creates the user in Jenkins and the necessary folders and roles to each student.
  
    * Usage: ./registerStudents.sh [-f <students_names_file>] [-j <Jenkins_URL>] [-a <number_of_asssingments>] [-u <Jenkins_user>] [-p <Jenkins_password>] [-c <use_crumb_cred>]
    * Example of use: $ ./registerStudents_crumb.sh -f students -j http://jenkins.ip:8080 -a 3 -u admin -p admin1234 -c true
