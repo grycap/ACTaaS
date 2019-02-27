@@ -1,0 +1,42 @@
+network publica (outbound = 'yes')
+
+system windows (
+cpu.arch='x86_64' and
+cpu.count>=2 and
+memory.size>=4g and
+net_interface.0.connection = 'publica' and
+disk.0.os.name='windows' and
+disk.0.image.url = 'one://ramses.i3m.upv.es/141' and
+disk.0.os.credentials.username = 'winuser' and
+disk.0.os.credentials.password = 'grycap01'
+)
+
+configure windows (
+@begin
+---
+- tasks:
+  - name: install github desktop via Chocolatey
+    win_chocolatey:
+      name: github-desktop
+      state: present
+
+  - name: install Dev-C++ via Chocolatey
+    win_chocolatey:
+      name: orwelldevcpp
+      state: present
+
+  #- name: download dev-c++
+  #  win_get_url: 
+      #url: https://downloads.sourceforge.net/project/orwelldevcpp/Setup%20Releases/Dev-Cpp%205.11%20TDM-GCC%204.9.2%20Setup.exe?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Forwelldevcpp%2Ffiles%2Flatest%2Fdownload&ts=1551280148
+  #    url: https://sourceforge.net/projects/orwelldevcpp/files/latest/download
+  #    dest: C:\temp\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
+
+  #- name: install dev-c++
+  #  win_package:
+  #    path: C:\temp\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
+  #    state: present
+@end
+)
+
+
+deploy windows 1
