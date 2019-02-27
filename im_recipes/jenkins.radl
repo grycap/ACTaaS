@@ -8,7 +8,12 @@ net_interface.1.connection = 'publica' and
 net_interface.0.connection = 'privada' and
 net_interface.0.dns_name = 'jenkinserver' and
 disk.0.os.name='linux' and
-disk.0.os.flavour='ubuntu'
+disk.0.os.flavour='ubuntu' and
+disk.0.image.url = 'one://ramses.i3m.upv.es/300' and
+disk.0.os.credentials.username = 'ubuntu' and
+disk.0.os.credentials.password = 'yoyoyo' and
+disk.0.os.credentials.new.username = 'ubuntu' and
+disk.0.os.credentials.new.password = 'yoY0&yo'
 )
 
 configure front (
