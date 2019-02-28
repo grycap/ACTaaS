@@ -29,12 +29,21 @@ configure windows (
   #  win_get_url: 
       #url: https://downloads.sourceforge.net/project/orwelldevcpp/Setup%20Releases/Dev-Cpp%205.11%20TDM-GCC%204.9.2%20Setup.exe?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Forwelldevcpp%2Ffiles%2Flatest%2Fdownload&ts=1551280148
   #    url: https://sourceforge.net/projects/orwelldevcpp/files/latest/download
-  #    dest: C:\temp\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
+  #    dest: C:\Users\Public\Desktop\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
 
   #- name: install dev-c++
   #  win_package:
-  #    path: C:\temp\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
+  #    path: C:\Users\Public\Desktop\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
   #    state: present
+  
+  - name: update machine name to 'entornopractico'
+    win_hostname:
+      name: entornopractico
+    register: hostname_state
+
+  - win_reboot:
+    when: hostname_state.reboot_required
+
 @end
 )
 
