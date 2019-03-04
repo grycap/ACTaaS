@@ -1,0 +1,138 @@
+network publica (outbound = 'yes')
+network privada ()
+
+system front (
+cpu.count>=1 and
+memory.size>=2g and
+net_interface.1.connection = 'publica' and
+net_interface.0.connection = 'privada' and
+net_interface.0.dns_name = 'jenkinserver' and
+disk.0.os.name='linux' and
+disk.0.os.flavour='ubuntu' and
+disk.0.image.url = 'one://ramses.i3m.upv.es/300' and
+disk.0.os.credentials.username = 'ubuntu' and
+disk.0.os.credentials.password = 'pass'
+)
+
+system windows (
+cpu.arch='x86_64' and
+cpu.count>=2 and
+memory.size>=4g and
+net_interface.0.connection = 'privada' and
+disk.0.os.name='windows' and
+disk.0.image.url = 'one://ramses.i3m.upv.es/141' and
+disk.0.os.credentials.username = 'winuser' and
+disk.0.os.credentials.password = 'pass' and
+net_interface.0.dns_name = 'entornopractico'
+)
+
+configure front (
+@begin
+- tasks:
+  #Install java 8 dependency in debian
+  - name: Add webupd8 ppa repository
+    apt_repository: repo='ppa:webupd8team/java'
+    when: ansible_os_family == "Debian"
+
+  - name: apt update
+    shell: apt-get update
+    when: ansible_os_family == "Debian"
+
+  - name: Auto accept oracle jdk license
+    shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+    when: ansible_os_family == "Debian"
+
+  - name: Install java8
+    shell: apt-get install -y oracle-java8-installer ca-certificates
+    when: ansible_os_family == "Debian"
+
+  - name: Install oracle-java8-set-default package
+    apt: pkg=oracle-java8-set-default state=present update_cache=yes
+    when: ansible_os_family == "Debian"
+
+   #Install java 8 dependency for marathon in redhat
+  - name: Download Oracle Java 8
+    command: "wget --no-cookies --no-check-certificate --header 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie' http://download.oracle.com/otn-pub/java/jdk/8u66-b17/jdk-8u66-linux-x64.rpm"
+    when: ansible_os_family == "RedHat"
+
+  - name: Install oracle java 8 (jdk-8u66)
+    command: rpm -ivh jdk-8u66-linux-x64.rpm
+    when: ansible_os_family == "RedHat"
+
+  #Install Jenkins
+  - name: Add Jenkins apt repository key.
+    apt_key:
+      url: "https://pkg.jenkins.io/debian/jenkins.io.key"
+      state: present
+
+  - name: Add Jenkins apt repository.
+    apt_repository:
+      repo: "deb https://pkg.jenkins.io/debian binary/"
+      state: present
+      update_cache: true
+    when: ansible_os_family == "Debian"
+
+  - name: apt update
+    shell: apt-get update
+    when: ansible_os_family == "Debian"
+
+  - name: Install Jenkins
+    shell: apt-get install -y jenkins
+    when: ansible_os_family == "Debian"
+@end
+)
+
+configure windows (
+@begin
+---
+- tasks:
+  - name: install github desktop via Chocolatey
+    win_chocolatey:
+      name: github-desktop
+      state: present
+
+  - name: install Dev-C++ via Chocolatey
+    win_chocolatey:
+      name: orwelldevcpp
+      state: present
+
+  #- name: download dev-c++
+  #  win_get_url: 
+      #url: https://downloads.sourceforge.net/project/orwelldevcpp/Setup%20Releases/Dev-Cpp%205.11%20TDM-GCC%204.9.2%20Setup.exe?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Forwelldevcpp%2Ffiles%2Flatest%2Fdownload&ts=1551280148
+  #    url: https://sourceforge.net/projects/orwelldevcpp/files/latest/download
+  #    dest: C:\Users\Public\Desktop\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
+
+  #- name: install dev-c++
+  #  win_package:
+  #    path: C:\Users\Public\Desktop\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
+  #    state: present
+
+  - name: update machine name to 'entornopractico'
+    win_hostname:
+      name: entornopractico
+    register: hostname_state
+
+  - win_reboot:
+    when: hostname_state.reboot_required
+
+  - win_group:
+      name: WORKGROUP
+      state: absent
+
+  #TODO: ver como modificar el dominio al que pertenece la maquina
+  - win_domain_membership:
+      dns_domain_name: UPVNET.UPV.ES
+      domain_admin_user: 'agregar'
+      domain_admin_password: 'agregar'
+      domain_ou_path: "OU=Windows,OU=Servers,DC=UPVNET,DC=UPV,DC=ES"
+      state: domain
+    register: domain_state
+
+  - win_reboot:
+    when: domain_state.reboot_required
+
+@end
+)
+
+deploy front 1
+deploy windows 5
