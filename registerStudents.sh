@@ -109,8 +109,8 @@ else
         i="0"
         while [ $i -lt $PRACTICES ]
         do
-            i=$[$i+1]
             curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=practica${i}_${STUDENT}&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS} 
+            i=$[$i+1]
         done
 
         #Create project roles for each student, to restrict the view of the folders
