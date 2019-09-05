@@ -38,7 +38,7 @@ configure front (
   # sudo sh -c 'echo deb deb https://pkg.jenkins.io/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
   - name: Add Jenkins apt repository.
     apt_repository:
-      repo: "deb https://pkg.jenkins.io/debian binary/"
+      repo: "deb https://pkg.jenkins.io/debian-stable binary/"
       state: present
       update_cache: true
     when: ansible_os_family == "Debian"
