@@ -17,3 +17,5 @@ do
    echo "${user},${arrayurls[$i]}" >> ${OUTPUT_FILE}
    i=$[$i+1]
 done
+
+echo "Data successfully obtained from Github. Use the file $OUTPUT_FILE with the createTests script!"
