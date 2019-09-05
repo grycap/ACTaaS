@@ -50,6 +50,13 @@ configure front (
   - name: Install Jenkins
     shell: apt-get install -y jenkins
     when: ansible_os_family == "Debian"
+
+  # Install Autoasssesment scrips from Github
+  - name: Install Autoasssesment scrips from Github
+    git:
+      repo: https://github.com/dsegrelles/autoassesment-programming
+      dest: /var/tmp/education
+      version: master
 @end
 )
 
