@@ -59,7 +59,8 @@ if [ "$CRUMB" = true ] ; then
 
     while IFS='' read -r STUDENT || [[ -n "$STUDENT" ]]; do
         #Create user
-        NEW_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+        #NEW_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+        NEW_PASS="vamosacambiarla"
         #devolver al profesor la lista de alumnos y su contraseña de jenkins creada de forma aleatoria
         echo "${STUDENT},${NEW_PASS}" >> students_jenkins_accounts.txt
         CMD="jenkins.model.Jenkins.instance.securityRealm.createAccount(\"${STUDENT}\",\"${NEW_PASS}\")"
@@ -74,7 +75,7 @@ if [ "$CRUMB" = true ] ; then
         while [ $i -lt $PRACTICES ]
         do
             i=$[$i+1]
-            curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=practica${i}_${STUDENT}&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "${CRUMB_KEY}" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS} 
+            curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=practice${i}_${STUDENT}&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "${CRUMB_KEY}" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS} 
         done
 
         #Create project roles for each student, to restrict the view of the folders
@@ -95,7 +96,8 @@ else
 
     while IFS='' read -r STUDENT || [[ -n "$STUDENT" ]]; do
         #Create user
-        NEW_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+        #NEW_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+        NEW_PASS="vamosacambiarla"        
         #devolver al profesor la lista de alumnos y su contraseña de jenkins creada de forma aleatoria
         echo "${STUDENT},${NEW_PASS}" >> students_jenkins_accounts.txt
         CMD="jenkins.model.Jenkins.instance.securityRealm.createAccount(\"${STUDENT}\",\"${NEW_PASS}\")"
@@ -109,7 +111,7 @@ else
         i="0"
         while [ $i -lt $PRACTICES ]
         do
-            curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=practica${i}_${STUDENT}&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS} 
+            curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=practice${i}_${STUDENT}&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS} 
             i=$[$i+1]
         done
 
