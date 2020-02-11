@@ -17,7 +17,6 @@ int main(){
 	n_small_boxes  = aux / SMALL_BOX;
 	aux			   = aux % SMALL_BOX;
 	
-	printf("\n-------------------------------------------------------------------------\n");
 	printf("%d BIG BOXES -- %d MEDIUM BOXES -- %d SMALL BOXES -- %d Individual agendas\n", n_big_boxes,n_medium_boxes,n_small_boxes,aux);
 	return 0;
 }
