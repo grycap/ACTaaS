@@ -1,0 +1,15 @@
+En Forward.i3m.upv.es
+	1.- Redirigir el port 
+
+	forward.i3m.upv.es:7070 a la URL_BASE_JENKINS
+
+
+En Jenkinks
+	1.- Instalar el plug-in Github
+	2.- Administrat Jenkins -> Cofigurar sistema --> Github --> Avanzado --> Specify another hook URL for GitHub configuratio --> http://forward.i3m.upv.es:7070/github-webhook/
+
+
+En Github
+	En webhooks --> playloadURL --> http://forward.i3m.upv.es:7070/github-webhook/
+	
+	
