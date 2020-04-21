@@ -28,8 +28,8 @@ configure front (
       name: java
       path: /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
-  #Install Jenkins
-  #TODO: wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+  #Install Jenkins (https://jenkins.io/doc/book/installing/)
+  #wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
   - name: Add Jenkins apt repository key.
     apt_key:
       url: "https://pkg.jenkins.io/debian/jenkins.io.key"
@@ -46,17 +46,21 @@ configure front (
   - name: apt update
     shell: apt-get update
     when: ansible_os_family == "Debian"
+    
+  - name: solve error installing Jenkins
+    shell: add-apt-repository universe
+    when: ansible_os_family == "Debian"
 	
   - name: Install Jenkins
     shell: apt-get install -y jenkins
     when: ansible_os_family == "Debian"
 
   # Install Autoasssesment scrips from Github
-  - name: Install Autoasssesment scrips from Github
-    git:
-      repo: https://github.com/dsegrelles/autoassesment-programming
-      dest: /var/tmp/education
-      version: master
+  #- name: Install Autoasssesment scrips from Github
+  #  git:
+  #    repo: https://github.com/grycap/ACTaaS.git
+  #    dest: /var/tmp/education
+  #    version: master
 @end
 )
 
