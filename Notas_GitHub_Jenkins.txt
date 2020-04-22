@@ -5,7 +5,7 @@ En Forward.i3m.upv.es
 
 
 En Jenkinks
-	1.- Instalar el plug-in Github (GitHub Integration)
+	1.- Instalar el plug-in Github (GitHub Integration, Generic Webhook Trigger)
 	2.- Administrat Jenkins -> Cofigurar sistema --> Github --> Avanzado --> Specify another hook URL for GitHub configuratio --> http://forward.i3m.upv.es:7070/github-webhook/
 
 
