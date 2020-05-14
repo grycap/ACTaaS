@@ -1,0 +1,1 @@
+sh ./test_exercise1.sh Damian 43 93.5
