@@ -1,0 +1,1 @@
+sh ./test_exercise2.sh Damian Segrelles Quilis 46589751N 20 03 1976 M

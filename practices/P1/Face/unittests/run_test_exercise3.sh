@@ -1,0 +1,1 @@
+sh ./test_exercise3.sh 10
