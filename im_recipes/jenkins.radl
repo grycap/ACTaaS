@@ -46,7 +46,7 @@ configure front (
   - name: apt update
     shell: apt-get update
     when: ansible_os_family == "Debian"
-    
+
   - name: solve error installing Jenkins
     shell: add-apt-repository universe
     when: ansible_os_family == "Debian"
