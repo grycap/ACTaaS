@@ -3,18 +3,19 @@ network privada ()
 
 system front (
 cpu.count>=1 and
-memory.size>=2g and
+memory.size>=4g and
 net_interface.1.connection = 'publica' and
 net_interface.0.connection = 'privada' and
 net_interface.0.dns_name = 'jenkinserver' and
 disk.0.os.name='linux' and
-disk.0.os.flavour='ubuntu'
+disk.0.os.flavour='ubuntu' and
+disk.0.image.url = 'one://your.machine/id'
 )
 
 configure front (
 @begin
 - tasks:
-  #Install java 8 dependency in debian
+  #Install java 8
   - name: Add java repository to ub14
     apt_repository:
       repo: 'ppa:openjdk-r/ppa'
@@ -50,17 +51,18 @@ configure front (
   - name: solve error installing Jenkins
     shell: add-apt-repository universe
     when: ansible_os_family == "Debian"
-	
+  
   - name: Install Jenkins
-    shell: apt-get install -y jenkins
+    shell: apt-get install -y --allow-unauthenticated jenkins
     when: ansible_os_family == "Debian"
-
+  
   # Install Autoasssesment scrips from Github
   #- name: Install Autoasssesment scrips from Github
   #  git:
-  #    repo: https://github.com/grycap/ACTaaS.git
+  #    repo: https://github.com/grycap/ACTaaS
   #    dest: /var/tmp/education
   #    version: master
+
 @end
 )
 
