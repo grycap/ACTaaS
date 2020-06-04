@@ -12,7 +12,7 @@ weight=$3
 ent=$(printf 'My name is %s and I am %d years old. My weight is %f kg.' $name $age $weight)
 
 echo "$@" > ent.txt 
-./exercise1 < ent.txt > sal.txt
+./exercise1_bin < ent.txt > sal.txt
 sal=$(grep "My name is" sal.txt)
 rm ent.txt sal.txt
 

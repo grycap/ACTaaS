@@ -10,7 +10,7 @@ sp=$(echo "$1 + $profit" | bc -l)
 ent=$(printf 'The selling price is %f euros' $sp)
 
 echo "$@" > ent.txt 
-./exercise4 < ent.txt > sal.txt
+./exercise4_bin < ent.txt > sal.txt
 sal=$(grep "The selling price is" sal.txt)
 
 

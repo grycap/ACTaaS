@@ -18,7 +18,7 @@ sex=$8
 ent=$(printf 'My name is %s %s %s whith NIF %s. I was born on %d/%d/%d and my sex is %c.' $name $fsurname $ssurname $nif $day $month $year $sex)
 
 echo "$@" > ent.txt 
-./exercise2 < ent.txt > sal.txt
+./exercise2_bin < ent.txt > sal.txt
 sal=$(grep "My name is" sal.txt)
 rm ent.txt sal.txt
 

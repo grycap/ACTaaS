@@ -13,7 +13,7 @@ perimeter=$(echo "2*$pi*$radio"|bc -l)
 ent=$(printf 'The area is %f and the perimeter is %f' $area $perimeter)
 
 echo "$@" > ent.txt 
-./exercise3 < ent.txt > sal.txt
+./exercise3_bin < ent.txt > sal.txt
 sal=$(grep "The area is" sal.txt)
 
 rm ent.txt sal.txt

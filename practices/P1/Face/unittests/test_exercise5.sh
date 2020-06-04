@@ -21,7 +21,7 @@ aux=$(echo "$aux % $SMALL_BOX" | bc)
 ent=$(printf '%d BIG BOXES -- %d MEDIUM BOXES -- %d SMALL BOXES -- %d Individual agendas' $n_big_boxes $n_medium_boxes $n_small_boxes $aux)
 
 echo "$@" > ent.txt 
-./exercise5 < ent.txt > sal.txt
+./exercise5_bin < ent.txt > sal.txt
 sal=$(grep "BIG BOXES --" sal.txt)
 rm ent.txt sal.txt
 echo $ent

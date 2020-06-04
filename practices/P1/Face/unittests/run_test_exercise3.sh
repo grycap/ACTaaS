@@ -1,1 +1,1 @@
-sh ./test_exercise3.sh 10
+sh /var/tmp/education/ACTaaS/practices/P1/Face/unittests/test_exercise3.sh 10

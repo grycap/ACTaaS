@@ -1,1 +1,1 @@
-sh ./test_exercise2.sh Damian Segrelles Quilis 46589751N 20 03 1976 M
+sh /var/tmp/education/ACTaaS/practices/P1/Face/unittests/test_exercise2.sh Damian Segrelles Quilis 46589751N 20 03 1976 M
