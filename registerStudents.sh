@@ -83,9 +83,6 @@ while getopts ":f:j:a:u:s:p:" o; do
 done
 shift $((OPTIND-1))
 
-# API token actual
-# PASS="111bdf145a6545c45940ae73cdc6dd72ea" 
-
 if [ -z "${JENKINS_URL}" ] || [ -z "${PRACTICES}" ] || [ -z "${USER}" ] || [ -z "${PASS}" ]; then
     cecho "RED" "ERROR: some parameters are missing, please consider usage."
     usage
