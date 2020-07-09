@@ -9,7 +9,7 @@ net_interface.0.connection = 'privada' and
 net_interface.0.dns_name = 'jenkinserver' and
 disk.0.os.name='linux' and
 disk.0.os.flavour='ubuntu' and
-disk.0.image.url = 'one://your.machine/id'
+disk.0.image.url = 'one://your.machine/id' and
 )
 
 configure front (
@@ -46,22 +46,56 @@ configure front (
 
   - name: apt update
     shell: apt-get update
+    args:
+      warn: false
     when: ansible_os_family == "Debian"
+
 
   - name: solve error installing Jenkins
     shell: add-apt-repository universe
     when: ansible_os_family == "Debian"
-  
+
   - name: Install Jenkins
-    shell: apt-get install -y --allow-unauthenticated jenkins
+    shell: apt-get install -y --allow-unauthenticated --no-upgrade jenkins
+    args:
+      warn: false
     when: ansible_os_family == "Debian"
-  
+
+
+  - name: Install gcc
+    shell: apt-get install -y build-essential
+    args:
+      warn: false
+    when: ansible_os_family == "Debian"
+
+  - name: Install bc calculator
+    shell: apt-get install -y bc
+    args:
+      warn: false
+    when: ansible_os_family == "Debian"
+
+
   # Install Autoasssesment scrips from Github
-  #- name: Install Autoasssesment scrips from Github
-  #  git:
-  #    repo: https://github.com/grycap/ACTaaS
-  #    dest: /var/tmp/education
-  #    version: master
+  - name: Install Autoasssesment scrips from Github
+    git:
+      repo: https://github.com/grycap/ACTaaS
+      dest: /var/tmp/education/ACTaaS
+      version: master
+
+  - name: Set permisions for unittest scripts
+    file:
+      path: /var/tmp/education/ACTaaS/practices/P1/Face/unittests
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+      mode: '0777'
+
+  - name: Set permisions for unittest directory
+    file:
+      path: /var/tmp/education/ACTaaS/practices/P1/Face/unittests
+      state: directory
+      mode: '0755'
 
 @end
 )
