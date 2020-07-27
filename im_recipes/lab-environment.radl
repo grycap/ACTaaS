@@ -9,7 +9,7 @@ net_interface.0.connection = 'privada' and
 net_interface.0.dns_name = 'jenkinserver' and
 disk.0.os.name='linux' and
 disk.0.os.flavour='ubuntu' and
-disk.0.image.url = 'one://ramses.i3m.upv.es/300' and
+disk.0.image.url = 'one://your.machine/id' and
 disk.0.os.credentials.username = 'ubuntu' and
 disk.0.os.credentials.password = 'pass'
 )
@@ -20,7 +20,7 @@ cpu.count>=2 and
 memory.size>=4g and
 net_interface.0.connection = 'privada' and
 disk.0.os.name='windows' and
-disk.0.image.url = 'one://ramses.i3m.upv.es/141' and
+disk.0.image.url = 'one://your.machine/id' and
 disk.0.os.credentials.username = 'winuser' and
 disk.0.os.credentials.password = 'pass' and
 net_interface.0.dns_name = 'entornopractico'
@@ -43,7 +43,7 @@ configure front (
       name: java
       path: /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
-  #Install Jenkins
+  #Install Jenkins (https://jenkins.io/doc/book/installing/)
   - name: Add Jenkins apt repository key.
     apt_key:
       url: "https://pkg.jenkins.io/debian/jenkins.io.key"
@@ -51,26 +51,60 @@ configure front (
 
   - name: Add Jenkins apt repository.
     apt_repository:
-      repo: "deb https://pkg.jenkins.io/debian binary/"
+      repo: "deb https://pkg.jenkins.io/debian-stable binary/"
       state: present
       update_cache: true
     when: ansible_os_family == "Debian"
 
   - name: apt update
     shell: apt-get update
+    args:
+      warn: false
+    when: ansible_os_family == "Debian"
+
+  - name: solve error installing Jenkins
+    shell: add-apt-repository universe
     when: ansible_os_family == "Debian"
 
   - name: Install Jenkins
-    shell: apt-get install -y jenkins
+    shell: apt-get install -y --allow-unauthenticated --no-upgrade jenkins
+    args:
+      warn: false
     when: ansible_os_family == "Debian"
-    
-  # Download autoassesment scripts from github
-  - name: Install Autoasssesment scrips from Githu
+
+  - name: Install gcc
+    shell: apt-get install -y build-essential
+    args:
+      warn: false
+    when: ansible_os_family == "Debian"
+
+  - name: Install bc calculator
+    shell: apt-get install -y bc
+    args:
+      warn: false
+    when: ansible_os_family == "Debian"
+
+  # Install Autoasssesment scrips from Github
+  - name: Install Autoasssesment scrips from Github
     git:
-      repo: https://github.com/dsegrelles/autoassesment-programming
-      dest: /var/tmp/
+      repo: https://github.com/grycap/ACTaaS
+      dest: /var/tmp/education/ACTaaS
       version: master
-  
+
+  - name: Set permisions for unittest scripts
+    file:
+      path: /var/tmp/education/ACTaaS/practices/P1/Face/unittests
+      state: directory
+      recurse: yes
+      owner: root
+      group: root
+      mode: '0777'
+
+  - name: Set permisions for unittest directory
+    file:
+      path: /var/tmp/education/ACTaaS/practices/P1/Face/unittests
+      state: directory
+      mode: '0755'
 @end
 )
 
@@ -90,7 +124,7 @@ configure windows (
 
   #- name: download dev-c++
   #  win_get_url: 
-      #url: https://downloads.sourceforge.net/project/orwelldevcpp/Setup%20Releases/Dev-Cpp%205.11%20TDM-GCC%204.9.2%20Setup.exe?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Forwelldevcpp%2Ffiles%2Flatest%2Fdownload&ts=1551280148
+  #    url: https://downloads.sourceforge.net/project/orwelldevcpp/Setup%20Releases/Dev-Cpp%205.11%20TDM-GCC%204.9.2%20Setup.exe?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Forwelldevcpp%2Ffiles%2Flatest%2Fdownload&ts=1551280148
   #    url: https://sourceforge.net/projects/orwelldevcpp/files/latest/download
   #    dest: C:\Users\Public\Desktop\Dev-Cpp-5.11-TDM-GCC-4.9.2-Setup.exe
 
@@ -111,7 +145,7 @@ configure windows (
       name: WORKGROUP
       state: absent
 
-  #TODO: ver como modificar el dominio al que pertenece la maquina
+  #Configure internal UPV domain
   - win_domain_membership:
       dns_domain_name: UPVNET.UPV.ES
       domain_admin_user: 'agregar'
@@ -127,4 +161,5 @@ configure windows (
 )
 
 deploy front 1
+# You can modify this value to add more windows machines
 deploy windows 5
