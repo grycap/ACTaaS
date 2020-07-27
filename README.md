@@ -11,7 +11,7 @@ Then, you will have to tune the recipe, i.e. 'lab-environment.radl', to point to
 
 Finally, you need to download the IM client from here: https://github.com/grycap/im-client
 
-In this repo, you can find a set of scripts that interact directly with Jenkins and:
+In this repo, you can also find a set of scripts that interact directly with Jenkins and:
  * Create Users
  * Create Folders and subfolders
  * Create Roles (global and project)
