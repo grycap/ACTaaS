@@ -4,10 +4,10 @@ This is a set of tools to facilitate to the teacher the management of practice l
 
 The first utility offered in this repo are the IM recipes to deploy the environment automatically, by just using a command:
 
-  * $ im_client.py create lab_environment.radl -a auth.dat 
+  * $ im_client.py create lab-environment.radl -a auth.dat 
 
 To have this command properly working, you'll need to create a file, called 'auth.dat', with the credentials to access the cloud provider you prefer. IM supports a wide variety of cloud providers, from public to on-premises. You can find more info about IM tool on its offcial repo: https://github.com/grycap/im 
-Then, you will have to tune the recipe, i.e. 'lab_environment.radl', to point to the virtual machine images you want to use in the selected provider. You can also modify the characteristics of the VMs that compose the deployment, by modifying the recipe. Please, see the official IM documentation for more details: https://imdocs.readthedocs.io/en/latest/
+Then, you will have to tune the recipe, i.e. 'lab-environment.radl', to point to the virtual machine images you want to use in the selected provider. You can also modify the characteristics of the VMs that compose the deployment, by modifying the recipe. Please, see the official IM documentation for more details: https://imdocs.readthedocs.io/en/latest/
 
 Finally, you need to download the IM client from here: https://github.com/grycap/im-client
 
