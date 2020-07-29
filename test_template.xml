@@ -34,7 +34,7 @@
   <builders>
     <hudson.tasks.Shell>
       <command>
-gcc ./#EX#/#EX#.c -Wall -o #EX#_bin
+gcc ./#EX#/#EX#.c -Wall -lm -o #EX#_bin
 #COM#
 </command>
     </hudson.tasks.Shell>
