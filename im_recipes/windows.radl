@@ -15,6 +15,12 @@ configure windows (
 @begin
 ---
 - tasks:
+  - name: Chocolatey installation (https://github.com/ansible/ansible/issues/13856)
+    win_chocolatey: name=chocolatey state=present upgrade=no
+
+  - name: Fix problem with Chocolatey .99 (https://github.com/ansible/ansible-modules-extras/issues/378)
+    raw: Chocolatey feature enable -n allowGlobalConfirmation
+
   - name: install github desktop via Chocolatey
     win_chocolatey:
       name: github-desktop
