@@ -1,0 +1,11 @@
+
+        S.S.N         Name       Gross pay
+
+        163-98-4182   B.Caldwell    270.84
+
+        189-53-2147   D.Memcheck    332.80
+
+        145-32-9826   R.Potter      261.60
+
+        163-09-4263   W.Rossen      343.00
+
