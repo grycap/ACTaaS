@@ -1,0 +1,5 @@
+8000
+15000
+89500.60
+Month during which the maximum spending has occurred: 9
+Month during which the minimum spending has occurred: 7
