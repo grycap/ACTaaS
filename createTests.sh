@@ -17,7 +17,7 @@ usage() {
 addstudent() {
              EX="exercise"
 			 EX="$EX$JOB_NAME"
-             COM="sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/Face/unittests/run_test_exercise${JOB_NAME}.sh"
+             COM="sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh"
 
 			# Modify the job template of Jenkins to include the repo of each student
              cat ${JOB_TEMPLATE} | sed "s/#URL#/$(echo $GIT_URL | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')/g" > /tmp/${JOB_NAME}_${STUDENT}
@@ -27,7 +27,9 @@ addstudent() {
 			 cat /tmp/${JOB_NAME}_${STUDENT} | sed "s/#CID#/$(echo $CID | sed -e 's/\\/\\\\/g; s/\//\\\//g; s/&/\\\&/g')/g" > /tmp/${JOB_NAME}_${STUDENT}
              
 			 # Create job in Jenkins for each student
-             curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/job/practice${PRACTICA}_${STUDENT}/createItem?name=${JOB_NAME}" --user ${USER}:${PASS} --data-binary "@/tmp/${JOB_NAME}_${STUDENT}" -H "Content-Type:text/xml"
+             curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/job/P${PRACTICA}__$TYPE/createItem?name=${JOB_NAME}" --user ${USER}:${PASS} --data-binary "@/tmp/${JOB_NAME}_${STUDENT}" -H "Content-Type:text/xml"
+             
+
  }
 
 readfile() {
@@ -40,7 +42,7 @@ readfile() {
 
 ROLE_NAME='alumno'
 
-while getopts ":f:j:a:n:t:u:p:s:g:i:" o; do
+while getopts ":f:j:a:n:t:u:p:s:g:i:c:" o; do
     case "${o}" in
         f)
             #File is a combination of 'student_git_account,git_url', one per line
@@ -73,6 +75,18 @@ while getopts ":f:j:a:n:t:u:p:s:g:i:" o; do
 		i)
             CID=${OPTARG}
             ;;
+       c)
+         TYPE=${OPTARG}
+         if [ "$TYPE" = "a" ] || [ "$TYPE" = "A" ]
+         then
+            TYPE=Autonomous
+        elif [ "$TYPE" = "f" ] || [ "$TYPE" = "F" ]
+        then
+            TYPE=Face
+        else
+            TYPE=""
+        fi
+        ;;
        *)
             usage
             ;;
@@ -80,7 +94,7 @@ while getopts ":f:j:a:n:t:u:p:s:g:i:" o; do
 done
 shift $((OPTIND-1))
 
-if [ -z "${JENKINS_URL}" ] || [ -z "${CID}" ] || [ -z "${PRACTICA}" ] || [ -z "${JOB_NAME}" ] || [ -z "${JOB_TEMPLATE}" ] || [ -z "${USER}" ] || [ -z "${PASS}" ]; then
+if [ -z "${JENKINS_URL}" ] || [ -z "${CID}" ] || [ -z "${PRACTICA}" ] || [ -z "${JOB_NAME}" ] || [ -z "${JOB_TEMPLATE}" ] || [ -z "${USER}" ] || [ -z "${PASS}" ] || [ -z "${TYPE}" ]; then
     cecho "RED" "ERROR: some parameters are missing, please consider usage."
     usage
     exit

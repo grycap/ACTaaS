@@ -29,10 +29,11 @@ createStudent() {
 	curl -s -X POST "${JENKINS_URL}/createItem?name=${STUDENT}&mode=com.cloudbees.hudson.plugins.folder.Folder&from=&json={"name":"${STUDENT}","mode":"com.cloudbees.hudson.plugins.folder.Folder","from":"","Submit":"OK"}&Submit=OK" --user ${USER}:${PASS} -H "Content-Type:application/x-www-form-urlencoded"
 
 	#Create the subfolders (We need to know how many practices are in the subject)
-	i="0"
-	while [ $i -lt $PRACTICES ]
+	i="1"
+	while [ $i -le $PRACTICES ]
 	do
-       curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=practice${i}_${STUDENT}&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS} 
+       curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=P${i}__Face&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS}
+       curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=P${i}__Autonomous&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS} 
        i=$[$i+1]
     done
 
@@ -82,6 +83,9 @@ while getopts ":f:j:a:u:s:p:" o; do
     esac
 done
 shift $((OPTIND-1))
+
+# API token actual
+# PASS="111bdf145a6545c45940ae73cdc6dd72ea" 
 
 if [ -z "${JENKINS_URL}" ] || [ -z "${PRACTICES}" ] || [ -z "${USER}" ] || [ -z "${PASS}" ]; then
     cecho "RED" "ERROR: some parameters are missing, please consider usage."
