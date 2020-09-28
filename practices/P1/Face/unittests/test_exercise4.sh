@@ -18,7 +18,7 @@ rm ent.txt sal.txt
 
 spb=$(echo $ent | awk -F " " '{print $5}') 
 spc=$(echo $sal | awk -F " " '{print $5}') 
-res=$(awk -v cc="$spc" -v cb="$spb" 'BEGIN{ if(cc - cb < 0.5)  { print "OK!!" } else { print "ERROR!!" } }')
+res=$(awk -v cc="$spc" -v cb="$spb" 'BEGIN{ if(cc - cb < 0.5)  { print "Test OK!!" } else { print "Test ERROR!!" } }')
 echo $res
 
 

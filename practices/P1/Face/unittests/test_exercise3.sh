@@ -22,5 +22,5 @@ areab=$(echo $ent | awk -F " " '{print $4}')
 areac=$(echo $sal | awk -F " " '{print $4}') 
 error=$(echo "$areac - $areab"|bc -l)
 
-res=$(awk -v cc="$areac" -v cb="$areab" 'BEGIN{ if(cc - cb < 0.5)  { print "OK!!" } else { print "ERROR!!" } }')
+res=$(awk -v cc="$areac" -v cb="$areab" 'BEGIN{ if(cc - cb < 0.5)  { print "Test OK!!" } else { print "Test ERROR!!" } }')
 echo $res

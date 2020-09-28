@@ -5,7 +5,7 @@ if [ $# -ne 1 ]; then
    exit
 fi
 
-n_agendas=$1 
+n_agendas=$1
 BIG_BOX=50
 MEDIUM_BOX=20
 SMALL_BOX=5
@@ -18,16 +18,15 @@ aux=$(echo "$aux % $MEDIUM_BOX"|bc)
 n_small_boxes=$(echo "$aux / $SMALL_BOX"|bc)
 aux=$(echo "$aux % $SMALL_BOX" | bc)
 
-ent=$(printf '%d BIG BOXES -- %d MEDIUM BOXES -- %d SMALL BOXES -- %d Individual agendas' $n_big_boxes $n_medium_boxes $n_small_boxes $aux)
+ent=$(printf '%d BIG BOXES -- %d MEDIUM BOXES -- %d SMALL BOXES -- %d Individual agendas' $n_big_boxes $n_medium_boxes $n_small_boxes $aux| tr -d -c 0-9)
 
-echo "$@" > ent.txt 
+echo "$@" > ent.txt
 ./exercise5_bin < ent.txt > sal.txt
-sal=$(grep "BIG BOXES --" sal.txt)
+sal=$(grep  "BIG BOXES --" sal.txt| tr -d -c 0-9)
 rm ent.txt sal.txt
-echo $ent
-echo $sal
 if [ "$ent" = "$sal" ]; then
    echo "Test OK!!"
 else
   echo "Test ERROR!!"
 fi
+
