@@ -88,6 +88,7 @@ while getopts ":f:j:a:n:t:u:p:s:g:i:c:" o; do
         fi
         ;;
        *)
+            cecho "RED" "ERROR: some parameters are incorrect, please consider usage."
             usage
             ;;
     esac

@@ -12,7 +12,7 @@ cecho(){
     printf "${!1}${2} ${NC}\n"
 }
 
-usage() { echo "Usage: $0 [-f <students_names_file>] [-j <Jenkins_URL>] [-a <number_of_asssingments>] [-u <Jenkins_user>] [-p <Jenkins_password>] [-s <single_student_account>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-f <students_names_file>] [-j <Jenkins_URL>] [-a <number_of_asssingments>] [-u <Jenkins_user>] [-p <Jenkins_password>] [-s <single_student_account>] [-c folder class <-f for Face> | <-a for Autonomous>]" 1>&2; exit 1; }
 
 createStudent() {
 
@@ -28,15 +28,8 @@ createStudent() {
 	#Create the main folder
 	curl -s -X POST "${JENKINS_URL}/createItem?name=${STUDENT}&mode=com.cloudbees.hudson.plugins.folder.Folder&from=&json={"name":"${STUDENT}","mode":"com.cloudbees.hudson.plugins.folder.Folder","from":"","Submit":"OK"}&Submit=OK" --user ${USER}:${PASS} -H "Content-Type:application/x-www-form-urlencoded"
 
-	#Create the subfolders (We need to know how many practices are in the subject)
-	i="1"
-	while [ $i -le $PRACTICES ]
-	do
-       curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=P${i}__Face&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS}
-       curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=P${i}__Autonomous&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS} 
-       i=$[$i+1]
-    done
-
+	#Create the subfolder (We need to know  practice number )
+       curl -s -X POST "${JENKINS_URL}/job/${STUDENT}/createItem?name=P${PRACTICES}__${TYPE}&mode=com.cloudbees.hudson.plugins.folder.Folder&Submit=OK" -H "Content-Type:application/x-www-form-urlencoded" --user ${USER}:${PASS}
         #Create project roles for each student, to restrict the view of the folders
         curl -s --user ${USER}:${PASS} ${JENKINS_URL}/role-strategy/strategy/addRole --data "type=projectRoles&roleName=${STUDENT}&pattern=${STUDENT}&permissionIds=hudson.model.Item.Read,hudson.model.Item.Discover&overwrite=true"
         curl -s --user ${USER}:${PASS} ${JENKINS_URL}/role-strategy/strategy/addRole --data "type=projectRoles&roleName=${STUDENT}sub&pattern=${STUDENT}/.*&permissionIds=hudson.model.Item.Read,hudson.model.Item.Discover&overwrite=true"
@@ -55,7 +48,7 @@ readFile() {
 	
 }
 
-while getopts ":f:j:a:u:s:p:" o; do
+while getopts ":f:j:a:u:s:p:c:" o; do
     case "${o}" in
         f)
             #File is a list of student's github accounts, one per line
@@ -77,7 +70,20 @@ while getopts ":f:j:a:u:s:p:" o; do
        s)
             STUDENT=${OPTARG}
             ;;
+       c)
+         TYPE=${OPTARG}
+         if [ "$TYPE" = "a" ] || [ "$TYPE" = "A" ]
+         then
+            TYPE=Autonomous
+        elif [ "$TYPE" = "f" ] || [ "$TYPE" = "F" ]
+        then
+            TYPE=Face
+        else
+            TYPE=""
+        fi
+        ;;
         *)
+            cecho "RED" "ERROR: some parameters are incorrect, please consider usage."
             usage
             ;;
     esac
@@ -87,7 +93,7 @@ shift $((OPTIND-1))
 # API token actual
 # PASS="111bdf145a6545c45940ae73cdc6dd72ea" 
 
-if [ -z "${JENKINS_URL}" ] || [ -z "${PRACTICES}" ] || [ -z "${USER}" ] || [ -z "${PASS}" ]; then
+if [ -z "${JENKINS_URL}" ] || [ -z "${PRACTICES}" ] || [ -z "${USER}" ] || [ -z "${PASS}" ] || [ -z "${TYPE}" ]; then
     cecho "RED" "ERROR: some parameters are missing, please consider usage."
     usage
      exit
