@@ -8,7 +8,7 @@ int main(){
 	scanf("%f", &cost_price);
 	
 	printf("Please, Introduce profit margin ('%%'): ");
-	scanf("%d", &profit_margin);
+	scanf("%f", &profit_margin);
 			
 	profit = cost_price * (profit_margin / 100);
 	
