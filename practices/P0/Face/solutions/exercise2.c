@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(){
-	int profit_margin;
+	float profit_margin;
 	float cost_price, profit, selling_price;
 	
 	printf("Please, Introduce the cost price in euros: ");
