@@ -1,14 +1,14 @@
 #include <stdio.h>
 
 int main(){
-	int profit_margin;
+	float profit_margin;
 	float cost_price, profit, selling_price;
 	
 	printf("Please, Introduce the cost price in euros: ");
 	scanf("%f", &cost_price);
 	
 	printf("Please, Introduce profit margin ('%%'): ");
-	scanf("%d", &profit_margin);
+	scanf("%f", &profit_margin);
 			
 	profit = cost_price * (profit_margin / 100);
 	
