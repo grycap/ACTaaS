@@ -1,4 +1,4 @@
-/* Here, you should entry the required libraries */
+/* Here, you should entry the required libraries */ 
 #include <stdio.h>
 
 void main(){
