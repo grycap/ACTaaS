@@ -1,20 +1,20 @@
-#include <stdio.h>
+/* Here, you must include the required libraries */
 
-int main(){
-	int profit_margin;
-	float cost_price, profit, selling_price;
+
+void main(){
+
+	/* Here, you must include the variables */
 	
-	printf("Please, Introduce the cost price in euros: ");
-	scanf("%f", &cost_price);
 	
-	printf("Please, Introduce profit margin ('%%'): ");
-	scanf("%d", &profit_margin);
-			
-	profit = cost_price * (profit_margin / 100);
+	/* Here, you must include the Input instructions */
+
+
+	/* Here, you must define the expresion to compute the profit and selling price */
 	
-	selling_price = cost_price + profit;
+
+	/* Here, you must include the Output instructions */
+
 	
-	printf ("\nThe selling price is %f euros\n", selling_price);
-	return 0;
+	getch();
 	
 }
