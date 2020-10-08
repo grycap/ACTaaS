@@ -11,7 +11,7 @@ cecho(){
 }
 
 usage() { 
-    echo "Usage: $0 [-f <students_names_file>] [-j <Jenkins_URL>] [-a <number_of_the_corresponding_asssingment>] [-n <name_of_the_exercise>] [-t <template_of_the_exercise.xml>] [-u <Jenkins_user>] [-p <Jenkins_password>] -s <student account> -g <github url> -i <credentials Id>" 1>&2; exit 1; 
+    echo "Usage: $0 [-f <students_names_file>] [-j <Jenkins_URL>] [-a <number_of_the_corresponding_asssingment>] [-n <name_of_the_exercise>] [-t <template_of_the_exercise.xml>] [-u <Jenkins_user>] [-p <Jenkins_password>] -s <student account> -g <github url> -i <credentials Id> [-c folder class <-f for Face> | <-a for Autonomous>]" 1>&2; exit 1; 
 }
 
 addstudent() {
@@ -88,6 +88,7 @@ while getopts ":f:j:a:n:t:u:p:s:g:i:c:" o; do
         fi
         ;;
        *)
+            cecho "RED" "ERROR: some parameters are incorrect, please consider usage."
             usage
             ;;
     esac
