@@ -9,37 +9,24 @@ radio=$1
 pi=3.14159
 area=$(echo "$pi*$radio*$radio"|bc -l)
 perimeter=$(echo "2*$pi*$radio"|bc -l)
-
-ent=$(printf 'The area is %f and the perimeter is %f' $area $perimeter)
-
+area=$(printf "%.2f" $area)
+perimeter=$(printf "%.2f" $perimeter)
 echo "$@" > ent.txt
 ./exercise3_bin < ent.txt > sal.txt
-sal=$(grep "The area is" sal.txt)
-
+sal=$(cat sal.txt|grep  "area" sal.txt)
+nums=$(echo "$sal"| grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
+areac=$(echo $nums|awk '{print $2}')
+perc=$(echo $nums|awk '{print $1}')
 rm ent.txt sal.txt
-
-areab=$(echo $ent | awk -F " " '{print $4}')
-perb=$(echo $ent | awk -F " " '{print $9}')
-areac=$(echo $sal | awk -F " " '{print $4}')
-perc=$(echo $sal | awk -F " " '{print $9}')
-errorar=$(echo "$areac - $areab"|bc -l)
-firstchar=${errorar:0:1}
-if [ "$firstchar" = "-" ]
-then
-   errorar="${errorar:1}"
-fi
-errorper=$(echo "$perc - $perb"|bc -l)
-firstchar=${errorper:0:1}
-if [ "$firstchar" = "-" ]
-then
-   errorper="${errorper:1}"
-fi
-sw=$(echo "$errorar < 0.5 && $errorper < 0.5"|bc -l)
+areac=$(printf "%.2f" $areac)
+perc=$(printf "%.2f" $perc)
+sw=$(echo "($areac == $area) && ($perimeter == $perc)"|bc -l)
 if [ $sw -eq 1 ]
 then
   echo "Test OK!!"
   exit 0
 else
-  echo "Test ERROR"
+  echo "Test ERROR!!"
   exit 1
 fi
+
