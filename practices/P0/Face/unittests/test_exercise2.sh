@@ -1,30 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ $# -ne 2 ]; then
-   echo "test4 <cost price> <profit margin %>"
+   echo "$0 <cost price> <profit margin %>"
    exit
 fi
 
-profit=$(echo "$1 * ($2 / 100)"|bc)
+profit=$(echo "$1 * $2 / 100"|bc -l)
 sp=$(echo "$1 + $profit" | bc -l)
-ent=$(printf 'The selling price is %f euros' $sp)
-
-echo "$@" > ent.txt 
-./exercise4_bin < ent.txt > sal.txt
-sal=$(grep "The selling price is" sal.txt)
-
-
+echo "$@" > ent.txt
+./exercise2_bin < ent.txt > sal.txt
+sal=$(grep "selling price" sal.txt)
+spc=$(echo "$sal"| grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
+spc=$(printf "%.2f" $spc)
+sp=$(printf "%.2f" $sp)
+sw=$(echo "$sp == $spc"| bc -l)
 rm ent.txt sal.txt
-
-spb=$(echo $ent | awk -F " " '{print $5}') 
-spc=$(echo $sal | awk -F " " '{print $5}') 
-res=$(awk -v cc="$spc" -v cb="$spb" 'BEGIN{ if(cc - cb < 0.5)  { print "Test OK!!" } else { print "Test ERROR!!" } }')
-echo $res
-if [ "$res" == "Test OK!!" ]
+if [ $sw -eq 1 ]
 then
+  echo "Test OK!!"
   exit 0
 else
+  echo "Test ERROR!!"
   exit 1
 fi
-
 
