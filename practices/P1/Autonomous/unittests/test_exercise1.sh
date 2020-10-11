@@ -11,17 +11,16 @@ x2=$3
 y2=$4
 
 gd=$(echo "sqrt(($x2 - $x1) * ($x2 - $x1) + ($y2 - $y1) * ($y2 - $y1))"|bc -l)
-ent=$(printf 'The geometric distance between A and B is %.1f' $gd)
-
 echo "$@" > ent.txt
 ./exercise1_bin < ent.txt > sal.txt
-sal=$(grep "The geometric distance between A and B is" sal.txt)
+sal=$(awk 'END {print $NF}' sal.txt)
+gd=$(printf '%.2f' $gd)
+sal=$(printf '%.2f' $sal)
 rm ent.txt sal.txt
-
-if [ "$ent" = "$sal" ]; then
+if [ "$gd" = "$sal" ]; then
     echo "Test OK!!"
 else
-    echo "Test ERROR"
+    echo "Test ERROR!!"
 fi
 
 

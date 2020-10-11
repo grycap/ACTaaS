@@ -8,8 +8,9 @@ fi
 uppercase=$(echo "$1" | tr a-z A-Z)
 
 echo "$@" > ent.txt
-sal=$(./exercise2_bin < ent.txt > sal.txt)
-sal=$(echo "$(tail -n +2 sal.txt)")
+./exercise2_bin < ent.txt > sal.txt
+
+sal=$(awk 'END {print $NF}' sal.txt)
 rm ent.txt sal.txt
 
 if [ "$uppercase" = "$sal" ]; then

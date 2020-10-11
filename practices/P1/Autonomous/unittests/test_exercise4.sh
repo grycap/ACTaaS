@@ -14,12 +14,11 @@ msurname="$5"
 mssurname="$6"
 sdname="$7"
 
-ent=$(printf "Son/Daughter's Full name: %s %s %s" $sdname $fsurname $msurname)
+ent=$(printf "%s %s %s" $sdname $fsurname $msurname)
 
 echo "$@"|tr ' ' '\n' > ent.txt
-sal="$(./exercise4_bin < ent.txt > sal.txt)"
-sal=$(echo "$(tail -n1 sal.txt)")
-
+./exercise4_bin < ent.txt > sal.txt
+sal=$(grep -oE "$ent" sal.txt)
 rm ent.txt sal.txt
 
 if [ "$ent" = "$sal" ]; then
