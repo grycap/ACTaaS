@@ -7,17 +7,20 @@ fi
 
 dividend=$1
 divisor=$2
-
 quotient=$(echo "$dividend / $divisor"|bc)
 remainder=$(echo "$dividend % $divisor"|bc)
-echo "$@" > ent.txt
+if [ $quotient -lt 0 ]
+then
+   quotient=$(echo "$quotient * -1"|bc)
+fi
 
-ent=$(printf "Quotient: %d\nRemainder: %d\n" $quotient $remainder)
-sal=$(./exercise5_bin < ent.txt > sal.txt)
-sal=$(tail -n2 sal.txt)
+echo "$@" > ent.txt
+./exercise5_bin < ent.txt > sal.txt
+quot_alu=$(grep -oE $quotient sal.txt)
+rema_alu=$(grep -oE $remainder sal.txt)
 rm ent.txt sal.txt
 
-if [ "$ent" = "$sal" ]; then
+if [ $quotient = $quot_alu ] && [ $remainder = $rema_alu ]; then
    echo "Test OK!!"
 else
   echo "Test ERROR!!"

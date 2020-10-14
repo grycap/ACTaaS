@@ -1,1 +1,1 @@
-sh /var/tmp/education/ACTaaS/practices/P1/Autonomous/unittests/test_exercise6.sh F
+sh /var/tmp/education/ACTaaS/practices/P1/Autonomous/unittests/test_exercise6.sh 1
