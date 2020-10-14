@@ -17,9 +17,11 @@ sex=$8
 
 ent=$(printf "My name is %s %s %s whith NIF %s. I was born on %d/%d/%d and my sex is %c.\n" $name $fsurname $ssurname $nif $day $month $year $sex)
 
-echo "$@" > ent.txt 
+echo "$@" > ent.txt
 ./exercise2_bin < ent.txt > sal.txt
-sal=$(grep  "$My name is$" sal.txt)
+sal=$(grep  "My name is" sal.txt)
+echo $ent
+echo $sal
 rm ent.txt sal.txt
 
 if [ "$ent" = "$sal" ]; then
