@@ -15,7 +15,7 @@ month=$6
 year=$7
 sex=$8
 
-ent=$(printf "My name is %s %s %s with NIF %s. I was born on %d/%d/%d and my sex is %c.\n" $name $fsurname $ssurname $nif $day $month $year $sex)
+ent=$(printf "My name is %s %s %s whith NIF %s. I was born on %d/%d/%d and my sex is %c.\n" $name $fsurname $ssurname $nif $day $month $year $sex)
 
 echo "$@" > ent.txt
 ./exercise2_bin < ent.txt > sal.txt
