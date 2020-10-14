@@ -24,7 +24,7 @@ int main(){
 	printf("Sex (F/M): ");
 	scanf("\n%c", &sex);
 
-	printf("\n\nMy name is %s %s %s whith NIF %s. I was born on %d/%d/%d and my sex is %c.\n", name, surname1, surname2, NIF, day, month, year, sex);
+	printf("\n\nMy name is %s %s %s with NIF %s. I was born on %d/%d/%d and my sex is %c.\n", name, surname1, surname2, NIF, day, month, year, sex);
 	return 0;	
 	
 }
