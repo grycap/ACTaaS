@@ -12,6 +12,7 @@ echo "$@" > ent.txt
 ./exercise3_bin < ent.txt > sal.txt
 alu_age=$(grep -oE $age sal.txt)
 alu_magic=$(grep -oE $magic sal.txt)
+rm ent.txt sal.txt
 if [ "$age" = "$alu_age" ] && [ "$magic" = "$alu_magic" ]; then
    echo "Test OK!!"
    exit 0
