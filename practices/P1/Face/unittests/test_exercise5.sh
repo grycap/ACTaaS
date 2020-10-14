@@ -26,7 +26,9 @@ sal=$(grep  "BIG BOXES --" sal.txt| tr -d -c 0-9)
 rm ent.txt sal.txt
 if [ "$ent" = "$sal" ]; then
    echo "Test OK!!"
+   exit 0
 else
   echo "Test ERROR!!"
+ exit 1
 fi
 
