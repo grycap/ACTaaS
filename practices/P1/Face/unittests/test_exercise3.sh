@@ -15,8 +15,8 @@ echo "$@" > ent.txt
 ./exercise3_bin < ent.txt > sal.txt
 sal=$(cat sal.txt|grep  "area" sal.txt)
 nums=$(echo "$sal"| grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
-areac=$(echo $nums|awk '{print $2}')
-perc=$(echo $nums|awk '{print $1}')
+areac=$(echo $nums|awk '{print $1}')
+perc=$(echo $nums|awk '{print $2}')
 rm ent.txt sal.txt
 areac=$(printf "%.2f" $areac)
 perc=$(printf "%.2f" $perc)
