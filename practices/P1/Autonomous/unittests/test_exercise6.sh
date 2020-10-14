@@ -18,6 +18,8 @@ rm ent.txt sal.txt
 
 if [ "$next" = "$sal" ]; then
    echo "Test OK!!"
+   exit 0
 else
   echo "Test ERROR!!"
+  exit 1
 fi

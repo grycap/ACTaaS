@@ -14,7 +14,9 @@ alu_age=$(grep -oE $age sal.txt)
 alu_magic=$(grep -oE $magic sal.txt)
 if [ "$age" = "$alu_age" ] && [ "$magic" = "$alu_magic" ]; then
    echo "Test OK!!"
+   exit 0
 else
   echo "Test ERROR!!"
+  exit 1
 fi
 

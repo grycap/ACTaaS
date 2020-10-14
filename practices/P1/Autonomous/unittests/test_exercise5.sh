@@ -22,6 +22,8 @@ rm ent.txt sal.txt
 
 if [ $quotient = $quot_alu ] && [ $remainder = $rema_alu ]; then
    echo "Test OK!!"
+   exit 0
 else
   echo "Test ERROR!!"
+  exit 1
 fi

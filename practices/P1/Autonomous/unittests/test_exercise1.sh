@@ -19,8 +19,10 @@ sal=$(printf '%.2f' $sal)
 rm ent.txt sal.txt
 if [ "$gd" = "$sal" ]; then
     echo "Test OK!!"
+    exit 0
 else
     echo "Test ERROR!!"
+    exit 1
 fi
 
 
