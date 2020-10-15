@@ -16,7 +16,7 @@ aux=$(echo "$n_agendas % $BIG_BOX"|bc)
 n_medium_boxes=$(echo "$aux / $MEDIUM_BOX"|bc)
 aux=$(echo "$aux % $MEDIUM_BOX"|bc)
 n_small_boxes=$(echo "$aux / $SMALL_BOX"|bc)
-aux=$(echo "$aux % $SMALL_BOX" | bc)
+aux=$(echo "$aux % $SMALL_BOX" |bc)
 
 ent=$(printf '%d BIG BOXES -- %d MEDIUM BOXES -- %d SMALL BOXES -- %d Individual agendas.' $n_big_boxes $n_medium_boxes $n_small_boxes $aux)
 values=$(echo "$ent"| sed 's/[^0-9]*//g' )
@@ -25,7 +25,7 @@ echo "$@" > ent.txt
 
 sal=$(cat sal.txt)
 pos=$(echo `expr index "$sal" 'B'`)
-pos=$(echo "$pos - 2"|bc)
+pos=$(echo "$pos - 10"|bc)
 sal=$(cat sal.txt| cut -c $pos-)
 values_alu=$(echo "$sal"| sed 's/[^0-9]*//g' )
 rm ent.txt sal.txt
