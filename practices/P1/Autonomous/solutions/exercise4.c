@@ -21,7 +21,7 @@ int main()
     gets(mother_last_name_1);
     printf("Last name 2: ");
     gets(mother_last_name_2);
-    printf("Son/Daughter's First name\n");
+    printf("\nSon/Daughter's First name\n");
     printf("First name: ");
     gets(first_name);
 
