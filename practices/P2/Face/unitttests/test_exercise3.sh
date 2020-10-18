@@ -35,7 +35,15 @@ ent=$(cat sal.txt|tail -n3)
 sal=$(cat ex3.out)
 if [ "$ent" = "$sal" ]; then
    echo "Test OK!!"
+   rm ex3.out sal.txt
+   exit 0
 else
    echo "Test ERROR!!"
+   echo "EPECTED OUTPUT:" 
+   echo "$ent"
+   echo "STUDENT OUTPUT: 
+   echo "$sal"
+   rm ex3.out sal.txt
+   exit 1
 fi
-rm ex3.out sal.txt
+

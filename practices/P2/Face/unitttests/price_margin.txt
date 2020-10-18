@@ -1,4 +1,0 @@
-costprice 33.20
-margin    30
-
-sellingprice 43.16

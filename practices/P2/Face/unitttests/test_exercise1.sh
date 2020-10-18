@@ -24,8 +24,16 @@ done
 ./exercise1_bin < ent.txt > /dev/null
 if cmp -s ex1.out result.txt ; then
    echo "Test OK!!"
+   rm ex1.out result.txt ent.txt
+   exit 0
 else
    echo "Test ERROR!!"
+   echo "EPECTED OUTPUT"
+   cat ex1.out
+   echo "STUDENT OUTPUT"
+   cat result.txt
+   rm ex1.out result.txt ent.txt
+   exit 1
 fi
 
-rm ex1.out result.txt ent.txt
+
