@@ -33,9 +33,16 @@ done
 ./exercise1_bin < ent.txt > /dev/null
 ent=$(cat ticked.txt|tail -n3)
 sal=$(cat ex1.out)
+rm ex1.out ent.txt
 if [ "$ent" = "$sal" ]; then
    echo "Test OK!!"
+   exit 0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT: 
+   echo "$sal"
+   echo "STUDENT OUTPUT:"
+   echo "$ent" 
+   exit 1
 fi
-rm ex1.out ent.txt
+

@@ -1,5 +1,0 @@
-Name			S.S.N		Hourly Rate	Hours Worked
-B.Caldwell		163-98-4182	7.32		37
-D.Memcheck		189-53-2147	8.32		40
-R.Potter		145-32-9826	6.54		40
-W.Rossen		163-09-4263	9.8		35

@@ -2,21 +2,19 @@
 
 int main(){
 
-	char line1[81], line2[81], line3[81];
 	FILE *fp;
+	char line[81];
 
-	fp = fopen("text.dat", "w");
+	fp = fopen("text.dat", "r");
 
-	printf("\nEnter a text line: ");
-	gets(line1);
-	fprintf(fp, "%s\n", line1);
+	fgets(line, 81, fp);
+	printf("%s", line);
 
-	printf("\nEnter a text line: ");
-	gets(line2);
-	fprintf(fp, "%s\n", line2);
-	printf("\nEnter a text line: ");
-	gets(line3);
-	fprintf(fp, "%s\n", line3);
+    fgets(line, 81, fp);
+	printf("%s", line);
+
+    fgets(line, 81, fp);
+	printf("%s\n", line);
 
 	fclose(fp);
 

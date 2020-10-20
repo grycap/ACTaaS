@@ -1,43 +1,18 @@
 #include <stdio.h>
+#define CURRENT_YEAR 2015
 
 int main(){
+    FILE *fp;
+    char name[81];
+    int year;
 
-	FILE *fp;
-	int miles = 0;
-	int gallons = 0;
-	int md, gu;
+    fp = fopen("ex10.txt", "r");
 
-	fp = fopen("ex8_alu.txt", "r");
+    fgets(name, 23, fp);
+    fscanf(fp, "%*d%*d%d", &year);
 
-	fscanf(fp, "%*[^\n]\n"); /* skip the first line of the file */
-
-	fscanf(fp, "%*d%d%d", &md, &gu);
-    miles = md;
-	gallons = gu;
-
-    fscanf(fp, "%*d%d%d", &md, &gu);
-	miles += md;
-	gallons += gu;
-
-	fscanf(fp, "%*d%d%d", &md, &gu);
-	miles += md;
-	gallons += gu;
-
-	fscanf(fp, "%*d%d%d", &md, &gu);
-	miles += md;
-	gallons += gu;
-
-	fscanf(fp, "%*d%d%d", &md, &gu);
-	miles += md;
-	gallons += gu;
-
-    fclose(fp);
-
-    fp = fopen("ex8_alu.txt", "a");
-	fprintf(fp, "\nTotal Miles: %d\nAverage of gallons used: %.2f\n", miles, gallons / 5.0);
+	printf("%s is %d years old.\n", name, CURRENT_YEAR - year);
 
 	fclose(fp);
-
-
     return 0;
 }

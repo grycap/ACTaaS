@@ -1,9 +1,16 @@
 #!/bin/bash
+./exercise7_bin
 ./exercise8_bin
-cp ex8.org ex8.txt
-if cmp -s ex8.txt ex8_alu.txt; then
-    echo "OK!!"
+if cmp -s ex8_sol.txt ex7_alu.txt; then
+    echo "Test OK!!"
+    rm ex7_alu.txt 
+    exit 0
 else
-   echo "ERROR!!"
+   echo "Test ERROR -- EXPECTED OUTPUT:"
+   cat ex8_sol.txt
+   echo "STUDENT OUTPUT:"
+   cat ex7_alu.txt
+   rm ex7_alu.txt
+   exit 1
 fi
-rm ex8_alu.txt
+

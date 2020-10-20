@@ -1,8 +1,0 @@
- 4 sandwiches of sausage at   1.10 euros are   4.40 euros
- 3 sandwiches of tuna at   1.40 euros are   4.20 euros
- 2 bottles of water at   0.50 euros are   1.00 euros
- 3 bottles of cocacola at   0.75 euros are   2.25 euros
- 2 bottles of orange juice at   0.70 euros are   1.40 euros
-TOTAL:    13.25
-Payment:  20.75
-Refund:    7.50

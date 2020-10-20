@@ -1,10 +1,20 @@
 #!/bin/bash
-./exercise5_bin < text.dat > ex5.dat
-awk 'NF' ex5.dat > ex5.bak
-mv ex5.bak ex5.dat
-if cmp -s text.dat ex5.dat; then
-    echo "OK!!"
-else
-    echo "ERROR"
+
+if [ $# -ne 2 ]; then
+   echo "$0 <origin file> <dest file>"
+   exit
 fi
-#rm ex5.dat
+cp $1 $2
+for line in "$@"
+do
+   printf "%s\n" "$line" >> ex5.txt
+done
+./exercise5_bin < ex5.txt > /dev/null
+if cmp -s "$2" "$1"; then
+    echo "Test OK!!"
+    exit 0
+else
+    echo "Test ERROR -- Can 't duplicate file"
+    exit 1
+fi
+rm ex5.txt

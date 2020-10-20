@@ -1,19 +1,12 @@
 #!/bin/bash
-
-if [ $# -ne 3 ]; then
-   echo "$0 <line1> <line2> <line3>"
-   exit
-fi
-
-for line in "$@"
-do
-   printf "%s\n" "$line" >> ex4.txt
-done
-./exercise4_bin < ex4.txt > /dev/null
-nl=$(sed -n \$= text.dat)
-if [ $nl -eq 3 ]; then
-    echo "OK!!"
+./exercise4_bin < text.dat > ex4.dat
+awk 'NF' ex4.dat > ex4.bak
+mv ex4.bak ex4.dat
+if cmp -s text.dat ex4_sol.dat; then
+    echo "Test OK!!"
+    exit 0
 else
-   echo "ERROR!!"
+    echo "Test ERROR -- text.dat is not the same as exercise 3"
+    exit 1
 fi
-rm ex4.txt
+

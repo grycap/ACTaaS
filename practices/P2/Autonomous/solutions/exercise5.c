@@ -2,21 +2,27 @@
 
 int main(){
 
-	FILE *fp;
-	char line[81];
+	FILE *org, *des;
+	char text[81], source_file[81], destination_file[81];
 
-	fp = fopen("text.dat", "r");
+	printf("\nEnter the source file name: ");
+	gets(source_file);
 
-	fgets(line, 81, fp);
-	printf("%s", line);
+	printf("\nEnter the destination file name: ");
+	gets(destination_file);
 
-    fgets(line, 81, fp);
-	printf("%s", line);
+	org = fopen(source_file, "r");
+	des = fopen(destination_file, "w");
 
-    fgets(line, 81, fp);
-	printf("%s\n", line);
+	fgets(text, 81, org);
+	fprintf(des, "%s", text);
+	fgets(text, 81, org);
+	fprintf(des, "%s", text);
+	fgets(text, 81, org);
+	fprintf(des, "%s", text);
 
-	fclose(fp);
+	fclose(org);
+	fclose(des);
 
     return 0;
 }

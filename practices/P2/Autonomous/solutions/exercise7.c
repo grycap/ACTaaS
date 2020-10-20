@@ -3,25 +3,15 @@
 int main(){
 
 	FILE *fp;
-	char name[26], ssn[12];
-	float hourly_rate, hours_worked;
-	fp = fopen("employee.txt", "r");
 
-	printf("\n%13s%13s%16s\n\n", "S.S.N", "Name", "Gross pay");
-    fscanf(fp, "%*[^\n]\n"); /* skip the first line of the file */
+	fp = fopen("ex7_alu.txt", "w");
 
-    fscanf(fp, "%s%s%f%f", name, ssn, &hourly_rate, &hours_worked);
-    printf("%19s%13s%10.2f\n\n", ssn, name, hourly_rate * hours_worked);
-
-    fscanf(fp, "%s%s%f%f", name, ssn, &hourly_rate, &hours_worked);
-    printf("%19s%13s%10.2f\n\n", ssn, name, hourly_rate * hours_worked);
-
-    fscanf(fp, "%s%s%f%f", name, ssn, &hourly_rate, &hours_worked);
-    printf("%19s%11s%12.2f\n\n", ssn, name, hourly_rate * hours_worked);
-
-    fscanf(fp, "%s%s%f%f", name, ssn, &hourly_rate, &hours_worked);
-    printf("%19s%11s%12.2f\n\n", ssn, name, hourly_rate * hours_worked);
+	fprintf(fp, "%10s%17s%17s\n", "Car No.", "Miles Driven", "Gallons used");
+	fprintf(fp, "%5d%13d%16d\n", 54, 250, 19);
+	fprintf(fp, "%5d%13d%16d\n", 62, 525, 38);
+	fprintf(fp, "%5d%13d%16d\n", 71, 123, 6);
+	fprintf(fp, "%5d%14d%15d\n", 85, 1322, 86);
+	fprintf(fp, "%5d%13d%16d\n", 97, 235, 14);
 	fclose(fp);
-
     return 0;
 }

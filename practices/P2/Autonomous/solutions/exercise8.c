@@ -3,15 +3,41 @@
 int main(){
 
 	FILE *fp;
+	int miles = 0;
+	int gallons = 0;
+	int md, gu;
 
-	fp = fopen("ex8_alu.txt", "w");
+	fp = fopen("ex7_alu.txt", "r");
 
-	fprintf(fp, "%10s%17s%17s\n", "Car No.", "Miles Driven", "Gallons used");
-	fprintf(fp, "%5d%13d%16d\n", 54, 250, 19);
-	fprintf(fp, "%5d%13d%16d\n", 62, 525, 38);
-	fprintf(fp, "%5d%13d%16d\n", 71, 123, 6);
-	fprintf(fp, "%5d%14d%15d\n", 85, 1322, 86);
-	fprintf(fp, "%5d%13d%16d\n", 97, 235, 14);
+	fscanf(fp, "%*[^\n]\n"); /* skip the first line of the file */
+
+	fscanf(fp, "%*d%d%d", &md, &gu);
+    miles = md;
+	gallons = gu;
+
+    fscanf(fp, "%*d%d%d", &md, &gu);
+	miles += md;
+	gallons += gu;
+
+	fscanf(fp, "%*d%d%d", &md, &gu);
+	miles += md;
+	gallons += gu;
+
+	fscanf(fp, "%*d%d%d", &md, &gu);
+	miles += md;
+	gallons += gu;
+
+	fscanf(fp, "%*d%d%d", &md, &gu);
+	miles += md;
+	gallons += gu;
+
+    fclose(fp);
+
+    fp = fopen("ex7_alu.txt", "a");
+	fprintf(fp, "\nTotal Miles: %d\nAverage of gallons used: %.2f\n", miles, gallons / 5.0);
+
 	fclose(fp);
+
+
     return 0;
 }

@@ -2,27 +2,26 @@
 
 int main(){
 
-	FILE *org, *des;
-	char text[81], source_file[81], destination_file[81];
+	FILE *fp;
+	char name[26], ssn[12];
+	float hourly_rate, hours_worked;
+	fp = fopen("employee.txt", "r");
 
-	printf("\nEnter the source file name: ");
-	gets(source_file);
+	printf("\n%13s%13s%16s\n\n", "S.S.N", "Name", "Gross pay");
+    fscanf(fp, "%*[^\n]\n"); /* skip the first line of the file */
 
-	printf("\nEnter the destination file name: ");
-	gets(destination_file);
+    fscanf(fp, "%s%s%f%f", name, ssn, &hourly_rate, &hours_worked);
+    printf("%19s%13s%10.2f\n\n", ssn, name, hourly_rate * hours_worked);
 
-	org = fopen(source_file, "r");
-	des = fopen(destination_file, "w");
+    fscanf(fp, "%s%s%f%f", name, ssn, &hourly_rate, &hours_worked);
+    printf("%19s%13s%10.2f\n\n", ssn, name, hourly_rate * hours_worked);
 
-	fgets(text, 81, org);
-	fprintf(des, "%s", text);
-	fgets(text, 81, org);
-	fprintf(des, "%s", text);
-	fgets(text, 81, org);
-	fprintf(des, "%s", text);
+    fscanf(fp, "%s%s%f%f", name, ssn, &hourly_rate, &hours_worked);
+    printf("%19s%11s%12.2f\n\n", ssn, name, hourly_rate * hours_worked);
 
-	fclose(org);
-	fclose(des);
+    fscanf(fp, "%s%s%f%f", name, ssn, &hourly_rate, &hours_worked);
+    printf("%19s%11s%12.2f\n\n", ssn, name, hourly_rate * hours_worked);
+	fclose(fp);
 
     return 0;
 }

@@ -4,3 +4,6 @@
    71          123               6
    85          1322             86
    97          235              14
+
+Total Miles: 2455
+Average of gallons used: 32.60

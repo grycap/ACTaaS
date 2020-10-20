@@ -1,18 +1,16 @@
 #!/bin/bash
-
-if [ $# -ne 2 ]; then
-   echo "$0 <origin file> <dest file>"
-   exit
-fi
-cp $1 $2
-for line in "$@"
-do
-   printf "%s\n" "$line" >> ex6.txt
-done
-./exercise6_bin < ex6.txt > /dev/null
-if cmp -s "$2" "$1"; then
-    echo "OK!!"
+./exercise6_bin > sol_ex6_alu.txt
+if cmp -s sol_ex6.txt sol_ex6_alu.txt; then
+    echo "Test OK!!"
+    rm sol_ex6_alu.txt
+    exit 0
 else
-    echo "ERROR!!"
+   echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   cat sol_ex6.txt
+   echo "STUDENT OUTPUT:"
+   cat sol_ex6_alu.txt
+   rm sol_ex6_alu.txt
+   exit 1
 fi
-rm ex6.txt
+
