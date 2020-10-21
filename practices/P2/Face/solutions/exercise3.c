@@ -16,7 +16,7 @@ int main(){
 	printf("Sandwiches of sausages: ");
 	scanf("%d", &sausages);
 
-	printf("Sandwiches of tune: ");
+	printf("Sandwiches of tuna: ");
 	scanf("%d", &tunas);
 
 
@@ -38,11 +38,11 @@ int main(){
 	system("cls");
 
 
-	printf("%2d sandwiches of sausage at  %5.2f euros are %6.2f euros", sausages, psausage, sausages*psausage);
-	printf("\n%2d sandwiches of tuna at  %5.2f euros are %6.2f euros", tunas, ptuna, tunas*ptuna);
-	printf("\n%2d bottles of water at  %5.2f euros are %6.2f euros", waters, pwater, waters*pwater);
-	printf("\n%2d bottles of cocacola at  %5.2f euros are %6.2f euros", cocacolas, pcocacola, cocacolas*pcocacola);
-	printf("\n%2d bottles of orange juice at  %5.2f euros are %6.2f euros", ojuices, pojuice, ojuices*pojuice);
+	printf("%2d sandwiches of sausage at   %5.2f euros are %6.2f euros\n", sausages, psausage, sausages*psausage);
+	printf("%2d sandwiches of tuna at      %5.2f euros are %6.2f euros\n", tunas, ptuna, tunas*ptuna);
+	printf("%2d bottles of water at        %5.2f euros are %6.2f euros\n", waters, pwater, waters*pwater);
+	printf("%2d bottles of cocacola at     %5.2f euros are %6.2f euros\n", cocacolas, pcocacola, cocacolas*pcocacola);
+	printf("%2d bottles of orange juice at %5.2f euros are %6.2f euros", ojuices, pojuice, ojuices*pojuice);
 	printf("\nTOTAL:   %6.2f", bill);
 	printf("\nPayment: %6.2f", payment);
 	printf("\nRefund:  %6.2f\n", payment - bill);

@@ -10,22 +10,22 @@ int main(){
 	
 
 
-	printf("Entry your name: ");
+	printf("Enter your name: ");
 	gets(name);
 	
-	printf("Entry your First Surname: ");
+	printf("Enter your First Surname: ");
 	gets(surname);
 	
-	printf("Entry your date of birth (d m y): ");
+	printf("Enter your date of birth (d m y): ");
 	scanf("%d %d %d", &day, &month, &year);
 
-	printf("Entry your DNI: ");
+	printf("Enter your DNI: ");
 	scanf("%s", DNI);
 
-	printf("Entry your gender (M/F): ");
+	printf("Enter your gender (M/F): ");
 	scanf("\n%c", &gender);
 	
-	printf("Entry registered credits): ");
+	printf("Enter registered credits: ");
 	scanf("%f", &credits);
 
 
