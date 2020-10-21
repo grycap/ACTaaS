@@ -1,7 +1,7 @@
 #!/bin/bash
 nl=0
 ./exercise5_bin
-file=items.txt
+file=/var/tmp/education/ACTaaS/P2/Face/unittests/items.txt
 while IFS='' read -r line
 do
   nl=$((nl+1))
