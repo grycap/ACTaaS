@@ -10,18 +10,22 @@ if [ ! -f price_margin.txt ]; then
     exit 1
 fi
 
+nli=$(cat price_margin.txt|wc l)
+
 profit=$(echo "$1 * ($2 / 100.0)"|bc -l)
 sp=$(echo "$1 + $profit" | bc -l)
 sp=$(printf "%.2f" $sp)
-for i in "$@"
-do
-  echo "$i" >> ent.txt
-done
-
 ./exercise4_bin
+nlf=$(cat price_margin.txt|wc l)
+if [ $nli -eq $nlf ]
+then
+   echo "Test ERROR -- File price_margin.txt has not been updated with the selling price."
+  rm *.txt 
+  exit 0
+fi
 
 sal=$(grep -oE $sp price_margin.txt|tail -n1)
-if [ "$sp" = "$sal" ] && [ ! -s ent.txt ]; then
+if [ "$sp" = "$sal" ]; then
    echo "Test OK!!"
    rm *.txt
    exit 0
