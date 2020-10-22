@@ -21,7 +21,7 @@ done
 ./exercise4_bin
 
 sal=$(grep -oE $sp price_margin.txt|tail -n1)
-if [ "$sp" = "$sal" ]; then
+if [ "$sp" = "$sal" ] && [ ! -s ent.txt ]; then
    echo "Test OK!!"
    rm *.txt
    exit 0
