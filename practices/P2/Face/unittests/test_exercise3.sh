@@ -41,7 +41,7 @@ else
    echo "Test ERROR!!"
    echo "EPECTED OUTPUT:" 
    echo "$ent"
-   echo "STUDENT OUTPUT: 
+   echo "STUDENT OUTPUT:" 
    echo "$sal"
    rm ex3.out sal.txt
    exit 1
