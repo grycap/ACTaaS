@@ -11,8 +11,15 @@ if [ $nl -eq 1 ]; then
     rm items.txt
     exit 1
 fi
-nl=0
 ./exercise5_bin
+nl=$(cat items2.txt|wc -l)
+if [ $nl -eq 1 ]; then
+    echo "Test ERROR -- File items2.txt seems to be empty"
+    rm items.txt
+    exit 1
+fi
+
+nl=0
 file=items.txt
 while IFS='' read -r line
 do
