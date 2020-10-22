@@ -15,7 +15,7 @@ done < "$file"
 
 if cmp -s items2.txt items2.copy ; then
    echo "Test OK!!"
-   rm items2.copy
+   rm items.txt items2.copy items2.txt
    exit 0
 else
    echo "Test ERROR!!"
@@ -23,7 +23,7 @@ else
    cat items2.copy
    echo "STUDENT OUTPUT:"
    cat items2.txt
-   rm items2.copy
+   rm items.txt items2.copy items2.txt
    exit 1
    
 fi
