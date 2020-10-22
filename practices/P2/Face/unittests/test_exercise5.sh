@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -f items.txt ]; then
+    echo "Test ERROR -- File items.txt found!"
+    exit 1
+fi
 nl=0
 ./exercise5_bin
 file=items.txt
