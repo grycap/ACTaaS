@@ -17,17 +17,17 @@ done
 
 ./exercise4_bin
 
-sal=$(cat price_margin.txt|tail -n1)
+sal=$(grep -oE $sp price_margin.txt)
 sal=$(printf "%.2f" $sal)
 if [ "$ent" = "$sal" ]; then
    echo "Test OK!!"
-   rm ent.txt sal.txt
+   rm ent.txt price_margin.txt
    exit 0
 else
    echo "Test ERROR!!"
    echo "EXPECTED OUTPUT: $ent"
    echo "STUDENT OUTPUT: $sal"
-   rm ex1.out result.txt ent.txt
+   rm ent.txt price_margin.txt
    exit 1
 fi
 
