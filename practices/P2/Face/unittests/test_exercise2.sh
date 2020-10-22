@@ -11,13 +11,13 @@ square=$(echo "$n * $n"|bc)
 m=$(cat output.txt)
 if [ $square = $m  ]; then
    echo "Test OK!!"
-   rm output.txt
+   rm input.txt output.txt
    exit 0
 else
    echo "Test ERROR!!"
    echo "EPECTED OUTPUT: $square"
    echo "STUDENT OUTPUT: $m"
-   rm output.txt
+   rm input.txt output.txt
    exit 1
 fi
 
