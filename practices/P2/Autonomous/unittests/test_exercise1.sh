@@ -39,7 +39,7 @@ if [ "$ent" = "$sal" ]; then
    exit 0
 else
    echo "Test ERROR!!"
-   echo "EXPECTED OUTPUT: 
+   echo "EXPECTED OUTPUT:" 
    echo "$sal"
    echo "STUDENT OUTPUT:"
    echo "$ent" 
