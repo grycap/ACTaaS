@@ -23,8 +23,12 @@ done
 sal=$(grep -oE $sp price_margin.txt|tail -n1)
 if [ "$sp" = "$sal" ]; then
    echo "Test OK!!"
+   rm *.txt
+   exit 0
 else
    echo "Test ERROR!!"
+   rm *.txt
+   exit 1
 fi
 
-rm *.txt
+
