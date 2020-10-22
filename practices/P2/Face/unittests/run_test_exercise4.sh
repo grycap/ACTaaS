@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp ./exercise2/*.txt . 
+cp ./exercise4/*.txt . 
 sh /var/tmp/education/ACTaaS/practices/P2/Face/unittests/test_exercise4.sh 33.20 30
 
 if [ $? -eq 1 ]   
