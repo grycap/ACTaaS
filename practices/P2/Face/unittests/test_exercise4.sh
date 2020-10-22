@@ -27,6 +27,8 @@ if [ "$sp" = "$sal" ]; then
    exit 0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT: $sp"
+   echo "STUDENT OUTPUT: $sal"
    rm *.txt
    exit 1
 fi
