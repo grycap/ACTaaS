@@ -4,6 +4,12 @@ if [ ! -f items.txt ]; then
     echo "Test ERROR -- File items.txt found!"
     exit 1
 fi
+
+if [  -s items.txt ]; then
+    echo "Test ERROR -- File items.txt seems to be empty"
+    rm items.txt
+    exit 1
+fi
 nl=0
 ./exercise5_bin
 file=items.txt
