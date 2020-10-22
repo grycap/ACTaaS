@@ -1,13 +1,15 @@
 #!/bin/bash
 ./exercise2_bin
 if cmp -s summary.txt /var/tmp/education/ACTaaS/practices/P2/Autonomous/unittests/sol_ex2.txt; then
-    echo "OK!!"
+    echo "Test OK!!"
+    rm summary.txt
     exit 0
 else
-   echo "ERROR!!"
+   echo "Test ERROR!!"
    echo "EXPECTED OUTPUT:"
-   cat sol_ex2.txt
+   cat /var/tmp/education/ACTaaS/practices/P2/Autonomous/unittests/sol_ex2.txt
    echo "STUDENT OUPUT:"
    cat summary.txt
+   rm summary.txt
    exit 1
 fi
