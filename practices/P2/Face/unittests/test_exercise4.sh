@@ -10,13 +10,13 @@ if [ ! -f price_margin.txt ]; then
     exit 1
 fi
 
-nli=$(cat price_margin.txt|wc l)
+nli=$(cat price_margin.txt|wc -l)
 
 profit=$(echo "$1 * ($2 / 100.0)"|bc -l)
 sp=$(echo "$1 + $profit" | bc -l)
 sp=$(printf "%.2f" $sp)
 ./exercise4_bin
-nlf=$(cat price_margin.txt|wc l)
+nlf=$(cat price_margin.txt|wc -l)
 if [ $nli -eq $nlf ]
 then
    echo "Test ERROR -- File price_margin.txt has not been updated with the selling price."
