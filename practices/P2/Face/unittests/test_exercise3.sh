@@ -40,9 +40,9 @@ if [ "$ent" = "$sal" ]; then
 else
    echo "Test ERROR!!"
    echo "EPECTED OUTPUT:" 
-   echo "$ent"
-   echo "STUDENT OUTPUT:" 
    echo "$sal"
+   echo "STUDENT OUTPUT:" 
+   echo "$ent"
    rm ex3.out sal.txt
    exit 1
 fi
