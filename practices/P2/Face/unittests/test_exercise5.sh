@@ -1,14 +1,14 @@
 #!/bin/bash
+
 nl=0
 ./exercise5_bin
-file=/var/tmp/education/ACTaaS/P2/Face/unittests/items.txt
+file=items.txt
 while IFS='' read -r line
 do
   nl=$((nl+1))
   printf "%d.- %s\n" $nl "$line" >> items2.copy
 done < "$file"
-#n=$(sed -n \$= items2.txt)
-#m=$(sed -n \$= items2.copy)
+
 if cmp -s items2.txt items2.copy ; then
    echo "Test OK!!"
    rm items2.copy
@@ -16,9 +16,9 @@ if cmp -s items2.txt items2.copy ; then
 else
    echo "Test ERROR!!"
    echo "EXPECTED OUTPUT:"
-   echo "$m" 
+   cat items2.copy
    echo "STUDENT OUTPUT:"
-   echo "$n"
+   cat items2.txt
    rm items2.copy
    exit 1
    
