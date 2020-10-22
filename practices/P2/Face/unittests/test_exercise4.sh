@@ -21,7 +21,7 @@ if [ $nli -eq $nlf ]
 then
    echo "Test ERROR -- File price_margin.txt has not been updated with the selling price."
   rm *.txt 
-  exit 0
+  exit 1
 fi
 
 sal=$(grep -oE $sp price_margin.txt|tail -n1)
