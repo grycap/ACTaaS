@@ -1,6 +1,6 @@
 #!/bin/bash
 ./exercise2_bin
-if cmp -s summary.txt sol_ex2.txt; then
+if cmp -s summary.txt /var/tmp/education/ACTaaS/P2/Autonomous/sol_ex2.txt; then
     echo "OK!!"
     exit 0
 else
