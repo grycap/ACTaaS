@@ -6,7 +6,7 @@ if [ ! -f items.txt ]; then
 fi
 
 nl=$(cat items.txt|wc -l)
-if [ $nl -eq 0 ]; then
+if [ $nl -eq 1 ]; then
     echo "Test ERROR -- File items.txt seems to be empty"
     rm items.txt
     exit 1
