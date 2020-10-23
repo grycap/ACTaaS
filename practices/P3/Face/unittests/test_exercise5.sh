@@ -58,10 +58,20 @@ pro=$(cat ex5_sol.txt)
 if [ "$alu" = "$pro" ]
 then
    echo "Test OK!!"
+   if [ -f "ent.txt" ]; then
+      rm ent.txt ex5_alu.txt
+   fi
+   exit 0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   echo "$pro"
+   echo "STUDENT OUTPUT:"
+   echo "$alu"
+   if [ -f "ent.txt" ]; then
+      rm ent.txt ex5_alu.txt
+   fi
+   exit 1
 fi
 
-if [ -f "ent.txt" ]; then
-   rm ent.txt ex5_alu.txt
-fi
+

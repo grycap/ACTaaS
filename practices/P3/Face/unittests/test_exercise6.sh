@@ -46,8 +46,16 @@ sal=$(cat sal.txt| tail -n1)
 if [ "$ent" = "$sal" ]
 then
    echo "Test OK!!"
+   rm ent.txt sal.txt
+   exit 0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   echo "$ent"
+   echo "STUDENT OUTPUT:"
+   echo "$sal"
+   rm ent.txt sal.txt
+   exit 1
 fi
-echo $leap_year
-rm ent.txt sal.txt
+
+

@@ -21,10 +21,14 @@ then
    if [ "$res" = "$sal" ]
    then
       echo "Test OK!!"
-      exit
+      exit 0
    else
       echo "Test ERROR!!"
-      exit
+      echo "EXPECTED OUTPUT:"
+      echo "$res"
+      echo "STUDENT OUTPUT:"
+      echo "$sal"
+      exit 1
    fi
 fi
 
@@ -45,17 +49,32 @@ case "$sal" in
                if [ "$res" = "$sal" ]
                then
                   echo "Test OK!!"
+                  exit 0
+                  rm ent.txt sal.txt
                else
                   echo "Test ERROR!!"
+                  echo "EXPECTED OUTPUT:"
+                  echo "$res"
+                  echo "STUDENT OUTPUT:"
+                  echo "$sal"
+                  rm ent.txt sal.txt
+                  exit 1
                fi
     ;;
     *) if grep -q "$res" "sal.txt"
        then
           echo "Test OK!!"
+          rm ent.txt sal.txt
        else
           echo "Test ERROR!!"
+          echo "EXPECTED OUTPUT:"
+          echo "$res"
+          echo "STUDENT OUTPUT:"
+          echo "$sal"
+          rm ent.txt sal.txt
+          exit 1
        fi
 esac
-rm ent.txt sal.txt
+
 
 

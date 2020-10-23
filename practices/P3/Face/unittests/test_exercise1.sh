@@ -32,7 +32,15 @@ sal=$(cat sal.txt|head -n2|tail -n1)
 
 if [ "$ent" = "$sal" ]; then
    echo "Test OK!!"
+   rm ent.txt sal.txt
+   exit 0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   echo $ent
+   echo "STUDENT OUTPUT:"
+   rm ent.txt sal.txt
+   echo $sal
+   exit 1
 fi
-rm ent.txt sal.txt
+

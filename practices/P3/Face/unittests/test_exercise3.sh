@@ -14,8 +14,12 @@ case $1 in
      if [ "$res1" = "$res2" ]
      then
         echo "Test for sumation OK!!"
+        exit 0
+        rm ent.txt sal.txt
      else
         echo "Test for sumation ERROR!!"
+        exit 1
+        rm ent.txt sal.txt
      fi
   ;;
   2) res1=$(echo "$2 - $3"|bc)
@@ -25,8 +29,12 @@ case $1 in
      if [ "$res1" = "$res2" ]
      then
         echo "Test for substraction OK!!"
+        exit 0
+        rm ent.txt sal.txt
      else
         echo "Test for substraction ERROR!!"
+        exit 1
+        rm ent.txt sal.txt
      fi
   ;;
 
@@ -37,8 +45,12 @@ case $1 in
        if [ "$res1" = "$res2" ]
        then
           echo "Test for multiplication OK!!"
+          rm ent.txt sal.txt
+          exit 0
        else
           echo "Test for multiplication ERROR!!"
+          rm ent.txt sal.txt
+          exit 1
        fi
   ;;
     4) if [ $3 -eq 0 ]
@@ -56,8 +68,12 @@ case $1 in
        if [ "$res1" = "$res2" ]
        then
           echo "Test for division OK!!"
+          rm ent.txt sal.txt
+          exit 0
        else
           echo "Test for division ERROR!!"
+          rm ent.txt sal.txt
+          exit 1 
        fi
   ;;
    *)
@@ -68,10 +84,14 @@ case $1 in
        if [ "$res1" = "$res2" ]
        then
           echo "Test for incorrect option validation OK!!"
+          rm ent.txt sal.txt
+          exit 0
        else
           echo "Test for incorrect option validation ERROR!!"
+          rm ent.txt sal.txt
+          exit 1
        fi
 esac
-rm ent.txt sal.txt
+
 
 

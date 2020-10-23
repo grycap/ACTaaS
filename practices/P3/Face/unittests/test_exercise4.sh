@@ -27,7 +27,14 @@ fi
 
 if [ "$a" = "$b" ]; then
     echo "Test OK!!"
+    exit 0
 else
    echo "Test ERROR!!"
+          echo "Test ERROR!!"
+          echo "EXPECTED OUTPUT:"
+          echo "$b"
+          echo "STUDENT OUTPUT:"
+          echo "$a
+          exit 1
 fi
 
