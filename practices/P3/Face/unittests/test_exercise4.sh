@@ -16,14 +16,14 @@ then
    echo "$4" >> "$1"
    echo "$5" >> "$1"
 fi
-./exercise4_bin < ficha.txt > /dev/null
+echo "$1" > ent.txt
+./exercise4_bin < ent.txt > /dev/null
 if test -f "user.txt"; then
    a=$(cat user.txt)
    b=$(cat user_ex4.txt)
    rm ent.txt user_ex4.txt user.txt
 else
    echo "Test ERROR -- File user.txt not found!!"
-   rm ent.txt
    exit 1 
 fi
 
