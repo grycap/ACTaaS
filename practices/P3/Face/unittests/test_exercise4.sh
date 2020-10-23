@@ -34,7 +34,7 @@ else
           echo "EXPECTED OUTPUT:"
           echo "$b"
           echo "STUDENT OUTPUT:"
-          echo "$a
+          echo "$a"
           exit 1
 fi
 
