@@ -43,38 +43,42 @@ then
       res="The solution is indeterminate"
       sal=$(cat sal.txt)
 fi
+aux="${sal:0:2}"
 
-case "$sal" in
-    *"-0"*) sal="0.00"
-               if [ "$res" = "$sal" ]
-               then
-                  echo "Test OK!!"
-                  exit 0
-                  rm ent.txt sal.txt
-               else
-                  echo "Test ERROR!!"
-                  echo "EXPECTED OUTPUT:"
-                  echo "$res"
-                  echo "STUDENT OUTPUT:"
-                  echo "$sal"
-                  rm ent.txt sal.txt
-                  exit 1
-               fi
-    ;;
-    *) if grep -q "$res" "sal.txt"
-       then
-          echo "Test OK!!"
-          rm ent.txt sal.txt
-       else
-          echo "Test ERROR!!"
-          echo "EXPECTED OUTPUT:"
-          echo "$res"
-          echo "STUDENT OUTPUT:"
-          echo "$sal"
-          rm ent.txt sal.txt
-          exit 1
-       fi
-esac
+if [ "$aux" = "-0" ]
+then
+   sal="${sal:1}"
+fi
+
+if [ "$res" = "$sal" ]
+then
+   echo "Test OK!!"
+   exit 0
+   rm ent.txt sal.txt
+else
+   echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   echo "$res"
+   echo "STUDENT OUTPUT:"
+   echo "$sal"
+   rm ent.txt sal.txt
+   exit 1
+fi
+
+if grep -q "$res" "sal.txt"
+then
+   echo "Test OK!!"
+   rm ent.txt sal.txt
+else
+   echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   echo "$res"
+   echo "STUDENT OUTPUT:"
+   echo "$sal"
+   rm ent.txt sal.txt
+   exit 1
+fi
+
 
 
 
