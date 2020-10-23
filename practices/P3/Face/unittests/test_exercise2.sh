@@ -18,6 +18,11 @@ then
    res=$(echo "-1 * $2 / $1"|bc -l)
    res=$(printf "%.2f" $res)
    sal=$(cat sal.txt|grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
+   aux="${sal:0:2}"
+   if [ "$aux" = "-0" ]
+   then
+      sal="${sal:1}"
+   fi
    if [ "$res" = "$sal" ]
    then
       echo "Test OK!!"
