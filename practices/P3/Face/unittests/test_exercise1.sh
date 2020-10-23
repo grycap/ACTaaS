@@ -19,8 +19,6 @@ else
   exit
 fi
 
-ent=$(printf "|%d| = %d\n" $1  $abs)
-
 for i in "$@"
 do
   echo "$i" >> ent.txt
@@ -30,7 +28,7 @@ done
 
 sal=$(grep -oE $abs sal.txt|tail -n1)
 
-if [ "$ent" = "$sal" ]; then
+if [ "$abs" = "$sal" ]; then
    echo "Test OK!!"
    rm ent.txt sal.txt
    exit 0
