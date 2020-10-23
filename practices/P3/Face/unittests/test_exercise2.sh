@@ -45,7 +45,7 @@ then
 fi
 
 case "$sal" in
-    *"-0.00"*) sal="0.00"
+    *"-0"*) sal="0.00"
                if [ "$res" = "$sal" ]
                then
                   echo "Test OK!!"
