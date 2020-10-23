@@ -41,7 +41,7 @@ fi
 if [ $a -eq 1 ] && [ $b -ne 1 ]
 then
    res="The solution is not feasible"
-   sal=$(cat sal.txt)
+   sal=$(cat sal.txt|grep -oE "$res")
 fi
 
 if [ $a -eq 1 ] && [ $b -eq 1 ]
