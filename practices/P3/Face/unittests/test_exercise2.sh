@@ -18,10 +18,11 @@ then
    res=$(echo "-1 * $2 / $1"|bc -l)
    res=$(printf "%.2f" $res)
    sal=$(cat sal.txt|grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
-   aux="${sal:0:2}"
+   
+   aux="${res:0:2}"
    if [ "$aux" = "-0" ]
    then
-      sal="${sal:1}"
+      res="${res:1}"
    fi
    if [ "$res" = "$sal" ]
    then
@@ -47,12 +48,6 @@ if [ $a -eq 1 ] && [ $b -eq 1 ]
 then
       res="The solution is indeterminate"
       sal=$(cat sal.txt)
-fi
-aux="${sal:0:2}"
-echo aux
-if [ "$aux" = "-0" ]
-then
-   sal="${sal:1}"
 fi
 
 if [ "$res" = "$sal" ]
