@@ -23,11 +23,13 @@ if [ $? -eq 1 ]
 then
   exit 1
 fi
+echo "Testing out of range option above...."
 sh /var/tmp/education/ACTaaS/practices/P3/Face/unittests/test_exercise3.sh 5 6 2 # Out of range option
 if [ $? -eq 1 ]   
 then
   exit 1
 fi
+echo "Testing out of range option below...."
 sh /var/tmp/education/ACTaaS/practices/P3/Face/unittests/test_exercise3.sh 0 6 2 # Out of range option
 if [ $? -eq 1 ]   
 then
