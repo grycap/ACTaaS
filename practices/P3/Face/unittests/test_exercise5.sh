@@ -59,7 +59,7 @@ if [ "$alu" = "$pro" ]
 then
    echo "Test OK!!"
    if [ -f "ent.txt" ]; then
-      rm ent.txt ex5_alu.txt
+      rm ent.txt ex5_alu.txt ex5_sol.txt
    fi
    exit 0
 else
@@ -69,7 +69,7 @@ else
    echo "STUDENT OUTPUT:"
    echo "$alu"
    if [ -f "ent.txt" ]; then
-      rm ent.txt ex5_alu.txt
+      rm ent.txt ex5_alu.txt ex5_sol.txt
    fi
    exit 1
 fi
