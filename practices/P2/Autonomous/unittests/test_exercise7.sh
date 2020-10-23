@@ -3,7 +3,7 @@ if [  -f ex7_alu.txt ]; then
    rm ex7_alu.txt
 fi
 ./exercise7_bin
-if [ ! -f ex7_sol.txt ]; then
+if [ ! -f ex7_alu.txt ]; then
    echo "Test ERROR -- File ex7_alu.txt not found."
    exit 1
 fi
