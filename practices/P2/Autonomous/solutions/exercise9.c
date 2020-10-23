@@ -6,7 +6,7 @@ int main(){
     char name[81];
     int year;
 
-    fp = fopen("ex10.txt", "r");
+    fp = fopen("ex9.txt", "r");
 
     fgets(name, 23, fp);
     fscanf(fp, "%*d%*d%d", &year);
