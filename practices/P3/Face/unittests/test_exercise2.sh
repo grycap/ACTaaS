@@ -40,14 +40,14 @@ fi
 
 if [ $a -eq 1 ] && [ $b -ne 1 ]
 then
-   res="The solution is not feasible"
+   res="not feasible"
    sal=$(cat sal.txt|grep -oE "$res")
 fi
 
 if [ $a -eq 1 ] && [ $b -eq 1 ]
 then
-      res="The solution is indeterminate"
-      sal=$(cat sal.txt)
+      res="indeterminate"
+      sal=$(cat sal.txt|grep -oE "$res")
 fi
 
 if [ "$res" = "$sal" ]
