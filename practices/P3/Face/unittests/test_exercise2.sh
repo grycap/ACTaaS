@@ -65,7 +65,7 @@ else
    exit 1
 fi
 
-if grep -q "$res" "sal.txt"
+if grep -oE -q "$res" "sal.txt"
 then
    echo "Test OK!!"
    rm ent.txt sal.txt
