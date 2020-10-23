@@ -11,13 +11,13 @@ then
   exit 1
 fi
 echo "Testing lower out of range case..."
-sh /var/tmp/education/ACTaaS/practices/P3/Face/unittests/test_exercise2.sh 1492
+sh /var/tmp/education/ACTaaS/practices/P3/Face/unittests/test_exercise6.sh 1492
 if [ $? -eq 1 ]   
 then
   exit 1
 fi
 echo "Testing upper out of range case..."
-sh /var/tmp/education/ACTaaS/practices/P3/Face/unittests/test_exercise2.sh 2100
+sh /var/tmp/education/ACTaaS/practices/P3/Face/unittests/test_exercise6.sh 2100
 if [ $? -eq 1 ]   
 then
   exit 1
