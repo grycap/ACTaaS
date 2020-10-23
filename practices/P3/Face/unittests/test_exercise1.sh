@@ -28,7 +28,7 @@ done
 
 sal=$(grep -oE $abs sal.txt|tail -n1)
 
-if [ "$abs" = "$sal" ]; then
+if [ $abs -eq $sal ]; then
    echo "Test OK!!"
    rm ent.txt sal.txt
    exit 0
