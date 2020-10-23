@@ -56,7 +56,7 @@ then
    exit 0
    rm ent.txt sal.txt
 else
-   echo "Test ERROR!!"
+   echo "Test ERROR!!  primero"
    echo "EXPECTED OUTPUT:"
    echo "$res"
    echo "STUDENT OUTPUT:"
@@ -70,7 +70,7 @@ then
    echo "Test OK!!"
    rm ent.txt sal.txt
 else
-   echo "Test ERROR!!"
+   echo "Test ERROR!! segundo"
    echo "EXPECTED OUTPUT:"
    echo "$res"
    echo "STUDENT OUTPUT:"
