@@ -28,7 +28,7 @@ done
 
 ./exercise1_bin < ent.txt > sal.txt
 
-sal=$(cat sal.txt|head -n2|tail -n1)
+sal=$(grep -oE $abs sal.txt|tail -n1)
 
 if [ "$ent" = "$sal" ]; then
    echo "Test OK!!"
