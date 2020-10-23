@@ -17,10 +17,10 @@ fi
 
 if [ $year -lt 1500 ] || [ $year -gt 2050 ]
 then
-   ent="INPUT out of range!"
+   ent="out of range"
    echo "$1" > ent.txt
    ./exercise6_bin < ent.txt > sal.txt
-    sal=$(cat sal.txt| tail -n1)
+    sal=$(cat sal.txt|grep -oE "$ent")
     if [ "$ent" = "$sal" ]
     then
          echo "Test OK!!"
