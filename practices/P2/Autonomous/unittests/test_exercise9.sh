@@ -8,7 +8,7 @@ age=$(echo "$2-$3"|bc)
 sal=$(printf "%s is %d years old.\n" "$1" $age)
 alu_age=$(grep -oE $age sal_9_alu.txt)
 
-if [ $age -eq $alu_age ]
+if [ "$age" = "$alu_age" ]
 then
    echo "Test OK!!"
    rm sal_9_alu.txt
