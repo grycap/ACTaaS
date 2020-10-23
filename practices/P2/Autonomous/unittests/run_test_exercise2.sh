@@ -1,5 +1,5 @@
 #!/bin/bash
-cp ./exercise2/*.txt .
+cp ./exercise2/* .
 
 sh /var/tmp/education/ACTaaS/practices/P2/Autonomous/unittests/test_exercise2.sh
 
