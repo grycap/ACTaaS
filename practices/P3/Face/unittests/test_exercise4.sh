@@ -24,7 +24,7 @@ if test -f "user.txt"; then
    rm ent.txt user_ex4.txt user.txt
 else
    echo "Test ERROR -- File user.txt not found!!"
-   rm ent.txt user_ex4.txt
+   rm ent.txt
    exit 1 
 fi
 
