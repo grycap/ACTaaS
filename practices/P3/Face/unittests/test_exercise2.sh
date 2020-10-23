@@ -49,7 +49,7 @@ then
       sal=$(cat sal.txt)
 fi
 aux="${sal:0:2}"
-
+echo aux
 if [ "$aux" = "-0" ]
 then
    sal="${sal:1}"
