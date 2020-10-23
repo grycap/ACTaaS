@@ -21,7 +21,7 @@ echo "$1" > ent.txt
 if test -f "user.txt"; then
    a=$(cat user.txt)
    b=$(cat user_ex4.txt)
-   rm ent.txt user_ex4.txt user.txt
+   rm *.txt
 else
    echo "Test ERROR -- File user.txt not found!!"
    exit 1 
