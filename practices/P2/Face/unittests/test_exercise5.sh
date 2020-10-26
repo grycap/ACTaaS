@@ -19,7 +19,7 @@ if [ $nl -eq 1 ]; then
     exit 1
 fi
 
-cat -n items.txt > items2.copy
+nl items.txt > items2.copy
 
 if cmp -s items2.txt items2.copy ; then
    echo "Test OK!!"
