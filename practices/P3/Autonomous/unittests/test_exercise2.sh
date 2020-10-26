@@ -10,10 +10,10 @@ echo "$1\n$2\n$3" > spending.txt
 if cmp -s spending.txt /var/tmp/education/ACTaaS/practices/P3/Autonomous/unittests/spending.txt 
 then
     echo "Test OK!!"
-	exit_code = 0
+	exit_code=0
 else
    echo "Test ERROR!!"
-   exit_code = 1
+   exit_code=1
    echo "EXPECTED OUTPUT:"
    cat /var/tmp/education/ACTaaS/practices/P3/Autonomous/unittests/spending.txt
    echo "STUDENT OUPUT:"
