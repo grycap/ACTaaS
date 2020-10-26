@@ -20,7 +20,7 @@ if [ $nl -eq 1 ]; then
 fi
 counter=1
 filename=items.txt
-touch items2.copy
+grep . $filename > items2.copy
 while read -r line
 do
   printf "%d.- %s\n" $counter "$line" >> items2.copy
