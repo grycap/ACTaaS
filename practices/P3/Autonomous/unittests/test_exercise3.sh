@@ -22,14 +22,16 @@ then
   total=$(echo "$total + $INC"| bc -l)
 fi
 
-total=$(printf "%.1f" $total) 
+total=$(printf "%.1f" $total)
 for i in "$@"
 do
   echo "$i" >> param.txt
 done
 
 ./exercise3_bin < param.txt > sal.txt
-sal=$(cat sal.txt|grep -oE "$total")
+sal=$(cat sal.txt|grep -m 1 -oE "$total")
+echo "sal = $sal"
+echo "Total = $total"
 if [ "$sal" = "$total" ]
 then
    echo "Test OK!!"
