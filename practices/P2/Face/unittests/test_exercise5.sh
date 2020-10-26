@@ -21,7 +21,7 @@ fi
 
 nl=1
 touch items2.copy
-for item in(cat items.txt)
+for item in $(cat items.txt)
 do
     printf "%d.- %s\n" $nl "$item" >> items2.copy
     nl=$(echo "$nl + 1"|bc)
