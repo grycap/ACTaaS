@@ -29,7 +29,7 @@ do
 done
 
 ./exercise3_bin < param.txt > sal.txt
-sal=$(cat sal.txt|grep -m 1 -oE "$total")
+sal=$(cat sal.txt|tail -n1|grep -oE "$total")
 if [ "$sal" = "$total" ]
 then
    echo "Test OK!!"
