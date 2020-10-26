@@ -15,7 +15,7 @@ is_zero=$(echo "$a == 0"| bc -l)
 if [ $is_zero -eq 1 ]
 then
    ent="Invalid value"
-   sal=$(cat sal.txt|grep -oE $ent)
+   sal=$(cat sal.txt|grep -oE "$ent")
     if [ "$ent" = "$sal" ]
     then
          echo "Test OK!!"
