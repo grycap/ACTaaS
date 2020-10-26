@@ -19,8 +19,9 @@ if [ $nl -eq 1 ]; then
     exit 1
 fi
 
-nl=1
+nl=0
 file=items.txt
+dos2unix items.txt
 while IFS='' read -r line
 do
   nl=$((nl+1))
