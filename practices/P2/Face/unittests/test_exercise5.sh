@@ -19,7 +19,7 @@ if [ $nl -eq 1 ]; then
     exit 1
 fi
 
-nl=0
+nl=1
 file=items.txt
 while IFS='' read -r line
 do
