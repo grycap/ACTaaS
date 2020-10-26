@@ -10,7 +10,7 @@ points_per_race=$2
 if [ ! -f F1.txt ]
 then
     echo "Test ERROR -- File f1.txt not found"
-	exit 0
+	exit 1
 fi
 
 first=$(cat F1.txt|head -n1)
