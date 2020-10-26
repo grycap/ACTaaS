@@ -23,7 +23,7 @@ filename=items.txt
 touch items2.copy
 while read -r line
 do
-  printf "%d.- %s" $counter "$line" >> items2.copy
+  printf "%d.- %s\n" $counter "$line" >> items2.copy
   let counter=$counter+1
 done < "$filename"
 
