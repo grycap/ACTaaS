@@ -81,7 +81,7 @@ then
    exit_code=0
 else
    echo "Test ERROR!!"
-   exit_code=0
+   exit_code=1
 fi
 rm ent.txt sal.txt
 exit $exit_code
