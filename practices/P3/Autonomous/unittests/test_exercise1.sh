@@ -47,7 +47,7 @@ then
 	  exit_code=1
    fi
       rm ent.txt sal.txt
-      exit ${exit_code}
+      exit $exit_code
 fi
 
 one_sol=$(echo "$d == 0"| bc -l)
@@ -66,7 +66,7 @@ then
 	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit ${exit_code}
+   exit $exit_code
 fi
 
 x1=$(echo "(-1 * $b + sqrt($d)) / (2 * $a)"|bc -l)
@@ -83,5 +83,5 @@ else
    exit_code=0
 fi
 rm ent.txt sal.txt
-exit ${exit_code}
+exit $exit_code
 
