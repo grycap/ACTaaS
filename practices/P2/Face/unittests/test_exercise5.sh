@@ -12,6 +12,7 @@ if [ $nl -eq 1 ]; then
     exit 1
 fi
 ./exercise5_bin
+dos2unix items2.txt > /dev/null
 nl=$(cat items2.txt|wc -l)
 if [ $nl -eq 1 ]; then
     echo "Test ERROR -- File items2.txt seems to be empty"
@@ -21,7 +22,7 @@ fi
 
 nl=0
 file=items.txt
-dos2unix items.txt
+dos2unix items.txt > /dev/null
 while IFS='' read -r line
 do
   nl=$((nl+1))
