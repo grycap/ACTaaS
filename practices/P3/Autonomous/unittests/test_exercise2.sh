@@ -5,7 +5,9 @@ if [ $# -ne 3 ]; then
    exit
 fi
 
-echo "$1\n$2\n$3" > spending.txt
+echo "$1" > spending.txt
+echo "$2" >> spending.txt
+echo "$3" >> spending.txt
 ./exercise2_bin
 if cmp -s spending.txt /var/tmp/education/ACTaaS/practices/P3/Autonomous/unittests/spending.txt 
 then
