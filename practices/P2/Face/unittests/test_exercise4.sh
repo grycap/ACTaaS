@@ -24,7 +24,7 @@ then
   exit 1
 fi
 
-sal=$(grep -oE $sp price_margin.txt|tail -n1)
+sal=$(grep -m 1 -oE $sp price_margin.txt)
 if [ "$sp" = "$sal" ]; then
    echo "Test OK!!"
    rm *.txt
