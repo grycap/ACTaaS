@@ -18,14 +18,14 @@ if [ $nl -eq 1 ]; then
     rm items.txt
     exit 1
 fi
-
-nl=1
+counter=1
+filename=items.txt
 touch items2.copy
-for item in $(cat items.txt)
+while read -r line
 do
-    printf "%d.- %s\n" $nl "$item" >> items2.copy
-    nl=$(echo "$nl + 1"|bc)
-done	
+  printf "%d.- %s" $counter "$line" >> items2.copy
+  let counter=$counter+1
+done < "$filename"
 
 if cmp -s items2.txt items2.copy ; then
    echo "Test OK!!"
