@@ -30,7 +30,7 @@ else
    echo "Test ERROR!!"
    echo "EPECTED OUTPUT"
    cat ex1.out
-   echo "STUDENT OUTPUT"
+   echo "\nSTUDENT OUTPUT"
    cat result.txt
    rm ex1.out result.txt ent.txt
    exit 1
