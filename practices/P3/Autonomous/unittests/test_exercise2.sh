@@ -11,6 +11,10 @@ echo "$1\n$2\n$3" > spending.txt
 spend=$(cat spending.txt|head -n3|sort -g)
 
 ./exercise2_bin
+pid=$(echo $$)
+proc=$(ps aux|grep $pid)
+test=$(echo "$proc"|grep -oE spending.txt)
+echo "$test" 
 touch sal.txt
 for i in $spend
 do

@@ -29,7 +29,7 @@ then
       echo "Test OK!!"
       exit 0
    else
-      echo "Test ERROR!! anterior"
+      echo "Test ERROR!!"
       echo "EXPECTED OUTPUT:"
       echo "$res"
       echo "STUDENT OUTPUT:"
