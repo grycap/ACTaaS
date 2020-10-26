@@ -41,6 +41,6 @@ else
   exit_code=1
 fi
 
-rm ent.txt sal.txt param.txt
+rm sal.txt param.txt
 exit $exit_code
 
