@@ -21,7 +21,7 @@ fi
 counter=0
 filename=items.txt
 dos2unix $filename > /dev/null
-while IFS='\n' read -r line
+while IFS= read -r line
 do
   let counter=$counter+1   
   printf "%d.- %s\n" $counter "$line" >> items2.copy
