@@ -30,8 +30,6 @@ done
 
 ./exercise3_bin < param.txt > sal.txt
 sal=$(cat sal.txt|grep -m 1 -oE "$total")
-echo "sal = $sal"
-echo "Total = $total"
 if [ "$sal" = "$total" ]
 then
    echo "Test OK!!"

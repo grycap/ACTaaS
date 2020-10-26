@@ -1,6 +1,6 @@
 #include <stdio.h>
-#define BASE_PRICE 120000.0
-#define INC 10.0
+#define BASE_PRICE 120000
+#define INC 10
 
 int main(){
 
@@ -19,11 +19,11 @@ int main(){
     printf("a. Is the flat in the third floor or higher? (y/n).\n");
     scanf("\n%c", &res);
     if(res == 'y' || res == 'Y')
-      final_price += BASE_PRICE * (INC / 100);
+      final_price += BASE_PRICE * (INC / 100.0);
     printf("b. Has the flat in outward-facing? (y/n).\n");
     scanf("\n%c", &res);
     if(res == 'y'|| res == 'Y')
-        final_price += BASE_PRICE * (INC / 100);
+        final_price += BASE_PRICE * (INC / 100.0);
     printf("\nOUTPUT\n");
     printf("-------------------------------\n");
     printf("The final price of your flat is %.1f Euros\n", final_price);
