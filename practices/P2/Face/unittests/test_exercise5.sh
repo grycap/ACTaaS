@@ -19,7 +19,13 @@ if [ $nl -eq 1 ]; then
     exit 1
 fi
 
-nl items.txt > items2.copy
+nl=1
+touch items2.copy
+for item in(cat items.txt)
+do
+    printf "%d.- %s\n" $nl "$item" >> items2.copy
+    nl=$(echo "$nl + 1"|bc)
+done	
 
 if cmp -s items2.txt items2.copy ; then
    echo "Test OK!!"
