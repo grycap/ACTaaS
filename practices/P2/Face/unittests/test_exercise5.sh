@@ -20,14 +20,8 @@ if [ $nl -eq 1 ]; then
     exit 1
 fi
 
-nl=0
-file=items.txt
 dos2unix items.txt > /dev/null
-while IFS='' read -r line
-do
-  nl=$((nl+1))
-  printf "%d.- %s\n" $nl "$line" >> items2.copy
-done < "$file"
+cat -n items.txt > items2.copy
 
 if cmp -s items2.txt items2.copy ; then
    echo "Test OK!!"
