@@ -11,6 +11,14 @@ if [ $nl -eq 1 ]; then
     rm items.txt
     exit 1
 fi
+
+if [ $nl -neq 3 ]; then
+    echo "Test ERROR -- File items.txt must have 3 lines of text check possible blank lines"
+    rm items.txt
+    exit 1
+fi
+
+
 ./exercise5_bin
 nl=$(cat items2.txt|wc -l)
 if [ $nl -eq 1 ]; then
