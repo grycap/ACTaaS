@@ -20,7 +20,8 @@ if [ $nl -eq 1 ]; then
 fi
 counter=0
 filename=items.txt
-while read -r line
+dos2unix $filename > /dev/null
+while IFS='\n' read -r line
 do
   let counter=$counter+1   
   printf "%d.- %s\n" $counter "$line" >> items2.copy
