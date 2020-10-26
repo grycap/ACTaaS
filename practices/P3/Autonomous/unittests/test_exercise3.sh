@@ -30,7 +30,8 @@ done
 
 ./exercise3_bin < param.txt > sal.txt
 sal=$(cat sal.txt|grep -oE "$total")
-if [ $total = $sal ]
+sw=$(echo "$total == $sal"|bc -l)
+if [ $sw -eq 1 ]
 then
    echo "Test OK!!"
    exit_code=0
