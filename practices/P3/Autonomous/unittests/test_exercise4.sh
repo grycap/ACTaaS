@@ -9,7 +9,7 @@ races=$1
 points_per_race=$2
 if [ ! -f F1.txt ]
 then
-    echo "Test ERROR -- File f1.txt not found"
+    echo "Test ERROR -- File F1.txt not found"
 	exit 1
 fi
 
