@@ -14,11 +14,12 @@ is_zero=$(echo "$a == 0"| bc -l)
 
 if [ $is_zero -eq 1 ]
 then
-   ent="Invalid value for constants. The program will end."
-   sal=$(cat sal.txt| tail -n1)
+   ent="Invalid value"
+   sal=$(cat sal.txt|grep -oE $ent)
     if [ "$ent" = "$sal" ]
     then
          echo "Test OK!!"
+		 exit 0
     else
          echo "Test ERROR!!"
      fi
@@ -40,28 +41,32 @@ then
    if [ "$ent" = "$sal" ]
    then
       echo "Test OK!!"
+	  exit_code=0
    else
       echo "Test ERROR!!"
+	  exit_code=1
    fi
       rm ent.txt sal.txt
-      exit
+      exit ${exit_code}
 fi
 
 one_sol=$(echo "$d == 0"| bc -l)
 if [ $one_sol -eq 1 ]
 then
-  x=$(echo "-1 * $b / (2 * $a)"|bc -l)
+   x=$(echo "-1 * $b / (2 * $a)"|bc -l)
    printf "x = %.1f\n" $x > ent.txt
    ent=$(cat ent.txt| tail -n1)
    sal=$(cat sal.txt| tail -n1)
    if [ "$ent" = "$sal" ]
    then
       echo "Test OK!!"
+	  exit_code=0
    else
       echo "Test ERROR!!"
+	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit
+   exit ${exit_code}
 fi
 
 x1=$(echo "(-1 * $b + sqrt($d)) / (2 * $a)"|bc -l)
@@ -72,8 +77,11 @@ sal=$(cat sal.txt| tail -n1)
 if [ "$ent" = "$sal" ]
 then
    echo "Test OK!!"
+   exit_code=0
 else
    echo "Test ERROR!!"
+   exit_code=0
 fi
 rm ent.txt sal.txt
+exit ${exit_code}
 
