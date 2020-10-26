@@ -19,12 +19,13 @@ then
     if [ "$ent" = "$sal" ]
     then
          echo "Test OK!!"
-		 exit 0
+		 exit_code=0
     else
          echo "Test ERROR!!"
+                 exit_code=1
      fi
      rm ent.txt sal.txt
-     exit
+     exit $exit_code
 fi
 
 d=$(echo "$b * $b - (4 * $a * $c)"|bc -l)
