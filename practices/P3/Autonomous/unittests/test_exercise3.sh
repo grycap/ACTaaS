@@ -7,8 +7,8 @@ if [ $# -ne 4 ]; then
 fi
 
 BASE_PRICE=$1
-total=$BASE_PRICE
 PORCEN=$2
+total=$BASE_PRICE
 INC=$(echo "$BASE_PRICE * ($PORCEN / 100)"|bc -l)
 
 
@@ -30,7 +30,7 @@ done
 
 ./exercise3_bin < param.txt > sal.txt
 sal=$(cat sal.txt|grep -oE "$total")
-if [ "$total" = "$sal" ]
+if [ $total = $sal ]
 then
    echo "Test OK!!"
    exit_code=0
