@@ -20,12 +20,18 @@ sal=$(cat sal.txt)
 case "$sal" in
   *"$ent"*)
   echo "Test OK!!"
+  exit_code=0
   ;;
   *)
   echo "Test ERROR!!"
+  echo "EXPECTED OUTPUT:"
+  echo "$ent"
+  echo "EXPECTED OUTPUT:"
+  echo "$sal"
+  exit_code=1
 esac
 rm sal.txt params.txt
-
+exit $exit_code
 
 
 
