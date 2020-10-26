@@ -26,6 +26,7 @@ else
    echo "STUDENT OUPUT:"
    cat spending.txt
 fi
+rm spending.txt
 exit $exit_code
 
 
