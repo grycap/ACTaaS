@@ -18,11 +18,17 @@ then
    if grep -q "$pro" "sal.txt"
    then
       echo "Test OK!!"
+	  exit_code=0
    else
       echo "Test ERROR!!"
+	  echo "EXPECTED OUTPUT:"
+	  echo "$pro"
+	  echo "STUDENT OUTPUT:"
+	  cat sal.txt
+	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit
+   exit $exit_code
 fi
 
 sw=$(echo "$years >= 4"|bc -l)
@@ -33,11 +39,17 @@ then
    if grep -q "$pro" "sal.txt"
    then
       echo "Test OK!!"
+	  exit_code=0
    else
       echo "Test ERROR!!"
+	  echo "EXPECTED OUTPUT:"
+	  echo "$pro"
+	  echo "STUDENT OUTPUT:"
+	  cat sal.txt
+	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit
+   exit $exit_code
 fi
 
 sw=$(echo "$years >= 3"|bc -l)
@@ -48,11 +60,17 @@ then
    if grep -q "$pro" "sal.txt"
    then
       echo "Test OK!!"
+	  exit_code=0
    else
       echo "Test ERROR!!"
+	  echo "EXPECTED OUTPUT:"
+	  echo "$pro"
+	  echo "STUDENT OUTPUT:"
+	  cat sal.txt
+	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit
+   exit $exit_code
 fi
 
 sw=$(echo "$years >= 2"|bc -l)
@@ -63,11 +81,17 @@ then
    if grep -q "$pro" "sal.txt"
    then
       echo "Test OK!!"
+	  exit_code=0
    else
       echo "Test ERROR!!"
+	  echo "EXPECTED OUTPUT:"
+	  echo "$pro"
+	  echo "STUDENT OUTPUT:"
+	  cat sal.txt
+	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit
+   exit $exit_code
 fi
 
 sw=$(echo "$years >= 1"|bc -l)
@@ -78,11 +102,17 @@ then
    if grep -q "$pro" "sal.txt"
    then
       echo "Test OK!!"
+	  exit 0
    else
       echo "Test ERROR!!"
+	  echo "EXPECTED OUTPUT:"
+	  echo "$pro"
+	  echo "STUDENT OUTPUT:"
+	  cat sal.txt
+	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit
+   exit $exit_code
 fi
 
 sw=$(echo "$years > 0"|bc -l)
@@ -93,11 +123,17 @@ then
    if grep -q "$pro" "sal.txt"
    then
       echo "Test OK!!"
+	  exit_code=0
    else
       echo "Test ERROR!!"
+	  echo "EXPECTED OUTPUT:"
+	  echo "$pro"
+	  echo "STUDENT OUTPUT:"
+	  cat sal.txt
+	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit
+   exit $exit_code
 fi
 
 sw=$(echo "$years < 0"|bc -l)
@@ -108,11 +144,17 @@ then
    if grep -q "$pro" "sal.txt"
    then
       echo "Test OK!!"
+	  exit_code=0
    else
       echo "Test ERROR!!"
+	  echo "EXPECTED OUTPUT:"
+	  echo "$pro"
+	  echo "STUDENT OUTPUT:"
+	  cat sal.txt
+	  exit_code=1
    fi
    rm ent.txt sal.txt
-   exit
+   exit $exit_code
 fi
 
 
