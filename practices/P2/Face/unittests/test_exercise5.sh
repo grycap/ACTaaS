@@ -18,12 +18,12 @@ if [ $nl -eq 1 ]; then
     rm items.txt
     exit 1
 fi
-counter=1
+counter=0
 filename=items.txt
 while read -r line
 do
+  let counter=$counter+1   
   printf "%d.- %s\n" $counter "$line" >> items2.copy
-  let counter=$counter+1
 done < "$filename"
 
 if cmp -s items2.txt items2.copy ; then
