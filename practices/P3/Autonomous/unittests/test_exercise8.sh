@@ -40,6 +40,7 @@ fi
 
 if cmp -s info.txt info2.txt; then
     echo "Test OK!!"
+	exit_code=0
 else
    echo "Test ERROR!!"
 fi

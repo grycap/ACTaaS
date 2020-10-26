@@ -15,7 +15,7 @@ gender=$7
 credits=$8
 
 
-printf 'My name is %s %s and I was born %d/%d/%d.\nMy DNI is %s and my sex is %c.\nThe registered credits are %.2f.'  "$name" "$surname" $day $month $year $dni $gender $credits > ex1.out
+printf 'My name is %s %s and I was born %d/%d/%d.\nMy DNI is %s and my sex is %c.\nThe registered credits are %.2f.\n'  "$name" "$surname" $day $month $year $dni $gender $credits > ex1.out
 for i in "$@"
 do
   echo "$i" >> ent.txt
