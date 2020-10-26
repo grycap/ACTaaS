@@ -7,6 +7,12 @@ fi
 
 races=$1
 points_per_race=$2
+if [ ! -f F1.txt ]
+then
+    echo "Test ERROR -- File f1.txt not found"
+	exit 0
+fi
+
 first=$(cat F1.txt|head -n1)
 second=$(cat F1.txt|tail -n2|head -n1)
 
@@ -35,6 +41,6 @@ else
    exit_code=1
    
 fi
-rm ent.txt sal.txt
+rm ent.txt sal.txt F1.txt
 exit $exit_code
 
