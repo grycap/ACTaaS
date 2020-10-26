@@ -23,13 +23,12 @@ then
 fi
 
 total=$(printf "%.1f" $total)
-for i in "$@"
-do
-  echo "$i" >> param.txt
-done
+echo "$3" > param.txt
+echo "$4" >> param.txt
+
 
 ./exercise3_bin < param.txt > sal.txt
-sal=$(cat sal.txt|tail -n1|grep -oE "$total")
+sal=$(cat sal.txt|grep -m 1 -oE "$total")
 if [ "$sal" = "$total" ]
 then
    echo "Test OK!!"
