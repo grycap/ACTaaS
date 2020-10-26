@@ -26,7 +26,7 @@ case "$sal" in
   echo "Test ERROR!!"
   echo "EXPECTED OUTPUT:"
   echo "$ent"
-  echo "EXPECTED OUTPUT:"
+  echo "STUDENT OUTPUT:"
   echo "$sal"
   exit_code=1
 esac
