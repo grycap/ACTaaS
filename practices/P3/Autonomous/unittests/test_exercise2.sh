@@ -48,10 +48,17 @@ alu=$(cat spending.txt)
 if [ "$pro" = "$alu" ]
 then
    echo "Test OK!!"
+   exit_code=0
 else
   echo "Test ERROR!!"
+  echo "EXPECTED OUTPUT:"
+  echo "$pro"
+  echo "STUDENT OUTPUT:"
+  echo "$alu"
+  exit_code=1  
 fi
 rm sal.txt spending2.txt
+exit $exit_code
 
 
 
