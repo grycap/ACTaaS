@@ -1,3 +1,5 @@
+#!/bin/bash
+cp ./exercise4/F1.txt .
 sh /var/tmp/education/ACTaaS/practices/P3/Autonomous/unittests/test_exercise4.sh 15 25
 
 if [ $? -eq 1 ]   
