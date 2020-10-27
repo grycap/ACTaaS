@@ -42,7 +42,7 @@ else
    cat items2.copy
    echo "STUDENT OUTPUT:"
    cat items2.txt
-   rm items.txt items2.copy items2.txt
+   rm items2.copy items2.txt
    exit 1
    
 fi
