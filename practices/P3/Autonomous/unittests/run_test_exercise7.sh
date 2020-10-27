@@ -7,7 +7,7 @@ if [ $? -eq 1 ]
 then
   exit 1
 fi
-echo "5 7" > data.txt
+printf "%d\n%d\n" 5 7 > data.txt
 echo "Testing for odd product..."
 sh /var/tmp/education/ACTaaS/practices/P3/Autonomous/unittests/test_exercise7.sh
 
