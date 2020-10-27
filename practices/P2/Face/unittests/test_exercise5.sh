@@ -17,6 +17,12 @@ do
 done
 
 ./exercise5_bin
+if [ ! -f items2.txt ]
+then
+   echo "Test ERROR -- File items2.txt not found!"
+   exit 1
+fi
+
 nl=$(cat items2.txt|wc -l)
 if [ $nl -eq 1 ]; then
     echo "Test ERROR -- File items2.txt seems to be empty"
