@@ -4,7 +4,11 @@ if [ $# -ne 3 ]; then
    echo "$0 <line1> <line2> <line3>"
    exit
 fi
-
+if [ ! -f text.dat ]
+then
+   echo "Test ERROR -- file text.dat not found."
+   exit 1
+fi   
 for line in "$@"
 do
    printf "%s\n" "$line" >> ex3.txt
