@@ -1,22 +1,20 @@
 #!/bin/bash
 
-if [ ! -f items.txt ]; then
-    echo "Test ERROR -- File items.txt found!"
-    exit 1
+if [ $# -ne 3 ]
+then
+   echo "$0 <item1> <item2> <item3>"
+   exit
 fi
 
-nl=$(cat items.txt|wc -l)
-if [ $nl -eq 1 ]; then
-    echo "Test ERROR -- File items.txt seems to be empty"
-    rm items.txt
-    exit 1
+if [ -f items.txt ]
+then
+   rm items.txt
 fi
 
-if [ $nl -neq 3 ]; then
-    echo "Test ERROR -- File items.txt must have 3 lines of text check possible blank lines"
-    rm items.txt
-    exit 1
-fi
+for line in "$@"
+do
+   echo "$line" >> items.txt
+done
 
 
 ./exercise5_bin
@@ -28,7 +26,6 @@ if [ $nl -eq 1 ]; then
 fi
 counter=0
 filename=items.txt
-dos2unix $filename > /dev/null
 while  read line
 do
   let counter=$counter+1   
