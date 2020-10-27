@@ -15,7 +15,6 @@ for line in "$@"
 do
    echo "$line" >> items.txt
 done
-find $PWD -name items.txt
 
 ./exercise5_bin
 nl=$(cat items2.txt|wc -l)
