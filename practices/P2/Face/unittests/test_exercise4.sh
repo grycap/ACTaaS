@@ -10,21 +10,11 @@ if [ ! -f price_margin.txt ]; then
     exit 1
 fi
 dos2unix price_margin.txt
-nli=$(cat price_margin.txt|wc -l)
-
 profit=$(echo "$1 * ($2 / 100.0)"|bc -l)
 sp=$(echo "$1 + $profit" | bc -l)
 sp=$(printf "%.2f" $sp)
 ./exercise4_bin
-nlf=$(cat price_margin.txt|wc -l)
-if [ $nli -eq $nlf ]
-then
-   echo "Test ERROR -- File price_margin.txt has not been updated with the selling price."
-  rm *.txt 
-  exit 1
-fi
-
-sal=$(grep -m 1 -oE $sp price_margin.txt)
+sal=$(grep -m 1 -oE "$sp" price_margin.txt)
 if [ "$sp" = "$sal" ]; then
    echo "Test OK!!"
    rm *.txt
