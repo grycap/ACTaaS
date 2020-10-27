@@ -35,7 +35,7 @@ ent=$(cat sal.txt|tail -n3)
 sal=$(cat ex3.out)
 if [ "$ent" = "$sal" ]; then
    echo "Test OK!!"
-   rm ex3.out sal.txt
+   rm ex3.out sal.txt ent.txt
    exit 0
 else
    echo "Test ERROR!!"
@@ -43,7 +43,7 @@ else
    echo "$sal"
    echo "STUDENT OUTPUT:" 
    echo "$ent"
-   rm ex3.out sal.txt
+   rm ex3.out sal.txt ent.txt
    exit 1
 fi
 
