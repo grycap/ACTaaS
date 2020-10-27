@@ -17,7 +17,7 @@ sp=$(printf "%.2f" $sp)
 sal=$(grep -m 1 -oE "$sp" price_margin.txt)
 if [ "$sp" = "$sal" ]; then
    echo "Test OK!!"
-   rm *.txt rm *.bak
+   rm *.txt 
    exit 0
 else
    echo "Test ERROR!!"
