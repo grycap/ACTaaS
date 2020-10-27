@@ -17,13 +17,13 @@ sp=$(printf "%.2f" $sp)
 sal=$(grep -m 1 -oE "$sp" price_margin.txt)
 if [ "$sp" = "$sal" ]; then
    echo "Test OK!!"
-   rm *.txt
+   rm *.txt rm *.bak
    exit 0
 else
    echo "Test ERROR!!"
    echo "EXPECTED OUTPUT: $sp"
    echo "STUDENT OUTPUT: $sal"
-  # rm *.txt
+   rm *.txt
    exit 1
 fi
 
