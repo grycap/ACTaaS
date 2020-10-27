@@ -23,7 +23,7 @@ else
    echo "Test ERROR!!"
    echo "EXPECTED OUTPUT: $sp"
    echo "STUDENT OUTPUT: $sal"
-   rm *.txt
+  # rm *.txt
    exit 1
 fi
 
