@@ -13,9 +13,9 @@ dos2unix price_margin.txt
 profit=$(echo "$1 * ($2 / 100.0)"|bc -l)
 sp=$(echo "$1 + $profit" | bc -l)
 sp=$(printf "%.2f" $sp)
-head -n2 price_margin.txt > price_margin.bak
-grep . price_margin.bak > price_margin.txt
 ./exercise4_bin
+tail -n1 price_margin.txt > aux.out
+mv aux.out price_margin.txt
 sal=$(grep -m 1 -oE "$sp" price_margin.txt)
 if [ "$sp" = "$sal" ]; then
    echo "Test OK!!"
