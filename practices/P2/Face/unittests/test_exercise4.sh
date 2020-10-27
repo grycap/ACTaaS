@@ -9,7 +9,7 @@ if [ ! -f price_margin.txt ]; then
     echo "Test ERROR -- File price_margin.txt found!"
     exit 1
 fi
-
+dos2unix price_margin.txt
 nli=$(cat price_margin.txt|wc -l)
 
 profit=$(echo "$1 * ($2 / 100.0)"|bc -l)
