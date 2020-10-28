@@ -63,7 +63,7 @@ case $1 in
        echo "$@" > ent.txt
        ./exercise3_bin < ent.txt > sal.txt
 
-          res2=$(cat sal.txt|tail -n1|grep -oE '[^ ]+$')
+          res2=$(cat sal.txt|tail -n1|grep -oE '[^ ]+$'|tr -d '\n')
 
        if grep -q "$res1" <<< "$res2" 
        then
