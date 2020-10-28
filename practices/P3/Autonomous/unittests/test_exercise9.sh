@@ -15,6 +15,7 @@ for data in $@
 do
    echo $data >> train.txt
 done
+cat train.txt
 alu=$(./exercise9_bin|tr -d '\n')
 
 dt1=$(echo "$vt1 * $tt1"|bc -l)
