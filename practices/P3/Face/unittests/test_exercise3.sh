@@ -55,7 +55,7 @@ case $1 in
   ;;
     4) if [ $3 -eq 0 ]
        then
-          res1="Error"
+          res1='Error'
           echo "Testing division by 0 attempt..."
        else
           res1=$(echo "$2 / $3"|bc)
@@ -77,7 +77,7 @@ case $1 in
        fi
   ;;
    *)
-       res1="Incorrect option."
+       res1='Incorrect option'
        echo "$@" > ent.txt
       ./exercise3_bin < ent.txt > sal.txt
        res2=$(cat sal.txt|tail -n1|tr -d '\n')
