@@ -48,10 +48,10 @@ if [ $abs -eq $sal ]; then
 else
    echo "Test ERROR!!"
    echo "EXPECTED OUTPUT:"
-   echo $ent
+   echo $abs
    echo "STUDENT OUTPUT:"
-   rm ent.txt sal.txt
    echo $sal
+   rm ent.txt sal.txt   
    exit 1
 fi
 
