@@ -27,7 +27,7 @@ done
 ./exercise1_bin < ent.txt > sal.txt
 
 
-sal=$(cat sal.txt | cut -d ' ' -f 7 | )
+sal=$(cat sal.txt | cut -d ' ' -f 7 )
 echo $sal 
 
 if [ $abs -eq $sal ]; then
