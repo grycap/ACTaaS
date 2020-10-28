@@ -29,7 +29,12 @@ done
 
 sal=$(cat sal.txt)
 echo $sal
-echo "${sal%% *}"
+
+echo $sal | cut -d ' ' -f 3
+
+
+
+
 
 sal=$(grep -oE $abs sal.txt|tail -n1)
 
