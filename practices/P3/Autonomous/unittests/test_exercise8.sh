@@ -7,7 +7,6 @@ fi
 
 echo "$@" > params.txt
 ./exercise8_bin < params.txt > /dev/null
-
 array=()
 while IFS= read -r line; do
    array+=("$line")
