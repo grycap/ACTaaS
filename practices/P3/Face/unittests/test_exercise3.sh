@@ -55,7 +55,7 @@ case $1 in
   ;;
     4) if [ $3 -eq 0 ]
        then
-          res1="Error. Division by 0."
+          res1="Error"
           echo "Testing division by 0 attempt..."
        else
           res1=$(echo "$2 / $3"|bc)
