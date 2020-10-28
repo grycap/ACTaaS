@@ -80,7 +80,7 @@ case $1 in
        res1="Incorrect option."
        echo "$@" > ent.txt
       ./exercise3_bin < ent.txt > sal.txt
-       res2=$(cat sal.txt|tail -n1)
+       res2=$(cat sal.txt|tail -n1|tr -d '\n')
        if grep -q "$res1" <<< "$res2" 
        then
           echo "Test for incorrect option validation OK!!"
