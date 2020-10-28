@@ -43,6 +43,12 @@ if cmp -s info.txt info2.txt; then
 	exit_code=0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   cat info2.txt
+   echo "STUDENT OUTPUT:"
+   cat info.txt
+   exit_code=1
 fi
-rm params.txt info2.txt
+rm params.txt info2.txt info.txt
+exit $exit_code
 
