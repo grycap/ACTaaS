@@ -65,7 +65,7 @@ case $1 in
 
           res2=$(cat sal.txt|tail -n1|grep -oE '[^ ]+$')
 
-       if [ if grep -q "$res1" <<< "$res2" ]
+       if grep -q "$res1" <<< "$res2" 
        then
           echo "Test for division OK!!"
           rm ent.txt sal.txt
@@ -81,7 +81,7 @@ case $1 in
        echo "$@" > ent.txt
       ./exercise3_bin < ent.txt > sal.txt
        res2=$(cat sal.txt|tail -n1)
-       if [ if grep -q "$res1" <<< "$res2" ]
+       if grep -q "$res1" <<< "$res2" 
        then
           echo "Test for incorrect option validation OK!!"
           rm ent.txt sal.txt
