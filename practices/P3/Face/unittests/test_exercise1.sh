@@ -34,7 +34,7 @@ echo $sal
 
 
 
-sal=$(grep -oE $abs sal.txt|tail -n1)
+#sal=$(grep -oE $abs sal.txt|tail -n1)
 
 if [ $abs -eq $sal ]; then
    echo "Test OK!!"
