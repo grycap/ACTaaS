@@ -1,5 +1,4 @@
 #!/bin/bash
-cp ./exercise5/*.txt .
 
 sh /var/tmp/education/ACTaaS/practices/P3/Face/unittests/test_exercise5.sh "J. Damian Segrelles Quilis" "Informatica" 7.2
 if [ $? -eq 1 ]   
