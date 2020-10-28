@@ -12,7 +12,7 @@ vt2=${array[2]}
 tt1=${array[3]}
 tt2=${array[4]}
 dt1=$(echo "$vt1 * $tt1"|bc -l)
-dt2=$(echo "$vt2 * $tt2"|bc -l)
+dt1=$(echo "$vt1 * $tt1"|bc -l)
 sw=0 #$(echo "($dt1 + $dt2) < $d"|bc -l)
 if [ $sw -eq 1 ]
 then
