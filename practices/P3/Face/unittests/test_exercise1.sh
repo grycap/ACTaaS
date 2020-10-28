@@ -26,7 +26,12 @@ done
 
 ./exercise1_bin < ent.txt > sal.txt
 
-sal=$(cat sal.txt)
+sal=$(cat sal.txt | cut -d ' ' -f 7)
+
+
+
+
+
 echo $sal
 
 sal=$(grep -oE $abs sal.txt|tail -n1)
