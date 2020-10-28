@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+void main(){
 
 	float a,b;
 
@@ -16,8 +16,7 @@ int main(){
                     if ((a == 0) && (b == 0)){
 			printf("The solution is indeterminate\n");
 		       }
-		}
-		return 0;
+		}	
     }
 
 

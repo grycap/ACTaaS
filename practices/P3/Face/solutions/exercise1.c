@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+void main(){
     int x, abs;
 
     printf("Enter a integer number: ");
@@ -10,5 +10,5 @@ int main(){
     if(abs < 0)
          abs *= -1;
     printf("\n|%d| = %d\n", x, abs);
-    return 0;
+    
 }

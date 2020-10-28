@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+void main(){
 
 	FILE *fin, *fout;
 	char filename[81], name[81], nif[10];
@@ -28,6 +28,5 @@ int main(){
         fclose(fout);
     }
 
-    fclose(fin);
-    return 0;
+    fclose(fin);    
 }

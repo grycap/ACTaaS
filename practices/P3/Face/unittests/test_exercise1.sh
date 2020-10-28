@@ -30,6 +30,11 @@ sal=$(grep -oE $abs sal.txt|tail -n1)
 
 if [ $abs -eq $sal ]; then
    echo "Test OK!!"
+   echo "EXPECTED OUTPUT:"
+   echo $abs
+   echo "STUDENT OUTPUT:"   
+   echo $sal
+
    rm ent.txt sal.txt
    exit 0
 else
