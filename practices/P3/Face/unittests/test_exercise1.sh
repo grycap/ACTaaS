@@ -28,7 +28,7 @@ done
 
 
 sal=$(cat sal.txt)
-echo $sal | cut -d ' ' -f 7
+sal=$(echo $sal | cut -d ' ' -f 7)
 echo $sal
 
 
