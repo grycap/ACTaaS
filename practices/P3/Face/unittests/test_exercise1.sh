@@ -30,7 +30,7 @@ done
 sal=$(cat sal.txt)
 echo $sal
 
-echo $sal | cut -d ' ' -f 3
+echo $sal | cut -d ' ' -f 7
 
 
 
