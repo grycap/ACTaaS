@@ -20,14 +20,6 @@ liter_cost1=${array[2]}
 brand2=${array[3]}
 fuel2=${array[4]}
 liter_cost2=${array[5]}
-echo $distance
-echo "$brand1"
-echo $fuel1
-echo $liter_cost1
-
-echo "$brand2"
-echo $fuel2
-echo $liter_cost2
 car1=$(echo "$fuel1 * ($distance / 100) * $liter_cost1"| bc -l)
 car2=$(echo "$fuel2 * ($distance / 100) * $liter_cost2"| bc -l)
 sw=$(echo "$car1 > $car2"|bc -l)
