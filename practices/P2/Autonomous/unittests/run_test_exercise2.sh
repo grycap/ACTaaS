@@ -1,5 +1,5 @@
 #!/bin/bash
-cp ./exercise2/* .
+cp /var/tmp/education/ACTaaS/practices/P2/Autonomous/solutions/rainfall.txt .
 
 sh /var/tmp/education/ACTaaS/practices/P2/Autonomous/unittests/test_exercise2.sh
 
