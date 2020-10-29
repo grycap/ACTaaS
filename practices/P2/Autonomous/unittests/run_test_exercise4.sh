@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp ./exercise4/* .
+cp /var/tmp/education/ACTaaS/practices/P2/Autonomous/solutions/text.dat .
 
 sh /var/tmp/education/ACTaaS/practices/P2/Autonomous/unittests/test_exercise4.sh
 

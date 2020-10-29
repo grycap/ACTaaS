@@ -1,5 +1,5 @@
 #!/bin/bash
-cp ./exercise5/* .
+cp /var/tmp/education/ACTaaS/practices/P2/Autonomous/solutions/text.dat .
 
 sh /var/tmp/education/ACTaaS/practices/P2/Autonomous/unittests/test_exercise5.sh text.dat text.dup
 

@@ -98,10 +98,6 @@ if [ -z "${JENKINS_URL}" ] || [ -z "${PRACTICES}" ] || [ -z "${USER}" ] || [ -z 
      exit
 fi
 
-if [ ! -f "jenkins-cli.jar" ]; then
-    cecho "RED" "ERROR: file jenkins-cli.jar not found."
-	exit
-fi
 
 #Create global role 'alumno'
 curl -s --user ${USER}:${PASS} ${JENKINS_URL}/role-strategy/strategy/addRole --data "type=globalRoles&roleName=${ROLE_NAME}&permissionIds=hudson.model.Hudson.Read,hudson.model.Item.Build&overwrite=true"
