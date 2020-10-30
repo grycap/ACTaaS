@@ -10,7 +10,7 @@ int main(){
         printf("Enter your age (1 - 18): ");
         scanf("%d", &age);
         if(age < 1 || age > 18)
-            printf("Incorrect answer... try again!\n");
+            printf("Incorrect age... try again!\n");
     } while(age < 1 || age > 18);
 
     do
@@ -19,8 +19,10 @@ int main(){
         scanf("\n%c", &sex);
 
         if(sex != 'm' && sex != 'M' && sex != 'f' && sex != 'F')
-            printf("Incorrect answer... try again!\n");
+            printf("Incorrect sex... try again!\n");
     } while (sex != 'm' && sex != 'M' && sex != 'f' && sex != 'F');
+
+	printf("\n\nThe information has been entered successfully!!!");
 
     return 0;
 }

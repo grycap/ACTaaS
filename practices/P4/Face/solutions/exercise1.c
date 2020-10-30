@@ -17,7 +17,7 @@ int main(){
 	if(count)
         printf("The average is %.2f\n", sum / (float) count);
     else
-        printf("No values entered\n");
+        printf("No value has been entered\n");
 
     return 0;
 }
