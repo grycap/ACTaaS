@@ -2,37 +2,26 @@
 
 int main(){
 
-    float begin, end, inc;
+	int n, even_sum = 0, odd_sum = 0, i;
 
-    printf("CONVERSION TABLE\n");
-
-    do
+	do
     {
-        printf("starts with the value: ");
-        scanf("%f", &begin);
-    } while(begin < 1);
+        printf("Last number to add in the sum: ");
+        scanf("%d", &n);
+    } while(n < 1);
 
-    do
-    {
-        printf("...and it ends with the value: ");
-        scanf("%f", &end);
-    } while(end <= begin);
+    for(i = 1; i <= n; i++)
+        if (i % 2 == 0)
+            even_sum += i;
+        else
+            odd_sum +=  i;
 
-    printf("\n");
-    do
-    {
-        printf("Difference required between consecutive values of the table: ");
-        scanf("%f", &inc);
-    } while(inc < 0);
 
-    printf("\n\n    EUROS  |   PESETAS\n");
-    printf("  ---------------------\n");
 
-    while(begin < end)
-    {
-        printf("%9.2f  | %9.2f\n", begin, begin * 166.386);
-        begin += inc;
-    }
+    printf("OUTPUT****************************************\n");
+    printf("Sum of odd  numbers (from 1 to %d)-->    %d\n", n, odd_sum);
+    printf("Sum of even numbers (from 2 to %d)-->    %d\n", n, even_sum);
+    printf("**********************************************\n");
 
     return 0;
 }

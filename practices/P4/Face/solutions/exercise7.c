@@ -1,27 +1,40 @@
 #include <stdio.h>
 
-int main(){
+int main()
+{
 
-	int n, even_sum = 0, odd_sum = 0, i;
+	int count = 0;
+	float mark, sum = 0, max = -99, min = 99;
 
-	do
+	printf("SUBJECT MARKS------------*\n");
+	printf("(enter a out of range value when you have finished entering the marks)\n");
+	printf("-------------------------*\n");
+
+    printf("Mark #%d: ", count + 1);
+    scanf("%f", &mark);
+
+	while(mark > -1 && mark < 11) // mark must be between 0 and 10
     {
-        printf("Last number to add in the sum: ");
-        scanf("%d", &n);
-    } while(n < 1);
+        count++;
+        sum += mark;
+        if(mark > max)
+            max = mark;
+        if(mark < min)
+            min = mark;
+	    printf("Mark #%d: ", count + 1);
+	    scanf("%f", &mark);
+    }
 
-    for(i = 1; i <= n; i++)
-        if (i % 2 == 0)
-            even_sum += i;
-        else
-            odd_sum +=  i;
-
-
-
-    printf("OUTPUT****************************************\n");
-    printf("Sum of odd  numbers (from 1 to %d)-->    %d\n", n, odd_sum);
-    printf("Sum of even numbers (from 2 to %d)-->    %d\n", n, even_sum);
-    printf("**********************************************\n");
+    if(count > 1)
+    {
+        printf("\n\nSUMMARY*************\n");
+        printf("Minimum mark:   %.1f\n", min);
+        printf("Maximum mark:   %.1f\n", max);
+        printf("     Average:   %.1f\n", sum / (float) count);
+        printf("********************\n");
+    }
+    else
+        printf("\n\nNo valid values entered.\n");
 
     return 0;
 }

@@ -1,10 +1,8 @@
 #include <stdio.h>
-#define YES 1
-#define NO 0
 
 int main(){
 
-	int n, i = 2, prime = YES;
+	int n, i, j, sum1 = 0, sum2 = 0;
 
 	do
     {
@@ -12,17 +10,13 @@ int main(){
         scanf("%d", &n);
     } while(n < 1);
 
-	while(prime == YES && i < n)
-    {
-        if(n % i == 0)
-            prime = NO;
-        i++;
-    }
+    for(i = 1; i <= n; i++)
+        sum1 += 1 + (3 * i * i);
 
-    if(prime == YES)
-        printf("The number is prime.\n");
-    else
-        printf("The number isn't prime.\n");
+    for(i = 1; i <= n; i++)
+        for(j = 1; j <= i; j++)
+          sum2 += j;
 
-    return 0;
+    printf("\nSum1 = %d\nSum2 = %d\n", sum1, sum2);
+	return 0;
 }

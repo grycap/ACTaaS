@@ -1,39 +1,49 @@
 #!/bin/bash
 
-sum=0
-max=-99
-min=99
-cont=$(cat ex8.dat|wc -l)
-cont=$(($cont-1))
-marks=$(cat ex8.dat|head -n$cont)
-for mark in $marks
-do
-  sum=$(echo "$sum + $mark"|bc -l)
-  sw=$(echo "$mark > $max"|bc -l)
-  if [ $sw -eq 1 ]
-  then
-     max=$mark
-  fi
-  sw=$(echo "$mark < $min"|bc -l)
-  if [ $sw -eq 1 ]
-  then
-     min=$mark
-  fi
-done
-average=$(echo "$sum / $cont"|bc -l)
-min=$(printf "%.1f" $min)
-max=$(printf "%.1f" $max)
-average=$(printf "%.1f" $average)
-./exercise8_bin < ex8.dat > ex8_out.txt
-alu_min=$(cat ex8_out.txt|grep -o $min)
-alu_max=$(cat ex8_out.txt|grep -o $max)
-alu_ave=$(cat ex8_out.txt|grep -o $average)
-echo $alu_min $alu_max $alu_ave
-if [ "$alu_min" = "$min" ] && [ "$alu_max" = "$max" ] && [ "$alu_ave" = "$average" ]
+if [ $# -ne 1 ]; then
+   echo "$0 <natural number>"
+   exit
+fi
+n=$1
+check=`echo "$n" | grep -E ^\-?[0-9]+$`
+if [ "$check" = '' ];
 then
-    echo "Test OK!!"
+  echo "I need a natural number"
+  exit 1
+fi
+
+if [ $n -lt 0 ]
+then
+   echo "$0 <natural number> > 1"
+   exit 1
+fi
+prime=1
+
+for ((i=2; i<n; i++))
+do
+   sw=$(echo "$n % $i == 0"|bc)
+   if [ $sw -eq 1 ]
+   then
+      prime=0
+      break
+   fi
+done
+
+if [ $prime -eq 1 ]
+then
+   res="The number is prime."
+else
+   res="The number isn't prime."
+fi
+echo "$@" > params.txt
+./exercise8_bin < params.txt > sal.txt
+if grep -q "$res" "sal.txt"
+then
+   echo "Test OK!!"
+   exit_code=0
 else
    echo "Test ERROR!!"
+   exit_code=1
 fi
-rm ex8_out.txt
-
+rm params.txt sal.txt
+exit $exit_code

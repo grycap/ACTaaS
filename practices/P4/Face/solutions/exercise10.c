@@ -2,21 +2,54 @@
 
 int main(){
 
-	int n, i, j, sum1 = 0, sum2 = 0;
+	FILE *fp;
+	float min = 99, max = -99, mark, sum = 0, average;
+	int count = 0, passed = 0, upper_average = 0, lower_average = 0;
 
-	do
+	if((fp = fopen("marks.txt", "r")) == NULL)
     {
-        printf("Enter an integer (n > 0): ");
-        scanf("%d", &n);
-    } while(n < 1);
+        printf("Can't open marks.txt\n");
+        return 1;
+    }
 
-    for(i = 1; i <= n; i++)
-        sum1 += 1 + (3 * i * i);
+    while((fscanf(fp, "%f", &mark)) == 1)
+    {
+        count++;
+        sum += mark;
+        if(mark > max)
+            max = mark;
+        if(mark < min)
+            min = mark;
+        if(mark >= 5)
+            passed++;
+    }
 
-    for(i = 1; i <= n; i++)
-        for(j = 1; j <= i; j++)
-          sum2 += j;
+    fclose(fp);
+    average = sum / (double) count;
 
-    printf("\nSum1 = %d\nSum2 = %d\n", sum1, sum2);
-	return 0;
+	if((fp = fopen("marks.txt", "r")) == NULL)
+    {
+        printf("Can't open marks.txt\n");
+        return 1;
+    }
+
+    while((fscanf(fp, "%f", &mark)) == 1)
+    {
+        if(mark < average)
+            lower_average++;
+        else if(mark > average)
+            upper_average++;
+    }
+    fclose(fp);
+
+    printf("\n\nSUMMARY****************************************************************************************\n");
+    printf("Minimum mark:   %.2f\n", min);
+    printf("Maximum mark:   %.2f\n", max);
+    printf("Passed:         %d\n", passed);
+    printf("Average mark:   %.2f\n", average);
+    printf("Number of students that have obtained a mark higher than the mark average:  %d\n", upper_average);
+    printf("Number of students that have obtained a mark lower than the mark average:   %d\n", lower_average);
+    printf("************************************************************************************************\n");
+
+    return 0;
 }

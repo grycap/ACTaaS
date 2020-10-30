@@ -1,39 +1,47 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
-   echo "$0 <last number to add in the sum>"
-   exit
-fi
-
-n=$1
-even_sum=0
-odd_sum=0
-
-for ((i=1; i<=n; i++))
+sum=0
+max=-99
+min=99
+cont=$(cat ex7.dat|wc -l)
+cont=$(($cont-1))
+marks=$(cat ex7.dat|head -n$cont)
+for mark in $marks
 do
-  sw=$(echo "$i % 2 == 0"|bc)
+  sum=$(echo "$sum + $mark"|bc -l)
+  sw=$(echo "$mark > $max"|bc -l)
   if [ $sw -eq 1 ]
   then
-     even_sum=$(($even_sum+$i))
-  else
-     odd_sum=$(($odd_sum+$i))
+     max=$mark
+  fi
+  sw=$(echo "$mark < $min"|bc -l)
+  if [ $sw -eq 1 ]
+  then
+     min=$mark
   fi
 done
-echo "$@" > params.txt
-./exercise7_bin < params.txt > ex7_alu.txt
-odd_alu=$(cat ex7_alu.txt|grep -o $odd_sum)
-even_alu=$(cat ex7_alu.txt|grep -o $even_sum)
-if [ "$odd_sum" = "$odd_alu" ] && [ "$even_sum" = "$even_alu" ]
+average=$(echo "$sum / $cont"|bc -l)
+min=$(printf "%.1f" $min)
+max=$(printf "%.1f" $max)
+average=$(printf "%.1f" $average)
+./exercise7_bin < ex7.dat > ex7_out.txt
+alu_min=$(cat ex7_out.txt|grep -o $min)
+alu_max=$(cat ex7_out.txt|grep -o $max)
+alu_ave=$(cat ex7_out.txt|grep -o $average)
+if [ "$alu_min" = "$min" ] && [ "$alu_max" = "$max" ] && [ "$alu_ave" = "$average" ]
 then
     echo "Test OK!!"
+	exit_code=0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED MIN: $min"
+   echo "EXPECTED MAX: $max"
+   echo "EXPECTED AVERAGE: $average"
+   echo "STUDENT MIN: $alu_min"
+   echo "STUDENT MAX: $alu_max"
+   echo "STUDENT AVERAGE: $alu_ave"
+   exit_code=1
 fi
-rm params.txt ex7_alu.txt
-
-
-
-
-
-
+rm ex7_out.txt
+exit $exit_code
 
