@@ -1,22 +1,29 @@
 #include <stdio.h>
+#define YES 1
+#define NO 0
 
 int main(){
 
-	int n, i, j, sum1 = 0, sum2 = 0;
+	int n, i = 2, prime = YES;
 
 	do
     {
         printf("Enter an integer (n > 0): ");
         scanf("%d", &n);
+        if (n < 0) printf("Error. The number must be greater than 0. \n\n");
     } while(n < 1);
 
-    for(i = 1; i <= n; i++)
-        sum1 += 1 + (3 * i * i);
+	while(prime == YES && i < n)
+    {
+        if(n % i == 0)
+            prime = NO;
+        i++;
+    }
 
-    for(i = 1; i <= n; i++)
-        for(j = 1; j <= i; j++)
-          sum2 += j;
+    if(prime == YES)
+        printf("The number is prime.\n");
+    else
+        printf("The number isn't prime.\n");
 
-    printf("\nSum1 = %d\nSum2 = %d\n", sum1, sum2);
-	return 0;
+    return 0;
 }

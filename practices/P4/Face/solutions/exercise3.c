@@ -2,23 +2,18 @@
 
 int main(){
 
-    int n, i;
-    unsigned long fact = 1;
+	int n, i;
 
-    printf("Enter an integer: ");
-    scanf("%d", &n);
-
-    // shows error if the user enters a negative integer
-    if (n < 0)
-        printf("Factorial of a negative number doesn't exist.\n");
-    else
+	do
     {
-        for (i = 1; i <= n; ++i)
-            fact *= i;
+        printf("Enter an integer number (n > 0): ");
+        scanf("%d", &n);
+        if (n <0) printf("Incorrect value...try again !\n");
+    } while(n < 1);
 
-        printf("%d! = %lu\n", n, fact);
-    }
+    for(i = 1; i <= n; i++)
+        if(!(n % i))
+          printf("%d\n", i);
 
     return 0;
-
 }

@@ -1,49 +1,24 @@
 #include <stdio.h>
 
-
 int main(){
 
-	int op;
-	int FO,SO, result;
+    int n, i;
+    unsigned long fact = 1;
 
-	do
+    printf("Enter an integer: ");
+    scanf("%d", &n);
+
+    // shows error if the user enters a negative integer
+    if (n < 0)
+        printf("There is no negative number factorial..\n");
+    else
     {
-        /**** Show Menú ****/
-	    printf("CALCULATOR\n-----------\n\t0. Exit\n\t1. Add\n\t2. Subtract\n\t3. Multiply\n\t4. Divide\n");
-	   /**** read Option ****/
-	   printf("Enter option Menu (0-4): ");
-	   scanf("%d", &op);
-	   if(op == 0) break; // exit loop
-	  /**** Read First operand ****/
-	  printf("Enter First Operand: ");
-	  scanf("%d", &FO);
-	  /**** Read Second Operand: ***/
-	  printf("Enter Second Operand: ");
-	  scanf("%d", &SO);
+        for (i = 1; i <= n; ++i)
+            fact *= i;
 
-      /**** Multiple Selection****/
-	   switch(op){
-	       case 0: return 0;
-	               break;
-	       case 1: result = FO + SO;
-                   printf("%d + %d = %d\n", FO, SO, result);
-                   break;
-		   case 2: result = FO -  SO;
-                   printf("%d - %d = %d\n", FO, SO, result);
-                   break;
-		   case 3: result = FO * SO;
-                   printf("%d * %d = %d\n", FO, SO, result);
-                   break;
-           case 4: if (SO == 0) printf("Error");
-                   else
-                   {
-                       result = FO / SO;
-                       printf("%d / %d = %d\n", FO, SO, result);
-                  }
-                  break;
-		default: printf("\nIncorrect option\n");
-	}
-    }  while(1);
+        printf("%d! = %lu\n", n, fact);
+    }
 
     return 0;
+
 }
