@@ -14,7 +14,7 @@ int main(){
     {
         printf("Enter the number of lines: ");
         scanf("%d", &l);
-    } while(n < 1);
+    } while(l < 1);
     
     printf("\n");
 
