@@ -1,4 +1,4 @@
-sh /var/tmp/education/ACTaaS/practices/P3/Face/unittests/test_exercise7.sh 20
+sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise7.sh 20
 if [ $? -eq 1 ]   
 then
   exit 1
