@@ -5,37 +5,45 @@ if [ $# -ne 1 ]; then
    exit
 fi
 n=$1
-sum1=0
-sum2=0
-for ((i=1; i<=n; i++))
-do
-  sum1=$(echo "$sum1 + 1 + (3 * $i * $i)"|bc)
-done
-
-for ((i=1; i<=n; i++))
-do
-   for ((j=1; j<=i; j++))
-   do
-      sum2=$(($sum2+$j))
-   done
-done
-
-echo "$@" > params.txt
-./exercise9_bin < params.txt > ex9_out.txt
-alu_sum1=$(cat ex9_out.txt|grep -o $sum1)
-alu_sum2=$(cat ex9_out.txt|grep -o $sum2)
-if [ "$alu_sum1" = "$sum1" ] && [ "$alu_sum2" = "$sum2" ]
+check=`echo "$n" | grep -E ^\-?[0-9]+$`
+if [ "$check" = '' ];
 then
-    echo "Test OK!!"
-    exit_code=0
+  echo "I need a natural number"
+  exit 1
+fi
+
+if [ $n -lt 0 ]
+then
+   echo "$0 <natural number> > 1"
+   exit 1
+fi
+prime=1
+
+for ((i=2; i<n; i++))
+do
+   sw=$(echo "$n % $i == 0"|bc)
+   if [ $sw -eq 1 ]
+   then
+      prime=0
+      break
+   fi
+done
+
+if [ $prime -eq 1 ]
+then
+   res="The number is prime."
+else
+   res="The number isn't prime."
+fi
+echo "$@" > params.txt
+./exercise9_bin < params.txt > sal.txt
+if grep -q "$res" "sal.txt"
+then
+   echo "Test OK!!"
+   exit_code=0
 else
    echo "Test ERROR!!"
-   echo "EXPECTED SUM1: $sum1"
-   echo "EXPECTED SUM2: $sum2"
-   echo "STUDENT SUM1: $alu_sum1"
-   echo "STUDENT SUM2: $alu_sum2"
    exit_code=1
 fi
-rm ex9_out.txt params.txt
+rm params.txt sal.txt
 exit $exit_code
-

@@ -1,39 +1,42 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
-   echo "$0 <last number to add in the sum>"
+if [ $# -ne 3 ]; then
+   echo "$0 <initial value> <end value> <difference between consecutive values>"
    exit 1
 fi
 
-n=$1
-even_sum=0
-odd_sum=0
+begin=$1
+end=$2
+inc=$3
 
-for ((i=1; i<=n; i++))
+for euro in $(seq $begin $inc $end)
 do
-  sw=$(echo "$i % 2 == 0"|bc)
-  if [ $sw -eq 1 ]
-  then
-     even_sum=$(($even_sum+$i))
-  else
-     odd_sum=$(($odd_sum+$i))
-  fi
+   pts=$(echo "$euro * 166.386" |bc -l)
+   printf "%9.2f  | %9.2f\n" $euro $pts >> tabla_prueba.txt
 done
+
 echo "$@" > params.txt
 ./exercise6_bin < params.txt > ex6_alu.txt
-odd_alu=$(cat ex6_alu.txt|grep -o $odd_sum)
-even_alu=$(cat ex6_alu.txt|grep -o $even_sum)
-if [ "$odd_sum" = "$odd_alu" ] && [ "$even_sum" = "$even_alu" ]
+start=7
+end=$(cat ex6_alu.txt|wc -l)
+sed -n "$start,$end p" ex6_alu.txt > tabla_alu.txt
+pro=$(cat tabla_prueba.txt)
+alu=$(cat tabla_alu.txt)
+
+if [ "$pro" = "$alu" ]
 then
     echo "Test OK!!"
 	exit_code=0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   cat tabla_prueba.txt
+   echo "STUDENT OUTPUT:"
+   cat tabla_alu.txt
    exit_code=1
 fi
-rm params.txt ex6_alu.txt
+rm tabla_alu.txt tabla_prueba.txt params.txt ex6_alu.txt
 exit $exit_code
-
 
 
 
