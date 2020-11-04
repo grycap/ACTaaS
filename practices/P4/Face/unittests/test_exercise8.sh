@@ -1,11 +1,10 @@
 #!/bin/bash
-
 sum=0
 max=-99
 min=99
 cont=$(cat ex8.dat|wc -l)
 cont=$(($cont-1))
-marks=$(cat ex7.dat|head -n$cont)
+marks=$(cat ex8.dat|head -n$cont)
 for mark in $marks
 do
   sum=$(echo "$sum + $mark"|bc -l)
