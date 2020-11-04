@@ -8,7 +8,7 @@ fi
 
 case $1 in
   0) echo "$@" > ent.txt
-     ./exercise4_bin < ent.txt > sal.txt
+     ./exercise5_bin < ent.txt > sal.txt
      if [ $? -eq 0 ]
      then
         echo "Test for exit option OK!!"
