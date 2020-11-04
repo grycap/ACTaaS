@@ -65,8 +65,10 @@ case $1 in
        if [ "$op" = "$res" ]
        then
           echo "Test for multiplication OK!!"
+          exit_code=0
        else
           echo "Test for multiplication ERROR!!"
+          exit_code=1
        fi
   ;;
     4) if [ $3 -eq 0 ]
@@ -84,7 +86,7 @@ case $1 in
 		  exit_code=1
        fi
        rm ent.txt sal.txt
-       exit
+       exit $exit_code
        else
           op=$(echo "$2 / $3"|bc)
 
