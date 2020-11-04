@@ -1,40 +1,15 @@
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 1 4 5 # Sum
+sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 5
 if [ $? -eq 1 ]   
 then
   exit 1
+else
+  exit 0
 fi
 
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 2 4 5 # Sub
+sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 0
 if [ $? -eq 1 ]   
 then
   exit 1
+else
+  exit 0
 fi
-
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 3 4 5 # Mul
-if [ $? -eq 1 ]   
-then
-  exit 1
-fi
-
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 4 6 2 # Div
-if [ $? -eq 1 ]   
-then
-  exit 1
-fi
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 4 6 0 # Div by zero
-if [ $? -eq 1 ]   
-then
-  exit 1
-fi
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 5 6 2 # Out of range option
-if [ $? -eq 1 ]   
-then
-  exit 1
-fi
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise4.sh 0 6 2 # Out of range option
-if [ $? -eq 1 ]   
-then
-  exit 1
-fi
-
-exit 0

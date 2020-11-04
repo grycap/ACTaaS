@@ -1,45 +1,126 @@
 #!/bin/bash
 
 if [ $# -ne 3 ]; then
-   echo "$0 <initial value> <end value> <difference between consecutive values>"
+   echo "$0 <option> <a> <b>"
+   echo "Aviable options:\n0-exit\n1-sumation\n2-substraction\n3-multiplication\n4-division"
    exit 1
 fi
 
-begin=$1
-end=$2
-inc=$3
+case $1 in
+  0) echo "$@" > ent.txt
+     ./exercise5_bin < ent.txt > sal.txt
+     if [ $? -eq 0 ]
+     then
+        echo "Test for exit option OK!!"
+		exit_code=0
+     else
+        echo "Test for exit option ERROR!!"
+		exit_code=1
+     fi
+  ;;
 
-for euro in $(seq $begin $inc $end)
-do
-   pts=$(echo "$euro * 166.386" |bc -l)
-   printf "%9.2f  | %9.2f\n" $euro $pts >> tabla_prueba.txt
-done
+  1) op=$(echo "$2 + $3"|bc)
+     echo "$@ 0" > ent.txt
+     ./exercise5_bin < ent.txt > sal.txt
+     res=$(cat sal.txt|grep -oE '[^ ]+$'| tr -dc '[:digit:]')
+     if [ $op -lt 0 ]
+     then
+        res=$(echo "$res * -1"|bc)
+     fi
+     if [ "$op" = "$res" ]
+     then
+        echo "Test for sumation OK!!"
+		exit_code=0
+     else
+        echo "Test for sumation ERROR!!"
+		exit_code=1
+     fi
+  ;;
 
-echo "$@" > params.txt
-./exercise5_bin < params.txt > ex5_alu.txt
-start=7
-end=$(cat ex6_alu.txt|wc -l)
-sed -n "$start,$end p" ex5_alu.txt > tabla_alu.txt
-pro=$(cat tabla_prueba.txt)
-alu=$(cat tabla_alu.txt)
+  2) op=$(echo "$2 - $3"|bc)
+     echo "$@ 0" > ent.txt
+     ./exercise5_bin < ent.txt > sal.txt
+     res=$(cat sal.txt|grep -oE '[^ ]+$'|tr -dc '[:digit:]')
+     if [ $op -lt 0 ]
+     then
+        res=$(echo "$res * -1"|bc)
+     fi
+     if [ "$op" = "$res" ]
+     then
+        echo "Test for substraction OK!!"
+		exit_code=0
+     else
+        echo "Test for substraction ERROR!!"
+		exit_code=1
+     fi
+    ;;
+    3) op=$(echo "$2 * $3"|bc)
+       echo "$@ 0" > ent.txt
+       ./exercise5_bin < ent.txt > sal.txt
+       res=$(cat sal.txt|grep -oE '[^ ]+$'|tr -dc '[:digit:]')
+       if [ $op -lt 0 ]
+       then
+          res=$(echo "$res * -1"|bc)
+       fi
+       if [ "$op" = "$res" ]
+       then
+          echo "Test for multiplication OK!!"
+          exit_code=0
+       else
+          echo "Test for multiplication ERROR!!"
+          exit_code=1
+       fi
+  ;;
+    4) if [ $3 -eq 0 ]
+       then
+          op="Error"
+          echo "Testing division by 0 attempt..."
+          echo "$@ 0" > ent.txt
+       ./exercise5_bin < ent.txt > sal.txt
+       if grep -q "$res" "sal.txt"
+       then
+          echo "Test for division OK!!"
+		  exit_code=0
+       else
+          echo "Test for division ERROR!!"
+		  exit_code=1
+       fi
+       rm ent.txt sal.txt
+       exit $exit_code
+       else
+          op=$(echo "$2 / $3"|bc)
 
-if [ "$pro" = "$alu" ]
-then
-    echo "Test OK!!"
-	exit_code=0
-else
-   echo "Test ERROR!!"
-   echo "EXPECTED OUTPUT:"
-   cat tabla_prueba.txt
-   echo "STUDENT OUTPUT:"
-   cat tabla_alu.txt
-   exit_code=1
-fi
-rm tabla_alu.txt tabla_prueba.txt params.txt ex5_alu.txt
+       fi
+       echo "$@ 0" > ent.txt
+       ./exercise5_bin < ent.txt > sal.txt
+       res=$(cat sal.txt|grep -oE '[^ ]+$'|tr -dc '[:digit:]')
+       if [ $op -lt 0 ]
+       then
+         res=$(echo "$res * -1"|bc)
+       fi
+       if [ "$op" = "$res" ]
+       then
+          echo "Test for division OK!!"
+		  exit_code=0
+       else
+          echo "Test for division ERROR!!"
+		  exit_code=1
+       fi
+  ;;
+   *)
+       res="Incorrect option"
+       echo "$@ 0" > ent.txt
+      ./exercise5_bin < ent.txt > sal.txt
+       if grep -q "$res" "sal.txt"
+       then
+          echo "Test for incorrect option validation OK!!"
+		  exit_code=0
+       else
+          echo "Test for incorrect option validation ERROR!!"
+		  exit_code=1
+       fi
+esac
+rm ent.txt sal.txt
 exit $exit_code
-
-
-
-
 
 
