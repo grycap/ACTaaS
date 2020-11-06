@@ -12,10 +12,12 @@ case $1 in
      if [ $? -eq 0 ]
      then
         echo "Test for exit option OK!!"
-		exit_code=0
+		rm ent.txt sal.txt
+		exit 0
      else
         echo "Test for exit option ERROR!!"
-		exit_code=1
+		rm ent.txt sal.txt
+		exit 1
      fi
   ;;
 
@@ -30,10 +32,12 @@ case $1 in
      if [ "$op" = "$res" ]
      then
         echo "Test for sumation OK!!"
-		exit_code=0
+		rm ent.txt sal.txt
+		exit 0
      else
         echo "Test for sumation ERROR!!"
-		exit_code=1
+		rm ent.txt sal.txt
+		exit 1
      fi
   ;;
 
@@ -48,10 +52,12 @@ case $1 in
      if [ "$op" = "$res" ]
      then
         echo "Test for substraction OK!!"
-		exit_code=0
+		rm ent.txt sal.txt
+		exit 0
      else
         echo "Test for substraction ERROR!!"
-		exit_code=1
+		rm ent.txt sal.txt
+		exit 1
      fi
     ;;
     3) op=$(echo "$2 * $3"|bc)
@@ -65,10 +71,12 @@ case $1 in
        if [ "$op" = "$res" ]
        then
           echo "Test for multiplication OK!!"
-          exit_code=0
+          rm ent.txt sal.txt
+		  exit 0
        else
           echo "Test for multiplication ERROR!!"
-          exit_code=1
+          rm ent.txt sal.txt
+		  exit 1
        fi
   ;;
     4) if [ $3 -eq 0 ]
@@ -80,10 +88,12 @@ case $1 in
        if grep -q "$res" "sal.txt"
        then
           echo "Test for division OK!!"
-		  exit_code=0
+		  rm ent.txt sal.txt
+		  exit 0
        else
           echo "Test for division ERROR!!"
-		  exit_code=1
+		  rm ent.txt sal.txt
+		  exit 1
        fi
        rm ent.txt sal.txt
        exit $exit_code
@@ -101,10 +111,12 @@ case $1 in
        if [ "$op" = "$res" ]
        then
           echo "Test for division OK!!"
-		  exit_code=0
+		  rm ent.txt sal.txt
+		  exit 0
        else
           echo "Test for division ERROR!!"
-		  exit_code=1
+		  rm ent.txt sal.txt
+		  exit 1
        fi
   ;;
    *)
@@ -114,13 +126,15 @@ case $1 in
        if grep -q "$res" "sal.txt"
        then
           echo "Test for incorrect option validation OK!!"
-		  exit_code=0
+		  rm ent.txt sal.txt
+		  exit 0
        else
           echo "Test for incorrect option validation ERROR!!"
-		  exit_code=1
+		  rm ent.txt sal.txt
+		  exit 1
        fi
 esac
-rm ent.txt sal.txt
-exit $exit_code
+
+
 
 

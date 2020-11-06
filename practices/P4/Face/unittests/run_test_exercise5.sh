@@ -1,16 +1,16 @@
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise5.sh 1 4 5 # Sum
+sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise5.sh 1 4 5 0 # Sum
 if [ $? -eq 1 ]
 then
   exit 1
 fi
 
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise5.sh 2 4 5 # Sub
+sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise5.sh 2 4 5 0 # Sub
 if [ $? -eq 1 ]
 then
   exit 1
 fi
 
-sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise5.sh 3 4 5 # Mul
+sh /var/tmp/education/ACTaaS/practices/P4/Face/unittests/test_exercise5.sh 3 4 5 0 # Mul
 if [ $? -eq 1 ]
 then
   exit 1
