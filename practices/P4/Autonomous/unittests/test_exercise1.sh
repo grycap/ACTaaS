@@ -24,7 +24,10 @@ echo "$@" > params.txt
 if grep -q "$sum" "ex1_out.txt"
 then
    echo "Test OK!!"
+   exit_code=0
 else
    echo "Test ERROR!!"
+   exit_code=1
 fi
 rm params.txt ex1_out.txt
+exit $exit_code

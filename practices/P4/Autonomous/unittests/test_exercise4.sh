@@ -17,7 +17,14 @@ echo "$@" > params.txt
 cat sal.txt|awk '{ print $2  }'| tr -d [:alpha:]|grep . > ex4_alu.txt
 if cmp -s ex4_out.txt ex4_alu.txt; then
     echo "Test OK!!"
+	exit_code=0
 else
    echo "Test ERROR!!"
+   echo "EXPECTED OUTPUT:"
+   cat ex4_out.txt
+   echo "STUDENT OUTPUT:"
+   cat ex4_alu.txt
+   exit_code=1
 fi
 rm params.txt ex4_out.txt ex4_alu.txt
+exit $exit_code

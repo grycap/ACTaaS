@@ -7,7 +7,7 @@ max=$(echo $2 | awk 'BEGIN{for(n=0;n<256;n++)ord[sprintf("%c",n)]=n}{print ord[$
 if [ $# -ne 2 ] || [ $min -ge $max ]
 then
    echo "$0 <character> <character> alphabetically ordered"
-   exit
+   exit 1
 fi
 
 echo "$@" > params.txt
@@ -19,8 +19,9 @@ do
   then
      echo "Test ERROR!!"
      rm ex7_out.txt params.txt
-     exit
+     exit 1
   fi
 done
 echo "Test OK!!"
 rm ex7_out.txt params.txt
+exit 0

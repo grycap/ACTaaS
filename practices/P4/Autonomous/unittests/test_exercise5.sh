@@ -14,7 +14,12 @@ m=$(cat ex5_out.txt| tr ' ' '\n' | tail -1)
 if [ $n -eq $m ]
 then
    echo "Test OK!!"
+   exit_code=0
 else
    echo "Test ERROR!!"
+   echo "SPECTED OUTPUT: $n"
+   echo "STUDENT OUTPUT: $m" 
+   exit_code=1
 fi
 rm params.txt ex5_out.txt
+exit $exit_code

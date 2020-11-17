@@ -1,1 +1,9 @@
-sh /var/tmp/education/ACTaaS/practices/P3/Autonomous/unittests/test_exercise11.sh
+cp /var/tmp/education/ACTaaS/practices/P4/Autonomous/solutions/experiment.txt .
+sh /var/tmp/education/ACTaaS/practices/P4/Autonomous/unittests/test_exercise11.sh
+
+if [ $? -eq 1 ]   
+then
+  exit 1
+else
+  exit 0
+fi

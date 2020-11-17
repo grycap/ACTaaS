@@ -47,7 +47,10 @@ fi
 if [ $testsq -eq 1 ] && [ $testcu -eq 1 ]
 then
    echo "Test OK!!"
+   exit_code=0
 else
    echo "Test ERROR!!"
+   exit_code=1
 fi
 rm params.txt ex3_out.txt sq_alu.txt cu_alu.txt sq.txt cu.txt
+exit $exit_code
