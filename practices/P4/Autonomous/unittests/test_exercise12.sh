@@ -27,7 +27,9 @@ do
 done < ex12_out.dat
 av=$(echo "$ts / 5"|bc -l)
 printf "%.2f\n" $av >> res_pro.txt
-if cmp -s res_pro.txt res_alu.txt; then
+pro=$(cat res_pro.txt)
+alu=$(cat res_alu.txt)
+if "$pro" = "$alu"; then
    echo "Test OK!!"
    exit_code=0
 else
