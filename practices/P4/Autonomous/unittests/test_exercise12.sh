@@ -22,21 +22,21 @@ do
    do
      s=$(echo "$s + $n"|bc)
    done
-   echo $s >> res_pro.dat
+   echo $s >> res_pro.txt
    ts=$(echo "$ts + $s"|bc)
 done < ex12_out.dat
 av=$(echo "$ts / 5"|bc -l)
-printf "%.2f\n" $av >> res_pro.dat
-if cmp -s res_pro.dat res_alu.txt; then
+printf "%.2f\n" $av >> res_pro.txt
+if cmp -s res_pro.txt res_alu.txt; then
    echo "Test OK!!"
    exit_code=0
 else
    echo "Test ERROR!!"
    echo "SPECTED OUTPUT:"
-   cat res_pro.dat
+   cat res_pro.txt
    echo "STUDENT OUTPUT:"
    cat res_alu.txt
    exit_code=1
 fi
-rm res_pro.dat res_alu.txt ex12_out.dat ex12_out_alu.dat sal.txt bowling_team.txt
+rm res_pro.txt res_alu.txt ex12_out.dat ex12_out_alu.dat sal.txt bowling_team.txt
 exit $exit_code
