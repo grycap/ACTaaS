@@ -25,10 +25,10 @@ c2=$?
 if [ $c1 -ne 0 ] || [ $c2 -ne 0 ]
 then
     echo "Test ERROR!!"
-    exit_code=0
+    exit_code=1
 else
     echo "Test OK!!"
-    exit_code=1
+    exit_code=0
 fi
 rm ex8_out.txt
 exit $exit_code
