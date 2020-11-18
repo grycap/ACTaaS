@@ -33,10 +33,10 @@ if cmp -s res_pro.dat res_alu.txt; then
 else
    echo "Test ERROR!!"
    echo "SPECTED OUTPUT:"
-   cat res_alu.txt
+   cat res_pro.dat
    echo "STUDENT OUTPUT:"
    cat res_alu.txt
    exit_code=1
 fi
-rm res_pro.dat res_alu.txt ex12_out.dat sal.txt bowling_team.txt
+rm res_pro.dat res_alu.txt ex12_out.dat ex12_out_alu.dat sal.txt bowling_team.txt
 exit $exit_code
