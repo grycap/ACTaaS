@@ -23,9 +23,9 @@ if cmp -s ex10_alu.txt ex10_out.txt; then
 else
     echo "Test ERROR!!"
     echo "EXPECTED OUTPUT:"
-    cat ex10_alu.txt
-    echo "STUDENT OUTPUT:"
     cat ex10_out.txt
+    echo "STUDENT OUTPUT:"
+    cat ex10_alu.txt
     exit_code=1
 fi
 rm ex10_out.txt ex10_alu.txt
