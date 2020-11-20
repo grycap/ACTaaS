@@ -36,7 +36,7 @@ then
 fi
 pro=$(cat res_pro.txt)
 alu=$(cat res_alu.txt)
-if "$pro" = "$alu"; then
+if [ "$pro" = "$alu" ]; then
    echo "Test ERROR!!"
    echo "SPECTED OUTPUT:"
    cat res_pro.txt
