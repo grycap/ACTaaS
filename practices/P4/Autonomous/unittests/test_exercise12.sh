@@ -30,15 +30,15 @@ printf "%.2f\n" $av >> res_pro.txt
 pro=$(cat res_pro.txt)
 alu=$(cat res_alu.txt)
 if "$pro" = "$alu"; then
-   echo "Test OK!!"
-   exit_code=0
-else
    echo "Test ERROR!!"
    echo "SPECTED OUTPUT:"
    cat res_pro.txt
    echo "STUDENT OUTPUT:"
    cat res_alu.txt
    exit_code=1
+else
+   echo "Test OK!!"
+   exit_code=0
 fi
 rm res_pro.txt res_alu.txt ex12_out.dat ex12_out_alu.dat sal.txt bowling_team.txt
 exit $exit_code
