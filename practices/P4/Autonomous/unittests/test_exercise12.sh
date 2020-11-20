@@ -27,6 +27,13 @@ do
 done < ex12_out.dat
 av=$(echo "$ts / 5"|bc -l)
 printf "%.2f\n" $av >> res_pro.txt
+if [ ! -f res_alu.txt ]
+then
+  echo "Test ERROR!!"
+   echo "SPECTED OUTPUT:"
+   cat res_pro.txt
+  exit 1
+fi
 pro=$(cat res_pro.txt)
 alu=$(cat res_alu.txt)
 if "$pro" = "$alu"; then
