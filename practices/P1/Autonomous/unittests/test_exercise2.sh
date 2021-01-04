@@ -15,7 +15,9 @@ rm ent.txt sal.txt output.txt
 
 if [ "$uppercase" = "$sal" ]; then
    echo "Test OK!!"
+   exit 0
 else
   echo "Test ERROR!!"
+  exit 1
 fi
 
