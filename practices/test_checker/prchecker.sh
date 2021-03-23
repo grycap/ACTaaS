@@ -15,17 +15,17 @@ usage() {
 }
 
 test_OK() {
-       list=$(ls /var/tmp/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/OK/*.c)
+       list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/OK/*.c)
     
        for f in $list
        do
         echo $f
-        gcc -Wall -lm $f -o exercise${JOB_NAME}_bin
-        if [ $? -ne 0 ]   
+        gcc -Wall -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
+        if [ -s gcclog.txt ]  
         then
            echo "Error de compilacion en $f" 
         else
-           sh /var/tmp/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh
+           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh
            if [ $? -ne 0 ]   
            then
               echo "Falso positivo en $f"
@@ -33,6 +33,7 @@ test_OK() {
            rm ./exercise${JOB_NAME}_bin
           
         fi
+        rm ./gcclog.txt
         read -n 1 -s -r -p "Press any key to continue"
        done
 }
