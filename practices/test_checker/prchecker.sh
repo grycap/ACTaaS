@@ -19,7 +19,7 @@ test_OK() {
     
        for f in $list
        do
-        echo "Processing $f.."
+        echo "Processing $f..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
@@ -34,7 +34,6 @@ test_OK() {
           
         fi
         rm ./gcclog.txt
-        read -n 1 -s -r -p "Press any key to continue"
        done
 }
 
@@ -43,7 +42,7 @@ test_ERROR() {
     
        for f in $list
        do
-        echo "Processing $f.."
+        echo "Processing $f..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
@@ -58,7 +57,6 @@ test_ERROR() {
           
         fi
         rm ./gcclog.txt
-        read -n 1 -s -r -p "Press any key to continue"
        done
 }
 
