@@ -25,7 +25,7 @@ test_OK() {
         then
            echo "Compilation error in $f" 
         else
-           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh /dev/null 2>/dev/null
+           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >>/dev/null 2>&1
            if [ $? -ne 0 ]   
            then
               echo "False positivr in $f"
