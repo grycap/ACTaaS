@@ -15,38 +15,30 @@ usage() {
 }
 
 test_OK() {
-       local c=0
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c)
-       for f in $list
+       exit_code=0
+	   for f in $list
        do
         echo "Processing $f..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
            echo "Compilation error in $f" 
+		   exit_code=1
         else
            sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
            if [ $? -ne 0 ]   
            then
               echo "False positive in $f"
-		   else
-		      let c=c+1
-           fi
+			  exit_code=1
+		   fi
 	    fi
         rm ./gcclog.txt
 		if [ -f exercise${JOB_NAME}_bin ]  
         then
 		   rm ./exercise${JOB_NAME}_bin
 	   fi
-       done
-	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c|wc -l)
-	   cecho "RED" "Test checker ERROR -- $c unexpected test(s) result(s). Please, Check script output."
-	   if [ $nf -eq $c ]
-	   then
-	      return 0
-	   else
-	      return 1
-	   fi
+	   return $exit_code
 	   
 }
 
