@@ -1,4 +1,5 @@
 #/bin/sh
+c=0
 
 cecho(){
     RED="\033[0;31m"
@@ -16,7 +17,6 @@ usage() {
 
 test_OK() {
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c)
-       c=0
        for f in $list
        do
         echo "Processing $f..."
@@ -39,7 +39,7 @@ test_OK() {
 		   rm ./exercise${JOB_NAME}_bin
 	   fi
        done
-	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK|wc -l)
+	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c|wc -l)
 	   if [ $nf -eq $c ]
 	   then
 	      return 0
@@ -50,8 +50,7 @@ test_OK() {
 }
 
 test_ERROR() {
-       list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/ERROR/*.c)
-        c=0 
+       list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/ERROR/*.c)
        for f in $list
        do
         echo "Processing $f..."
@@ -74,7 +73,7 @@ test_ERROR() {
 		   rm ./exercise${JOB_NAME}_bin
 	   fi
        done
-	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/ERROR/*.c|wc -l)
+	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/ERROR/*.c|wc -l)
 	   if [ $nf -eq $c ]
 	   then
 	      return 0
@@ -152,6 +151,6 @@ if [ $exit_code -eq 0 ]
 then
    cecho "GREEN" "Test checker complete successfully."
 else
-   cecho "RED" "Test checker ERROR -- Check script output."
+   cecho "RED" "Test checker ERROR -- $c unexpected test(s) result(s). Please, Check script output."
  fi
  exit $exit_code
