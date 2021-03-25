@@ -25,10 +25,10 @@ test_OK() {
         then
            echo "Compilation error in $f" 
         else
-           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >>/dev/null 2>&1
+           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
            if [ $? -ne 0 ]   
            then
-              echo "False positivr in $f"
+              echo "False positive in $f"
            fi
            rm ./exercise${JOB_NAME}_bin
           
@@ -39,7 +39,27 @@ test_OK() {
 }
 
 test_ERROR() {
-      echo "Funcion no implementada."
+        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/ERROR/*.c)
+    
+       for f in $list
+       do
+        echo "Processing $f.."
+        gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
+        if [ -s gcclog.txt ]  
+        then
+           echo "Compilation error in $f" 
+        else
+           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
+           if [ $? -eq 0 ]   
+           then
+              echo "False negative in $f"
+           fi
+           rm ./exercise${JOB_NAME}_bin
+          
+        fi
+        rm ./gcclog.txt
+        read -n 1 -s -r -p "Press any key to continue"
+       done
 }
 
 while getopts ":a:n:t:c:" o; do
