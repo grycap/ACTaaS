@@ -19,17 +19,17 @@ test_OK() {
        exit_code=0
 	   for f in $list
        do
-        echo "Processing $f..."
+        printf "Processing ${f##*/}..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
-           echo "Compilation error in $f" 
+           printf " Compilation error in ${f##*/}\n" 
 		   exit_code=1
         else
            sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
            if [ $? -ne 0 ]   
            then
-              echo "False positive in $f"
+              printf " False positive in ${f##*/}\n"
 			  exit_code=1
 		   fi
 	    fi
