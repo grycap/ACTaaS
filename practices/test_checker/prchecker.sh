@@ -75,7 +75,7 @@ test_ERROR() {
         if [ $exit_status -eq 0 ]
         then
 	      let c=c+1
-	    fi 
+	   fi 
 	   done
 	   return $c
 }
