@@ -134,7 +134,7 @@ then
    fi
 else
     test_ERROR
-   if [ $? -ne 0 ]  
+   if [ $? -eq 0 ]  
    then
        exit_code=0
    else
