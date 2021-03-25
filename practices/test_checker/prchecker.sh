@@ -19,7 +19,7 @@ test_OK() {
        exit_code=0
 	   for f in $list
        do
-        printf "Processing ${f##*/}..."
+        printf "\nProcessing ${f##*/}..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
