@@ -52,7 +52,7 @@ test_ERROR() {
 	   local c=0
        for f in $list
        do
-	    exit_code=0
+	    local exit_status=0
         printf "\nProcessing source code ${f##*/}..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
@@ -64,7 +64,7 @@ test_ERROR() {
            if [ $? -eq 0 ]   
            then
               printf " False negative in ${f##*/}"
-			  exit_code=1
+			  exit_status=1
 		   fi
 	    fi
         rm ./gcclog.txt
