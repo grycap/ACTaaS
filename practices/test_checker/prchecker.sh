@@ -58,7 +58,7 @@ test_ERROR() {
         if [ -s gcclog.txt ]  
         then
            printf " Compilation error in ${f##*/}" 
-		   exit_code=0
+		   exit_code=1
         else
            sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
            if [ $? -eq 0 ]   
