@@ -58,7 +58,7 @@ test_ERROR() {
            if [ $? -eq 0 ]   
            then
               printf " False negative in ${f##*/}"
-			  exit_code=0
+			  exit_code=1
 		   fi
 	    fi
         rm ./gcclog.txt
