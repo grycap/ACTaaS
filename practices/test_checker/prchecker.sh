@@ -23,7 +23,7 @@ test_OK() {
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
-           printf " Compilation error in ${f##*/}\n" 
+           printf " Compilation error in ${f##*/}" 
 		   exit_code=1
         else
            sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
