@@ -39,7 +39,7 @@ test_OK() {
 		   rm ./exercise${JOB_NAME}_bin
 	   fi
        done
-	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${$PRACTICA}/$TYPE/exercise${JOB_NAME}/OK|wc -l)
+	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK|wc -l)
 	   if [ $nf -eq $c ]
 	   then
 	      return 0
