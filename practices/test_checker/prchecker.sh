@@ -16,7 +16,7 @@ usage() {
 
 test_OK() {
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c)
-       local c = 0
+       local c=0
 	   for f in $list
        do
 	    local exit_status=0
@@ -49,6 +49,7 @@ test_OK() {
 
 test_ERROR() {
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/ERROR/*.c)
+	   local c=0
        for f in $list
        do
 	    exit_code=0
@@ -71,8 +72,12 @@ test_ERROR() {
         then
 		   rm ./exercise${JOB_NAME}_bin
 	    fi
+        if [ $exit_status -eq 0 ]
+        then
+	      let c=c+1
+	    fi 
 	   done
-	   return $exit_code
+	   return $c
 }
 
 while getopts ":a:n:t:c:" o; do
