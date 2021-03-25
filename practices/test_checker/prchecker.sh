@@ -30,10 +30,12 @@ test_OK() {
            then
               echo "False positive in $f"
            fi
-           rm ./exercise${JOB_NAME}_bin
-          
         fi
         rm ./gcclog.txt
+		if [ -f exercise${JOB_NAME}_bin ]  
+        then
+		   rm ./exercise${JOB_NAME}_bin
+	   fi
        done
 }
 
@@ -48,7 +50,7 @@ test_ERROR() {
         then
            echo "Compilation error in $f" 
         else
-           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh #>> /dev/null 2>&1
+           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
            if [ $? -eq 0 ]  
            then
               echo "False negative in $f"
