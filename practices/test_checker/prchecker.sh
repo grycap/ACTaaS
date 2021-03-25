@@ -39,7 +39,7 @@ test_OK() {
         then
 		   rm ./exercise${JOB_NAME}_bin
 	    fi
-       if [ $exit_status -eq 0 ]
+       if [ $exit_status -eq 1 ]
        then
 	      let c=c+1
 	   fi 
