@@ -19,7 +19,7 @@ test_OK() {
        exit_code=0
 	   for f in $list
        do
-        printf "\nProcessing ${f##*/}..."
+        printf "\nProcessing source code ${f##*/}..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
@@ -29,7 +29,7 @@ test_OK() {
            sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
            if [ $? -ne 0 ]   
            then
-              printf " False positive in ${f##*/}\n"
+              printf " False positive in ${f##*/}"
 			  exit_code=1
 		   fi
 	    fi
