@@ -142,8 +142,8 @@ fi
 
 if [ $exit_code -eq 0 ]
 then
-   cecho "GREEN" "Test checker complete successfully."
+   cecho "GREEN" "\nTest checker complete successfully."
 else
-   cecho "RED" "Test checker ERROR -- Please, Check script output."
+   cecho "RED" "\nTest checker ERROR -- Please, Check script output."
 fi
 exit $exit_code
