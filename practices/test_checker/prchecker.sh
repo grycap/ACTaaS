@@ -19,16 +19,16 @@ test_OK() {
     
        for f in $list
        do
-        echo $f
-        gcc -Wall -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
+        echo "Processing $f.."
+        gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
-           echo "Error de compilacion en $f" 
+           echo "Compilation error in $f" 
         else
-           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh
+           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh 2> /dev/null
            if [ $? -ne 0 ]   
            then
-              echo "Falso positivo en $f"
+              echo "False positivr in $f"
            fi
            rm ./exercise${JOB_NAME}_bin
           
