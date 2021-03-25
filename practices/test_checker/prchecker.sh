@@ -48,7 +48,7 @@ test_ERROR() {
         then
            echo "Compilation error in $f" 
         else
-           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
+           sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh #>> /dev/null 2>&1
            if [ $? -eq 0 ]   
            then
               echo "False negative in $f"
