@@ -16,9 +16,10 @@ usage() {
 
 test_OK() {
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c)
-       exit_code=0
+       
 	   for f in $list
        do
+	    exit_code=0
         printf "\nProcessing source code ${f##*/}..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
@@ -44,9 +45,9 @@ test_OK() {
 
 test_ERROR() {
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/ERROR/*.c)
-       exit_code=0
-	   for f in $list
+       for f in $list
        do
+	    exit_code=0
         printf "\nProcessing source code ${f##*/}..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
