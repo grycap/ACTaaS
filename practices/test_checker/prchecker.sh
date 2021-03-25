@@ -44,35 +44,30 @@ test_OK() {
 
 test_ERROR() {
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/ERROR/*.c)
-       for f in $list
+       exit_code=0
+	   for f in $list
        do
-        echo "Processing $f..."
+        printf "\nProcessing source code ${f##*/}..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
-           echo "Compilation error in $f" 
+           printf " Compilation error in ${f##*/}" 
+		   exit_code=1
         else
            sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
            if [ $? -eq 0 ]   
            then
-              echo "False positive in $f"
-		   else
-		      let c=c+1
-           fi
-		 fi
+              printf " False negative in ${f##*/}"
+			  exit_code=1
+		   fi
+	    fi
         rm ./gcclog.txt
-        if [ -f exercise${JOB_NAME}_bin ]  
+		if [ -f exercise${JOB_NAME}_bin ]  
         then
 		   rm ./exercise${JOB_NAME}_bin
-	   fi
-       done
-	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/ERROR/*.c|wc -l)
-	   if [ $nf -eq $c ]
-	   then
-	      return 0
-	   else
-	      return 1
-	   fi
+	    fi
+	   done
+	   return $exit_code
 }
 
 while getopts ":a:n:t:c:" o; do
