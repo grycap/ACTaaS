@@ -16,7 +16,7 @@ usage() {
 
 test_OK() {
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/OK/*.c)
-    
+       c=0
        for f in $list
        do
         echo "Processing $f..."
@@ -29,19 +29,29 @@ test_OK() {
            if [ $? -ne 0 ]   
            then
               echo "False positive in $f"
+		   else
+		      let c=c+1
            fi
-        fi
+	    fi
         rm ./gcclog.txt
 		if [ -f exercise${JOB_NAME}_bin ]  
         then
 		   rm ./exercise${JOB_NAME}_bin
 	   fi
        done
+	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/OK/*.c|wc -l)
+	   if [ $nf -eq $c ]
+	   then
+	      return 0
+	   else
+	      return 1
+	   fi
+	   
 }
 
 test_ERROR() {
-        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/ERROR/*.c)
-    
+       list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/ERROR/*.c)
+        c=0 
        for f in $list
        do
         echo "Processing $f..."
@@ -51,17 +61,26 @@ test_ERROR() {
            echo "Compilation error in $f" 
         else
            sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
-           if [ $? -eq 0 ]  
+           if [ $? -eq 0 ]   
            then
-              echo "False negative in $f"
+              echo "False positive in $f"
+		   else
+		      let c=c+1
            fi
-        fi
+		 fi
         rm ./gcclog.txt
         if [ -f exercise${JOB_NAME}_bin ]  
         then
 		   rm ./exercise${JOB_NAME}_bin
 	   fi
        done
+	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${JOB_NAME}/$TYPE/exercise${JOB_NAME}/ERROR/*.c|wc -l)
+	   if [ $nf -eq $c ]
+	   then
+	      return 0
+	   else
+	      return 1
+	   fi
 }
 
 while getopts ":a:n:t:c:" o; do
@@ -113,8 +132,26 @@ fi
 if [ $TEST_TYPE = OK ] 
 then
    test_OK
+   if [ $? -eq 0 ]  
+   then
+       exit_code=0
+   else
+      exit_code=1
+   fi
 else
     test_ERROR
+   if [ $? -eq 0 ]  
+   then
+       exit_code=0
+   else
+      exit_code=1
+   fi
 fi
-               
-cecho "GREEN" "Test checker complete."
+
+if [ exit_code -eq 0 ]
+then
+   cecho "GREEN" "Test checker complete successfully."
+else
+   cecho "RED" "Test checker ERROR -- Check script output."
+ fi
+ exit $exit_code
