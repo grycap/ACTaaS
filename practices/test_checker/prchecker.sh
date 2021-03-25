@@ -39,10 +39,7 @@ test_OK() {
         then
 		   rm ./exercise${JOB_NAME}_bin
 	    fi
-       if [ $exit_status -eq 1 ]
-       then
-	      let c=c+1
-	   fi 
+
 	   done
 	   return $c
 }
@@ -137,7 +134,7 @@ then
    fi
 else
     test_ERROR
-   if [ $? -eq 0 ]  
+   if [ $? -ne 0 ]  
    then
        exit_code=0
    else
