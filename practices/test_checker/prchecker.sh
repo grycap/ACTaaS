@@ -40,6 +40,7 @@ test_OK() {
 	   fi
        done
 	   nf=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c|wc -l)
+	   cecho "RED" "Test checker ERROR -- $c unexpected test(s) result(s). Please, Check script output."
 	   if [ $nf -eq $c ]
 	   then
 	      return 0
