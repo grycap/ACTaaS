@@ -37,9 +37,9 @@ test_OK() {
 		if [ -f exercise${JOB_NAME}_bin ]  
         then
 		   rm ./exercise${JOB_NAME}_bin
-	   fi
+	    fi
+	   done
 	   return $exit_code
-	   
 }
 
 test_ERROR() {
@@ -144,6 +144,6 @@ if [ $exit_code -eq 0 ]
 then
    cecho "GREEN" "Test checker complete successfully."
 else
-   cecho "RED" "Test checker ERROR -- $c unexpected test(s) result(s). Please, Check script output."
+   cecho "RED" "Test checker ERROR -- Please, Check script output."
 fi
 exit $exit_code
