@@ -148,7 +148,7 @@ else
    fi
 fi
 
-if [ exit_code -eq 0 ]
+if [ $exit_code -eq 0 ]
 then
    cecho "GREEN" "Test checker complete successfully."
 else
