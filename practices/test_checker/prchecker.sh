@@ -16,22 +16,22 @@ usage() {
 
 test_OK() {
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c)
-       
+       local c = 0
 	   for f in $list
        do
-	    exit_code=0
+	    local exit_status=0
         printf "\nProcessing source code ${f##*/}..."
         gcc -Wall -Wno-main -lm $f -o exercise${JOB_NAME}_bin 2> gcclog.txt
         if [ -s gcclog.txt ]  
         then
            printf " Compilation error in ${f##*/}" 
-		   exit_code=1
+		   exit_status=1
         else
            sh /var/tmp/education/ACTaaS/practices/P${PRACTICA}/$TYPE/unittests/run_test_exercise${JOB_NAME}.sh >> /dev/null 2>&1
            if [ $? -ne 0 ]   
            then
               printf " False positive in ${f##*/}"
-			  exit_code=1
+			  exit_status=1
 		   fi
 	    fi
         rm ./gcclog.txt
@@ -39,8 +39,12 @@ test_OK() {
         then
 		   rm ./exercise${JOB_NAME}_bin
 	    fi
+       if [ $exit_status -eq 0 ]
+       then
+	      let c=c+1
+	   fi 
 	   done
-	   return $exit_code
+	   return $c
 }
 
 test_ERROR() {
