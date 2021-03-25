@@ -15,7 +15,7 @@ usage() {
 }
 
 test_OK() {
-       c=0
+       local c=0
        list=$(ls /var/tmp/education/ACTaaS/practices/test_checker/P${PRACTICA}/$TYPE/exercise${JOB_NAME}/OK/*.c)
        for f in $list
        do
@@ -152,5 +152,5 @@ then
    cecho "GREEN" "Test checker complete successfully."
 else
    cecho "RED" "Test checker ERROR -- $c unexpected test(s) result(s). Please, Check script output."
- fi
- exit $exit_code
+fi
+exit $exit_code
