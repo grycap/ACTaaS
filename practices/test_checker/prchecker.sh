@@ -145,10 +145,4 @@ else
    fi
 fi
 
-if [ $exit_code -eq 0 ]
-then
-   cecho "GREEN" "\nTest checker complete successfully."
-else
-   cecho "RED" "\nTest checker ERROR -- Please, Check script output."
-fi
 exit $exit_code
